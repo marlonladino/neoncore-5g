@@ -17,3 +17,6 @@ __pycache__/
 # per-run scenario pcaps (phase6) -- every automated run produces one; only
 # deliberately curated reference captures get promoted into traces/ and committed
 traces/scenario-runs/
+
+# ad hoc manual captures (CLI 'c' key) -- same reasoning as scenario-runs/ above
+traces/manual/

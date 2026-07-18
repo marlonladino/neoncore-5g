@@ -227,6 +227,7 @@ First run builds a `.venv` and installs [Textual](https://textual.textualize.io/
 | `p` | UE connection test — `kubectl exec` a `ping -I uesimtun0 -c 4 8.8.8.8` inside the live UE pod |
 | `l` | Latest network traces — lists recent PCAP files from the tracer pod + a protocol summary of the newest one |
 | `s` | Run a 5G signaling scenario (see [Scenario automation](#scenario-automation) below) — asks for MSISDN + policy params first |
+| `c` | Start/stop a manual packet capture (toggle) — see [Network tracing](#network-tracing) below |
 | `r` | Force an immediate pod-table refresh (it also auto-refreshes every 4s) |
 | `q` | Quit |
 
@@ -308,6 +309,14 @@ kubectl -n neoncore cp "neoncore/$TRACER_POD:/pcaps/<filename>.pcap.gz" ./captur
 ```
 
 Or just press `l` in the CLI for a quick summary without leaving the terminal.
+
+**Manual capture (CLI `c` key):** starts a second, independent `tcpdump` on the same tracer pod —
+same filter, doesn't disturb the continuous background capture above — that you control by hand:
+press `c` to start, do whatever you want to trace (a manual test, a one-off `kubectl exec`, etc.),
+then press `c` again to stop. On stop it's health-checked (confirms the file actually grew, not
+just that the process stayed alive) and copied to `traces/manual/<name>.pcap` locally. Distinct
+naming (`manual-<timestamp>.pcap`) keeps it apart from both the tracer's own rotated files and
+phase6's per-scenario captures.
 
 ## Project structure
 

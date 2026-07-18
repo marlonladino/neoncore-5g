@@ -260,3 +260,80 @@ async def run_scenario(slug: str, msisdn: str, **params) -> AsyncIterator[str]:
         args += [f"--{key.replace('_', '-')}", str(value)]
     async for line in _stream_cmd(*args):
         yield line
+
+
+# Manual, user-controlled packet capture -- separate from the tracer pod's own
+# continuous rotating capture (phase4) and from phase6's scenario-scoped captures.
+# Same mechanism as phase6/capture.py (a second tcpdump via kubectl exec on the
+# already-running tracer pod, PID-file tracked) and the same BPF filter as
+# phase4/manifests/capture.sh, just started/stopped on demand instead of on a timer
+# or tied to a scenario run.
+MANUAL_CAPTURE_DIR = "traces/manual"
+CAPTURE_BPF_FILTER = "(sctp) or (udp port 8805) or (udp port 2152) or (tcp port 7777) or icmp"
+
+
+@dataclass
+class CaptureHandle:
+    name: str
+    ok: bool
+    message: str
+
+
+def _manual_capture_name() -> str:
+    import time
+    return f"manual-{time.strftime('%Y%m%d-%H%M%S')}"
+
+
+async def _pcap_size(pod: str, pcap_path: str) -> int:
+    res = await _run_cmd(
+        "kubectl", "-n", "neoncore", "exec", pod, "--", "sh", "-c",
+        f"stat -c%s {pcap_path} 2>/dev/null || echo -1",
+        timeout=10,
+    )
+    try:
+        return int(res.output.strip().splitlines()[-1])
+    except (ValueError, IndexError):
+        return -1
+
+
+async def start_manual_capture() -> CaptureHandle:
+    pod = await find_pod("tracer")
+    if not pod:
+        return CaptureHandle(name="", ok=False,
+                              message="No 'tracer' pod found -- is the infrastructure deployed?")
+    name = _manual_capture_name()
+    pcap, log, pid = f"/pcaps/{name}.pcap", f"/pcaps/{name}.log", f"/pcaps/{name}.pid"
+    cmd = f"nohup tcpdump -i any -n -w {pcap} '{CAPTURE_BPF_FILTER}' >{log} 2>&1 & echo $! > {pid}"
+    res = await _run_cmd("kubectl", "-n", "neoncore", "exec", pod, "--", "sh", "-c", cmd, timeout=15)
+    if res.ok:
+        return CaptureHandle(name=name, ok=True, message=f"Capture started: {name}.pcap")
+    return CaptureHandle(name="", ok=False, message=f"Failed to start capture: {res.output.strip()}")
+
+
+async def stop_manual_capture(name: str) -> AsyncIterator[str]:
+    pod = await find_pod("tracer")
+    if not pod:
+        yield "No 'tracer' pod found -- is the infrastructure deployed?"
+        return
+    pcap, pid = f"/pcaps/{name}.pcap", f"/pcaps/{name}.pid"
+
+    size1 = await _pcap_size(pod, pcap)
+    await asyncio.sleep(1.5)
+    size2 = await _pcap_size(pod, pcap)
+    yield f"Capture health: {'growing' if size2 > size1 else 'not growing'} ({size1} -> {size2} bytes)"
+
+    await _run_cmd(
+        "kubectl", "-n", "neoncore", "exec", pod, "--", "sh", "-c",
+        f"kill -INT $(cat {pid}) 2>/dev/null; sleep 1; true",
+        timeout=15,
+    )
+
+    local_dir = os.path.join(REPO_ROOT, MANUAL_CAPTURE_DIR)
+    os.makedirs(local_dir, exist_ok=True)
+    local_path = os.path.join(local_dir, f"{name}.pcap")
+    res = await _run_cmd("kubectl", "cp", f"neoncore/{pod}:{pcap}", local_path, timeout=30)
+    if res.ok and os.path.exists(local_path):
+        size = os.path.getsize(local_path)
+        yield f"Capture stopped and collected: {MANUAL_CAPTURE_DIR}/{name}.pcap ({size} bytes)"
+    else:
+        yield f"Failed to collect capture: {res.output.strip()}"

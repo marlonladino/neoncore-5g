@@ -103,9 +103,12 @@ class NeonCoreApp(App[None]):
         ("p", "ping_test", "UE Ping Test"),
         ("l", "traces", "Latest Traces"),
         ("s", "scenarios", "Run Scenario"),
+        ("c", "toggle_capture", "Start/Stop Capture"),
         ("r", "refresh", "Refresh Now"),
         ("q", "quit", "Quit"),
     ]
+
+    active_capture_name: str | None = None
 
     def compose(self) -> ComposeResult:
         yield Static(
@@ -133,8 +136,8 @@ class NeonCoreApp(App[None]):
         log = self.query_one("#log", RichLog)
         log.write("[bold #00fff9]NeonCore 5G Control Center online.[/]")
         log.write("[#39ff14]d[/]=deploy  [#39ff14]t[/]=teardown  [#39ff14]p[/]=ping test  "
-                   "[#39ff14]l[/]=traces  [#39ff14]s[/]=scenario  [#39ff14]r[/]=refresh  "
-                   "[#39ff14]q[/]=quit")
+                   "[#39ff14]l[/]=traces  [#39ff14]s[/]=scenario  [#39ff14]c[/]=start/stop capture  "
+                   "[#39ff14]r[/]=refresh  [#39ff14]q[/]=quit")
         self.set_interval(4.0, self.refresh_pods)
         self.run_worker(self.refresh_pods(), exclusive=False)
 
@@ -242,6 +245,35 @@ class NeonCoreApp(App[None]):
             safe_line = line.replace("[", "\\[")
             color = "#ff2fd6" if "[error]" in line or "FAIL" in line else "#39ff14"
             log.write(f"[{color}]{safe_line}[/]")
+
+    def action_toggle_capture(self) -> None:
+        if self.active_capture_name is None:
+            self.run_worker(self._start_capture(), exclusive=True)
+        else:
+            self.run_worker(self._stop_capture(), exclusive=True)
+
+    async def _start_capture(self) -> None:
+        log = self.query_one("#log", RichLog)
+        log.write("\n[bold #00fff9]=== MANUAL CAPTURE: START ===[/]")
+        handle = await k8s.start_manual_capture()
+        color = "#39ff14" if handle.ok else "#ff2fd6"
+        log.write(f"[{color}]{handle.message}[/]")
+        if handle.ok:
+            self.active_capture_name = handle.name
+            self.set_status(f"[#ffd400]Capturing ({handle.name}.pcap) — press c to stop[/]")
+
+    async def _stop_capture(self) -> None:
+        log = self.query_one("#log", RichLog)
+        name = self.active_capture_name
+        log.write(f"\n[bold #ff2fd6]=== MANUAL CAPTURE: STOP ({name}) ===[/]")
+        try:
+            async for line in k8s.stop_manual_capture(name):
+                log.write(f"[#39ff14]{line}[/]")
+        finally:
+            # Always clear, even if stop_manual_capture raised partway through --
+            # otherwise a failed stop leaves the app stuck thinking a capture that
+            # no longer exists is still running, and 'c' would never start a new one.
+            self.active_capture_name = None
 
 
 def main() -> None:

@@ -94,6 +94,10 @@ ScenarioScreen {
     padding: 1 2;
 }
 
+#scenario-dialog Label {
+    width: 100%;
+}
+
 #scenario-title {
     color: #ff2fd6;
     text-style: bold;
@@ -122,6 +126,7 @@ Input {
 }
 
 #confirm-question {
+    width: 100%;
     color: #00fff9;
     padding-bottom: 1;
     text-align: center;
