@@ -9,7 +9,7 @@ import os
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.screen import ModalScreen
-from textual.widgets import Button, DataTable, Footer, Label, RichLog, Static
+from textual.widgets import Button, DataTable, Footer, Input, Label, RichLog, Static
 
 from . import k8s
 
@@ -45,6 +45,54 @@ class ConfirmScreen(ModalScreen[bool]):
         self.dismiss(event.button.id == "yes")
 
 
+class ScenarioScreen(ModalScreen[dict | None]):
+    """Parameter-input form for running a phase6 5G signaling scenario.
+
+    Dismisses with a params dict (slug + msisdn + policy overrides) on one of the
+    three scenario buttons, or None on Cancel.
+    """
+
+    def compose(self) -> ComposeResult:
+        with Vertical(id="scenario-dialog"):
+            yield Label("Run 5G Scenario", id="scenario-title")
+            yield Label("UE MSISDN (10 digits, required)")
+            yield Input(placeholder="0000000100", id="scenario-msisdn")
+            yield Label("5QI / QoS index")
+            yield Input(value="9", id="scenario-qos-index")
+            yield Label("ARP priority level (1-15)")
+            yield Input(value="8", id="scenario-arp-priority")
+            yield Label("AMBR downlink / uplink (bps)")
+            with Horizontal():
+                yield Input(value="1000000000", id="scenario-ambr-down")
+                yield Input(value="1000000000", id="scenario-ambr-up")
+            with Horizontal(id="scenario-buttons"):
+                yield Button("Initial Reg", id="initial-registration")
+                yield Button("Reg Reject", id="registration-reject")
+                yield Button("Deregister", id="deregistration")
+            yield Button("Cancel", id="cancel", classes="-danger")
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "cancel":
+            self.dismiss(None)
+            return
+        msisdn_input = self.query_one("#scenario-msisdn", Input)
+        msisdn = msisdn_input.value.strip()
+        if not (msisdn.isdigit() and len(msisdn) == 10):
+            msisdn_input.placeholder = "must be exactly 10 digits!"
+            return
+        params = {
+            "slug": event.button.id,
+            "msisdn": msisdn,
+            "qos_index": self.query_one("#scenario-qos-index", Input).value.strip() or "9",
+            "arp_priority": self.query_one("#scenario-arp-priority", Input).value.strip() or "8",
+            "ambr_downlink_bps": self.query_one("#scenario-ambr-down", Input).value.strip()
+            or "1000000000",
+            "ambr_uplink_bps": self.query_one("#scenario-ambr-up", Input).value.strip()
+            or "1000000000",
+        }
+        self.dismiss(params)
+
+
 class NeonCoreApp(App[None]):
     CSS_PATH = "neoncore.tcss"
     TITLE = "NEONCORE 5G"
@@ -54,6 +102,7 @@ class NeonCoreApp(App[None]):
         ("t", "teardown", "Teardown"),
         ("p", "ping_test", "UE Ping Test"),
         ("l", "traces", "Latest Traces"),
+        ("s", "scenarios", "Run Scenario"),
         ("r", "refresh", "Refresh Now"),
         ("q", "quit", "Quit"),
     ]
@@ -84,7 +133,8 @@ class NeonCoreApp(App[None]):
         log = self.query_one("#log", RichLog)
         log.write("[bold #00fff9]NeonCore 5G Control Center online.[/]")
         log.write("[#39ff14]d[/]=deploy  [#39ff14]t[/]=teardown  [#39ff14]p[/]=ping test  "
-                   "[#39ff14]l[/]=traces  [#39ff14]r[/]=refresh  [#39ff14]q[/]=quit")
+                   "[#39ff14]l[/]=traces  [#39ff14]s[/]=scenario  [#39ff14]r[/]=refresh  "
+                   "[#39ff14]q[/]=quit")
         self.set_interval(4.0, self.refresh_pods)
         self.run_worker(self.refresh_pods(), exclusive=False)
 
@@ -174,6 +224,24 @@ class NeonCoreApp(App[None]):
         log.write("\n[bold #00fff9]=== LATEST NETWORK TRACES ===[/]")
         async for line in k8s.latest_traces():
             log.write(f"[#39ff14]{line}[/]")
+
+    def action_scenarios(self) -> None:
+        def check(params: dict | None) -> None:
+            if params:
+                self.run_worker(self._run_scenario(params), exclusive=True)
+        self.push_screen(ScenarioScreen(), check)
+
+    async def _run_scenario(self, params: dict) -> None:
+        log = self.query_one("#log", RichLog)
+        slug = params.pop("slug")
+        msisdn = params.pop("msisdn")
+        log.write(f"\n[bold #00fff9]=== SCENARIO: {slug}  msisdn={msisdn} ===[/]")
+        async for line in k8s.run_scenario(slug, msisdn, **params):
+            # AMF/UE log lines are dense with literal '[...]' (e.g. '[imsi-...]') --
+            # escape before interpolating into Rich markup or it breaks the parser.
+            safe_line = line.replace("[", "\\[")
+            color = "#ff2fd6" if "[error]" in line or "FAIL" in line else "#39ff14"
+            log.write(f"[{color}]{safe_line}[/]")
 
 
 def main() -> None:

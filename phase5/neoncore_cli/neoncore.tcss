@@ -82,6 +82,37 @@ ConfirmScreen {
     align: center middle;
 }
 
+ScenarioScreen {
+    align: center middle;
+}
+
+#scenario-dialog {
+    width: 70;
+    height: auto;
+    border: heavy #00fff9;
+    background: #0a0d16;
+    padding: 1 2;
+}
+
+#scenario-title {
+    color: #ff2fd6;
+    text-style: bold;
+    text-align: center;
+    padding-bottom: 1;
+}
+
+#scenario-buttons {
+    height: 3;
+    align: center middle;
+    padding-top: 1;
+}
+
+Input {
+    background: #05060a;
+    color: #39ff14;
+    border: round #00fff9;
+}
+
 #confirm-dialog {
     width: 60;
     height: auto;

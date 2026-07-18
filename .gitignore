@@ -13,3 +13,7 @@ __pycache__/
 *.key
 *kubeconfig*
 .env
+
+# per-run scenario pcaps (phase6) -- every automated run produces one; only
+# deliberately curated reference captures get promoted into traces/ and committed
+traces/scenario-runs/

@@ -533,3 +533,85 @@ files can be safely deleted *before* that restart, or just left alone and ignore
 from an already-running tracer, do it only when you don't need whatever it's actively writing right
 now. Copying a live file with `kubectl cp` is always safe (doesn't touch the source); deleting one
 that's still open is not.
+
+## Phase 7 — 5G Signaling Scenario Automation
+
+(Numbered 7, not 6, because "Phase 6" above was already used for the doc-only README rewrite; this
+phase's code lives in `phase6/` since no directory of that name existed yet.)
+
+Added parameterized automation of real 5G signaling procedures against the live core, each with a
+uniquely-named pcap capture, plus a dependency-free integration test suite, driven from a new `s`
+key in the Phase 5 CLI. `phase6/` is fully standalone (mirrors phase5's own `kubectl`-subprocess
+pattern rather than importing from it) so it stays runnable and testable on its own:
+`kubectl_util.py` (async subprocess helpers), `provisioning.py` (parametric subscriber
+provisioning — generalizes `phase0/scripts/add-subscriber.js`'s schema to arbitrary IMSI/policy),
+`ue_pod.py` (ephemeral, uniquely-labeled UE pods — never the long-lived `ue` Deployment), `capture.py`
+(a second, scenario-scoped `tcpdump` via `kubectl exec` into the existing tracer pod), `scenarios.py`
++ `runner.py` (the scenario abstraction and shared orchestrator), `cli.py` (argparse entrypoint),
+and `tests/run_scenarios.py` (the suite).
+
+### Two requested scenarios turned out to be impossible with UERANSIM, not just hard
+
+The original ask covered five scenarios: initial registration, registration reject, Tracking Area
+Update, handover, and UE-initiated deregistration. Two were dropped after live research showed the
+gap was in UERANSIM itself (the RAN/UE simulator this project uses), not in this automation:
+
+- **Handover**: UERANSIM has no `PathSwitchRequest`/Xn or N2-handover signaling implemented at all.
+  Confirmed via the upstream feature request, [`aligungr/UERANSIM#289`](https://github.com/aligungr/UERANSIM/issues/289)
+  ("Implementing handover functionality") — still open, no PR merged, and `v3.3.0` (already pinned
+  in `phase2/manifests/05-ueransim.yaml`) is the latest release.
+- **Tracking Area Update** (periodic registration update): confirmed empirically on this cluster
+  across two full-length live waits — 120s with a 1-minute subscriber `subscribed_rau_tau_timer`,
+  then the full ~12 minutes matching AMF's actual configured `t3512` (540s,
+  `phase2/manifests/01-configmaps.yaml`) — that UERANSIM's UE never sends a periodic registration
+  update, even though `nr-cli <imsi> --exec timers` shows its own internal T3512 counting down and
+  expiring. This matches a still-open upstream bug report describing the identical symptom,
+  [`aligungr/UERANSIM#538`](https://github.com/aligungr/UERANSIM/issues/538) ("no periodic
+  registration with open5gs"), filed in 2022 and unresolved through `v3.3.0`. There's also no
+  `nr-cli` command to trigger one manually. User's call: drop it, same as handover, rather than
+  fake an approximation.
+
+The remaining three scenarios are all genuinely supported and validated live:
+
+| Scenario | Mechanism | Confirmed result |
+|---|---|---|
+| Initial registration | Provision subscriber, apply ephemeral UE pod, wait for `Registration complete` | PASS |
+| Registration reject | Deliberately skip provisioning; UE attaches with an unknown IMSI | PASS — `Registration reject [7]` (5GS services not allowed), matching this DEVLOG's own earlier unprovisioned-IMSI incident above |
+| Deregistration | `nr-cli <imsi> --exec "deregister normal"` after initial attach | PASS — logs `Deregistration request`, SMF releases the SM context |
+
+### A real bug the reject scenario's own log format exposed
+
+`_tail_until`'s first draft matched on the full concatenated IMSI (`999700000000913`) plus the
+expected log substring. That works for a *registered* UE (AMF logs it as `imsi-999700000000913`),
+but an unprovisioned one is never resolved to an IMSI at all — AMF logs it by its SUCI instead,
+hyphenated: `suci-0-999-70-0000-0-0-0000000913`. The full concatenated IMSI string never appears
+contiguously in that format, so the reject scenario's log-tail silently never matched. Fixed by
+matching on the MSISDN substring alone (the one part guaranteed contiguous in both formats), not
+the full IMSI.
+
+### A real race condition in the deregistration scenario
+
+The first draft started the "wait for initial registration, then fire `deregister normal`" log-tail
+*after* applying the ephemeral UE pod. `kubectl logs -f --tail=0` only sees lines from the moment it
+attaches — if the UE's registration completed faster than that attach happened, the wait would
+time out despite registration having actually succeeded (worked once in early manual testing purely
+by timing luck, which is what made this worth fixing rather than shipping). Fixed by starting that
+tail concurrently with the main scenario tail, both *before* the UE pod is applied at all.
+
+### Also confirmed live: two ephemeral UE pods can attach to the shared `gnb` at once
+
+This deployment had only ever run one UE pod at a time before this phase (the long-lived `ue`
+Deployment's single pod). Every scenario spins up a second, independent UE pod against the same
+`gnb` — confirmed this doesn't disturb the long-lived pod's own PDU session or ping test (`p` in
+the CLI kept working, 0% loss, throughout scenario runs), and each got its own independent
+`uesimtun0`/PDU session IP.
+
+### Gotcha: `phase6/cli.py` must be run as `-m phase6.cli`, never as a bare script path
+
+`cli.py` uses relative imports (`from .scenarios import ...`), which only resolve when Python knows
+its parent package. The Phase 5 CLI's `k8s.run_scenario()` originally shelled out to
+`python3 <path>/phase6/cli.py` (a bare script path) — this mounted fine standalone
+(`python3 -m phase6.cli` from the repo root) but broke with `ImportError: attempted relative import
+with no known parent package` the moment it ran as a subprocess from the TUI. Caught by an
+end-to-end Pilot-driven check of the actual `s` keybinding (not just the underlying CLI in
+isolation) — fixed by invoking `python3 -m phase6.cli` instead.

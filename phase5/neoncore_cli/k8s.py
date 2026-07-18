@@ -239,3 +239,24 @@ async def latest_traces(limit: int = 10) -> AsyncIterator[str]:
     )
     for line in summary.output.strip().splitlines():
         yield f"  {line}"
+
+
+# Scenarios a user can pick in the TUI, and the CLI flags each needs (msisdn is always
+# required and prompted separately). Keep in sync with phase6/scenarios.py's VALID_SLUGS.
+SCENARIOS = ["initial-registration", "registration-reject", "deregistration"]
+
+
+async def run_scenario(slug: str, msisdn: str, **params) -> AsyncIterator[str]:
+    """Runs one phase6 signaling scenario, shelling out to `python3 -m phase6.cli`
+    as a subprocess -- same "shell out, don't import" approach as the rest of this
+    file, which keeps phase6/ standalone/dependency-free with no cross-phase Python
+    package coupling. Must be invoked as a module (-m), not a bare script path:
+    phase6/cli.py uses relative imports, which only resolve when Python knows its
+    parent package -- running it as a plain script file breaks that."""
+    args = ["python3", "-m", "phase6.cli", "--scenario", slug, "--msisdn", msisdn]
+    for key, value in params.items():
+        if value is None or value == "":
+            continue
+        args += [f"--{key.replace('_', '-')}", str(value)]
+    async for line in _stream_cmd(*args):
+        yield line

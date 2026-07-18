@@ -16,6 +16,7 @@ automated packet-trace capture, and a neon terminal control center to drive all 
 - [Setup](#setup)
 - [Deploying the stack](#deploying-the-stack)
 - [Using the CLI](#using-the-cli)
+- [Scenario automation](#scenario-automation)
 - [Monitoring](#monitoring)
 - [Network tracing](#network-tracing)
 - [Project structure](#project-structure)
@@ -225,6 +226,7 @@ First run builds a `.venv` and installs [Textual](https://textual.textualize.io/
 | `t` | Teardown (`kubectl delete namespace neoncore monitoring`) — asks for confirmation first, **destroys the packet-trace PVC too** |
 | `p` | UE connection test — `kubectl exec` a `ping -I uesimtun0 -c 4 8.8.8.8` inside the live UE pod |
 | `l` | Latest network traces — lists recent PCAP files from the tracer pod + a protocol summary of the newest one |
+| `s` | Run a 5G signaling scenario (see [Scenario automation](#scenario-automation) below) — asks for MSISDN + policy params first |
 | `r` | Force an immediate pod-table refresh (it also auto-refreshes every 4s) |
 | `q` | Quit |
 
@@ -233,6 +235,42 @@ workload** (`neoncore` + `monitoring` namespaces) — not K3s itself. Tearing do
 much more systemic, harder-to-reverse operation than an app-level CLI should own; that stays a
 manual step (re-run `setup/install-k3s.sh`'s uninstall counterpart, `/usr/local/bin/k3s-uninstall.sh`,
 if you ever need to).
+
+## Scenario automation
+
+`phase6/` drives real 5G signaling procedures against the live core, with a fresh, uniquely-named
+pcap capture per run. Each spins up a short-lived UE pod (never the long-lived `ue` Deployment's
+pod, so it never disturbs the CLI's ping test), applies whatever subscriber policy you gave it,
+and cleans itself up afterward:
+
+| Scenario | What it proves | Trigger |
+|---|---|---|
+| `initial-registration` | A provisioned IMSI attaches successfully | none — just attach |
+| `registration-reject` | An unprovisioned IMSI is rejected by the network | none — IMSI is deliberately never provisioned |
+| `deregistration` | UE-initiated deregistration cascades to SMF releasing the PDU session | `nr-cli <imsi> --exec "deregister normal"` after initial attach |
+
+Via the TUI: press `s`, enter a 10-digit MSISDN (IMSI = `99970<msisdn>`) and optional policy
+overrides (5QI, ARP priority, AMBR up/down — the same fields Open5GS/PCF derive default policy
+from), then pick a scenario button.
+
+Directly, for one-off runs or scripting:
+```bash
+python3 -m phase6.cli --scenario initial-registration --msisdn 0000000100
+```
+
+Or the full integration suite (sequential, live-cluster, no extra dependencies):
+```bash
+python3 -m phase6.tests.run_scenarios
+```
+
+Each run's pcap lands in `traces/scenario-runs/<scenario>-<msisdn>-<timestamp>.pcap` (gitignored —
+every run produces one; promote a specific capture into `traces/` manually if it's worth keeping,
+the way `traces/rogue-ue-reject.pcap` was).
+
+**Not implemented: handover and Tracking Area Update.** Both were dropped after live research
+showed UERANSIM (the RAN/UE simulator this project uses) doesn't actually implement the underlying
+procedure — not a gap in this automation. See `phase6/scenarios.py`'s module docstring and
+`DEVLOG.md`'s Phase 7 section for the upstream issues confirming this.
 
 ## Monitoring
 
@@ -286,7 +324,10 @@ neoncore-5g/
 ├── phase2/manifests/      the 5G core + RAN as Kubernetes Deployments/Services
 ├── phase3/manifests/      Prometheus + Grafana + kube-state-metrics
 ├── phase4/manifests/      the packet tracer (PVC, ConfigMap script, Deployment)
-└── phase5/                the Textual CLI (neoncore_cli/), smoke test, launcher
+├── phase5/                the Textual CLI (neoncore_cli/), smoke test, launcher
+└── phase6/                5G signaling-scenario automation (initial registration,
+                           registration reject, deregistration) + integration tests,
+                           driven from the CLI's `s` key -- see DEVLOG.md's Phase 7
 ```
 
 ## Known limitation: WSL2 clock drift
