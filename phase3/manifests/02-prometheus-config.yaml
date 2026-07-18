@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 10s
+      evaluation_interval: 10s
+
+    scrape_configs:
+      # NeonCore 5G core network functions that implement Open5GS's native
+      # Prometheus exporter (only AMF, SMF, UPF, PCF do -- see README).
+      # Discovered via pod annotations: prometheus.io/scrape / prometheus.io/port
+      - job_name: neoncore-5g-nfs
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names: ["neoncore"]
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+            action: keep
+            regex: "true"
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_port]
+            action: replace
+            target_label: __tmp_port
+          - source_labels: [__meta_kubernetes_pod_ip, __tmp_port]
+            action: replace
+            regex: (.+);(.+)
+            replacement: $1:$2
+            target_label: __address__
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            target_label: nf
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: namespace
+
+      # Kubernetes object health (pod status, restarts, deployment replica counts)
+      # for every pod in the neoncore namespace, regardless of Open5GS metrics support.
+      - job_name: kube-state-metrics
+        static_configs:
+          - targets: ["kube-state-metrics.monitoring.svc.cluster.local:8080"]
+
+      - job_name: prometheus
+        static_configs:
+          - targets: ["localhost:9090"]

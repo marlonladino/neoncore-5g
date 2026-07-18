@@ -1,0 +1,116 @@
+/* NeonCore 5G -- cyberpunk terminal theme */
+
+Screen {
+    background: #05060a;
+    color: #39ff14;
+}
+
+#title {
+    height: 3;
+    content-align: center middle;
+    color: #ff2fd6;
+    text-style: bold;
+    background: #0a0d16;
+    border-bottom: heavy #00fff9;
+}
+
+#subtitle {
+    height: 1;
+    content-align: center middle;
+    color: #00fff9;
+    background: #0a0d16;
+}
+
+#body {
+    height: 1fr;
+}
+
+#left-pane {
+    width: 2fr;
+    border: round #00fff9;
+    border-title-color: #00fff9;
+    padding: 0 1;
+}
+
+#right-pane {
+    width: 3fr;
+    border: round #ff2fd6;
+    border-title-color: #ff2fd6;
+    padding: 0 1;
+}
+
+DataTable {
+    background: #05060a;
+    color: #39ff14;
+}
+
+DataTable > .datatable--header {
+    background: #0a0d16;
+    color: #00fff9;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: #1a0a2e;
+    color: #ff2fd6;
+}
+
+RichLog {
+    background: #05060a;
+    color: #39ff14;
+    border: none;
+}
+
+#status-bar {
+    height: 1;
+    background: #0a0d16;
+    color: #00fff9;
+    content-align: center middle;
+}
+
+Footer {
+    background: #0a0d16;
+    color: #39ff14;
+}
+
+Footer > .footer--key {
+    color: #ff2fd6;
+    text-style: bold;
+}
+
+ConfirmScreen {
+    align: center middle;
+}
+
+#confirm-dialog {
+    width: 60;
+    height: auto;
+    border: heavy #ff2fd6;
+    background: #0a0d16;
+    padding: 1 2;
+}
+
+#confirm-question {
+    color: #00fff9;
+    padding-bottom: 1;
+    text-align: center;
+}
+
+#confirm-buttons {
+    height: 3;
+    align: center middle;
+}
+
+Button {
+    margin: 0 1;
+}
+
+Button.-danger {
+    background: #ff2fd6;
+    color: #05060a;
+}
+
+Button.-safe {
+    background: #39ff14;
+    color: #05060a;
+}

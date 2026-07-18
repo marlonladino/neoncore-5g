@@ -1,0 +1,15 @@
+# Python virtualenvs / bytecode
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# OS cruft
+.DS_Store
+
+# local secrets safety net
+*.pem
+*.key
+*kubeconfig*
+.env

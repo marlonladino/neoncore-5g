@@ -1,0 +1,36 @@
+# NeonCore 5G — Wireshark name-resolution hosts file
+#
+# Standard /etc/hosts format (IP<whitespace>name). Load in Wireshark via
+# Preferences > Name Resolution > "Hosts file" (or drop it in your Wireshark
+# personal config folder as a file literally named "hosts" and enable
+# "Resolve network (IP) addresses"). Pod IPs change on every pod
+# restart/recreation -- regenerate this whenever that happens.
+#
+# Regenerate with:
+#   kubectl -n neoncore get pods -o custom-columns='NAME:.metadata.name,IP:.status.podIP' --no-headers
+#   kubectl -n monitoring get pods -o custom-columns='NAME:.metadata.name,IP:.status.podIP' --no-headers
+
+# --- neoncore namespace: 5G core + RAN ---
+10.42.0.83   amf
+10.42.0.95   ausf
+10.42.0.87   bsf
+10.42.0.91   gnb
+10.42.0.86   mongo
+10.42.0.85   nrf
+10.42.0.92   pcf
+10.42.0.111  smf
+10.42.0.97   udm
+10.42.0.90   udr
+10.42.0.114  ue
+10.42.0.109  upf
+
+# --- monitoring namespace ---
+10.42.0.93   grafana
+10.42.0.84   kube-state-metrics
+10.42.0.96   prometheus
+
+# --- K3s node (hostNetwork services: tracer pod, node itself) ---
+172.31.245.180  k3s-node pcmarlon
+
+# --- UE tunnel-side IP (inner IP inside GTP-U payload, N3 interface) ---
+10.45.0.5    ue-tun

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dbctl
+  namespace: neoncore
+spec:
+  backoffLimit: 6
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: dbctl
+          image: mongo:7.0
+          command: ["mongosh", "--host", "mongo", "/scripts/add-subscriber.js"]
+          volumeMounts:
+            - { name: script, mountPath: /scripts }
+      volumes:
+        - name: script
+          configMap: { name: subscriber-script }

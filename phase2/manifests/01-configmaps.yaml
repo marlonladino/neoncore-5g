@@ -1,0 +1,353 @@
+apiVersion: v1
+data:
+  amf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/amf.log
+
+    amf:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      ngap:
+        server:
+          - dev: eth0
+      guami:
+        - plmn_id:
+            mcc: 999
+            mnc: 70
+          amf_id:
+            region: 2
+            set: 1
+      tai:
+        - plmn_id:
+            mcc: 999
+            mnc: 70
+          tac: 1
+      plmn_support:
+        - plmn_id:
+            mcc: 999
+            mnc: 70
+          s_nssai:
+            - sst: 1
+              sd: 1
+      security:
+        integrity_order: [NIA2, NIA1, NIA0]
+        ciphering_order: [NEA0, NEA1, NEA2]
+      network_name:
+        full: NeonCore
+      amf_name: neoncore-amf0
+      time:
+        t3512:
+          value: 540
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: amf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  ausf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/ausf.log
+
+    ausf:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: ausf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  bsf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/bsf.log
+
+    bsf:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: bsf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  nrf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/nrf.log
+
+    nrf:
+      serving:
+        - plmn_id:
+            mcc: 999
+            mnc: 70
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: nrf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  pcf.yaml: |
+    db_uri: mongodb://mongo/open5gs
+
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/pcf.log
+
+    pcf:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: pcf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  smf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/smf.log
+
+    smf:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      pfcp:
+        server:
+          - dev: eth0
+        client:
+          upf:
+            - address: upf
+      gtpc:
+        server:
+          - dev: eth0
+      gtpu:
+        server:
+          - dev: eth0
+      session:
+        - subnet: 10.45.0.0/16
+          gateway: 10.45.0.1
+          dnn: internet
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
+      mtu: 1400
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: smf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  udm.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/udm.log
+
+    udm:
+      hnet:
+        - id: 1
+          scheme: 1
+          key: /opt/open5gs/etc/open5gs/hnet/curve25519-1.key
+        - id: 2
+          scheme: 2
+          key: /opt/open5gs/etc/open5gs/hnet/secp256r1-2.key
+        - id: 3
+          scheme: 1
+          key: /opt/open5gs/etc/open5gs/hnet/curve25519-3.key
+        - id: 4
+          scheme: 2
+          key: /opt/open5gs/etc/open5gs/hnet/secp256r1-4.key
+        - id: 5
+          scheme: 1
+          key: /opt/open5gs/etc/open5gs/hnet/curve25519-5.key
+        - id: 6
+          scheme: 2
+          key: /opt/open5gs/etc/open5gs/hnet/secp256r1-6.key
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: udm-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  udr.yaml: |
+    db_uri: mongodb://mongo/open5gs
+
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/udr.log
+
+    udr:
+      sbi:
+        server:
+          - dev: eth0
+            port: 7777
+        client:
+          nrf:
+            - uri: http://nrf:7777
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: udr-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  upf.yaml: |
+    logger:
+      file:
+        path: /opt/open5gs/var/log/open5gs/upf.log
+
+    upf:
+      pfcp:
+        server:
+          - dev: eth0
+      gtpu:
+        server:
+          - dev: eth0
+      session:
+        - subnet: 10.45.0.0/16
+          gateway: 10.45.0.1
+          dnn: internet
+      metrics:
+        server:
+          - dev: eth0
+            port: 9090
+kind: ConfigMap
+metadata:
+  name: upf-config
+  namespace: neoncore
+---
+apiVersion: v1
+data:
+  add-subscriber.js: |
+    // Test subscriber matching UERANSIM's default open5gs-ue.yaml credentials.
+    // IMSI = MCC(999) + MNC(70) + MSISDN(0000000001) = 999700000000001
+    db = db.getSiblingDB('open5gs');
+    db.subscribers.deleteMany({ imsi: "999700000000001" });
+    db.subscribers.insertOne({
+      schema_version: 1,
+      imsi: "999700000000001",
+      msisdn: [],
+      imeisv: [],
+      mme_host: [],
+      mm_realm: [],
+      purge_flag: [],
+      slice: [
+        {
+          sst: 1,
+          sd: "000001",
+          default_indicator: true,
+          session: [
+            {
+              name: "internet",
+              type: 3,
+              qos: {
+                index: 9,
+                arp: { priority_level: 8, pre_emption_capability: 1, pre_emption_vulnerability: 2 }
+              },
+              ambr: {
+                downlink: { value: 1000000000, unit: 0 },
+                uplink: { value: 1000000000, unit: 0 }
+              },
+              pcc_rule: []
+            }
+          ]
+        }
+      ],
+      security: {
+        k: "465B5CE8B199B49FAA5F0A2EE238A6BC",
+        op: null,
+        opc: "E8ED289DEBA952E4283B54E88E6183CA",
+        amf: "8000"
+      },
+      ambr: {
+        downlink: { value: 1000000000, unit: 0 },
+        uplink: { value: 1000000000, unit: 0 }
+      },
+      access_restriction_data: 32,
+      network_access_mode: 0,
+      subscriber_status: 0,
+      operator_determined_barring: 0,
+      subscribed_rau_tau_timer: 12,
+      __v: 0
+    });
+    print("Subscriber 999700000000001 provisioned.");
+kind: ConfigMap
+metadata:
+  name: subscriber-script
+  namespace: neoncore

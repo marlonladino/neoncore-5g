@@ -1,0 +1,164 @@
+name: neoncore-5g-phase0
+
+networks:
+  neoncore:
+    name: neoncore
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    networks: [neoncore]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand({ping:1})"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  dbctl:
+    image: mongo:7.0
+    container_name: dbctl
+    networks: [neoncore]
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./scripts/add-subscriber.js:/add-subscriber.js:ro
+    entrypoint: ["mongosh", "--host", "mongo", "/add-subscriber.js"]
+    restart: "no"
+
+  nrf:
+    image: gradiant/open5gs:2.8.0
+    container_name: nrf
+    command: ["open5gs-nrfd"]
+    networks: [neoncore]
+    volumes:
+      - ./configs/nrf.yaml:/opt/open5gs/etc/open5gs/nrf.yaml:ro
+
+  ausf:
+    image: gradiant/open5gs:2.8.0
+    container_name: ausf
+    command: ["open5gs-ausfd"]
+    networks: [neoncore]
+    depends_on: [nrf]
+    volumes:
+      - ./configs/ausf.yaml:/opt/open5gs/etc/open5gs/ausf.yaml:ro
+
+  udm:
+    image: gradiant/open5gs:2.8.0
+    container_name: udm
+    command: ["open5gs-udmd"]
+    networks: [neoncore]
+    depends_on: [nrf]
+    volumes:
+      - ./configs/udm.yaml:/opt/open5gs/etc/open5gs/udm.yaml:ro
+
+  udr:
+    image: gradiant/open5gs:2.8.0
+    container_name: udr
+    command: ["open5gs-udrd"]
+    networks: [neoncore]
+    depends_on:
+      nrf:
+        condition: service_started
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./configs/udr.yaml:/opt/open5gs/etc/open5gs/udr.yaml:ro
+
+  bsf:
+    image: gradiant/open5gs:2.8.0
+    container_name: bsf
+    command: ["open5gs-bsfd"]
+    networks: [neoncore]
+    depends_on: [nrf]
+    volumes:
+      - ./configs/bsf.yaml:/opt/open5gs/etc/open5gs/bsf.yaml:ro
+
+  pcf:
+    image: gradiant/open5gs:2.8.0
+    container_name: pcf
+    command: ["open5gs-pcfd"]
+    networks: [neoncore]
+    depends_on:
+      nrf:
+        condition: service_started
+      bsf:
+        condition: service_started
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./configs/pcf.yaml:/opt/open5gs/etc/open5gs/pcf.yaml:ro
+
+  amf:
+    image: gradiant/open5gs:2.8.0
+    container_name: amf
+    command: ["open5gs-amfd"]
+    networks: [neoncore]
+    depends_on: [nrf, ausf, udm]
+    volumes:
+      - ./configs/amf.yaml:/opt/open5gs/etc/open5gs/amf.yaml:ro
+    ports:
+      - "0.0.0.0:38412:38412/sctp"
+
+  smf:
+    image: gradiant/open5gs:2.8.0
+    container_name: smf
+    command: ["open5gs-smfd"]
+    networks: [neoncore]
+    depends_on: [nrf, pcf, upf]
+    volumes:
+      - ./configs/smf.yaml:/opt/open5gs/etc/open5gs/smf.yaml:ro
+
+  upf:
+    image: gradiant/open5gs:2.8.0
+    container_name: upf
+    user: "0:0"
+    command: ["open5gs-upfd"]
+    networks: [neoncore]
+    privileged: true
+    volumes:
+      - ./configs/upf.yaml:/opt/open5gs/etc/open5gs/upf.yaml:ro
+    ports:
+      - "0.0.0.0:2152:2152/udp"
+
+  gnb:
+    image: gradiant/ueransim:3.3.0
+    container_name: gnb
+    command: ["gnb"]
+    networks: [neoncore]
+    depends_on: [amf, smf, upf]
+    environment:
+      AMF_HOSTNAME: amf
+      MCC: "999"
+      MNC: "70"
+      TAC: "1"
+      SST: "1"
+      SD: "1"
+
+  ue:
+    image: gradiant/ueransim:3.3.0
+    container_name: ue
+    command: ["ue"]
+    networks: [neoncore]
+    depends_on: [gnb]
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      GNB_HOSTNAME: gnb
+      MCC: "999"
+      MNC: "70"
+      MSISDN: "0000000001"
+      KEY: "465B5CE8B199B49FAA5F0A2EE238A6BC"
+      OP: "E8ED289DEBA952E4283B54E88E6183CA"
+      OP_TYPE: "OPC"
+      APN: "internet"
+      SST: "1"
+      SD: "1"
+
+volumes:
+  mongo_data:

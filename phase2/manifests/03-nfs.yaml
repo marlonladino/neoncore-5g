@@ -1,0 +1,340 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nrf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: nrf }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nrf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: nrf } }
+  template:
+    metadata:
+      labels: { app: nrf }
+    spec:
+      containers:
+        - name: nrf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-nrfd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/nrf.yaml, subPath: nrf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: nrf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ausf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: ausf }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ausf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: ausf } }
+  template:
+    metadata:
+      labels: { app: ausf }
+    spec:
+      containers:
+        - name: ausf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-ausfd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/ausf.yaml, subPath: ausf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: ausf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udm
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: udm }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udm
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: udm } }
+  template:
+    metadata:
+      labels: { app: udm }
+    spec:
+      containers:
+        - name: udm
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-udmd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/udm.yaml, subPath: udm.yaml }
+      volumes:
+        - name: config
+          configMap: { name: udm-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udr
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: udr }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udr
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: udr } }
+  template:
+    metadata:
+      labels: { app: udr }
+    spec:
+      containers:
+        - name: udr
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-udrd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/udr.yaml, subPath: udr.yaml }
+      volumes:
+        - name: config
+          configMap: { name: udr-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bsf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: bsf }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bsf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: bsf } }
+  template:
+    metadata:
+      labels: { app: bsf }
+    spec:
+      containers:
+        - name: bsf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-bsfd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/bsf.yaml, subPath: bsf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: bsf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pcf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: pcf }
+  ports: [{ port: 7777 }]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pcf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: pcf } }
+  template:
+    metadata:
+      labels: { app: pcf }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      containers:
+        - name: pcf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-pcfd"]
+          resources: { requests: { cpu: 20m, memory: 32Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/pcf.yaml, subPath: pcf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: pcf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: amf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: amf }
+  ports:
+    - { name: sbi, port: 7777 }
+    - { name: ngap, port: 38412, protocol: SCTP }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: amf } }
+  template:
+    metadata:
+      labels: { app: amf }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      containers:
+        - name: amf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-amfd"]
+          resources: { requests: { cpu: 20m, memory: 48Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/amf.yaml, subPath: amf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: amf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: smf }
+  ports:
+    - { name: sbi, port: 7777 }
+    - { name: pfcp, port: 8805, protocol: UDP }
+    - { name: gtpu, port: 2152, protocol: UDP }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: smf } }
+  template:
+    metadata:
+      labels: { app: smf }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      containers:
+        - name: smf
+          image: gradiant/open5gs:2.8.0
+          command: ["open5gs-smfd"]
+          resources: { requests: { cpu: 20m, memory: 48Mi } }
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/smf.yaml, subPath: smf.yaml }
+      volumes:
+        - name: config
+          configMap: { name: smf-config }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: upf
+  namespace: neoncore
+spec:
+  clusterIP: None
+  selector: { app: upf }
+  ports:
+    - { name: pfcp, port: 8805, protocol: UDP }
+    - { name: gtpu, port: 2152, protocol: UDP }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upf
+  namespace: neoncore
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: upf } }
+  template:
+    metadata:
+      labels: { app: upf }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      containers:
+        - name: upf
+          # Custom build with N3 GTP packet-count metrics re-enabled --
+          # see phase2/upf-metrics-patch/. Built locally, not on a registry.
+          image: neoncore-upf:2.8.0-metrics
+          imagePullPolicy: IfNotPresent
+          command: ["open5gs-upfd"]
+          resources: { requests: { cpu: 20m, memory: 48Mi } }
+          securityContext:
+            runAsUser: 0
+            capabilities:
+              add: ["NET_ADMIN"]
+          lifecycle:
+            postStart:
+              exec:
+                # open5gs-upfd creates ogstun itself but leaves it DOWN with no address and sets
+                # up no NAT — without this the UE gets a PDU session but all data-plane traffic
+                # silently dies at the UPF (ogs_tun_write I/O errors, zero return path to the
+                # internet). Values match upf.yaml's session subnet/gateway.
+                command:
+                  - sh
+                  - -c
+                  - |
+                    until ip link show ogstun >/dev/null 2>&1; do sleep 1; done
+                    ip addr add 10.45.0.1/16 dev ogstun
+                    ip link set ogstun up
+                    iptables -t nat -A POSTROUTING -s 10.45.0.0/16 -o eth0 -j MASQUERADE
+          volumeMounts:
+            - { name: config, mountPath: /opt/open5gs/etc/open5gs/upf.yaml, subPath: upf.yaml }
+            - { name: dev-tun, mountPath: /dev/net/tun }
+      volumes:
+        - name: config
+          configMap: { name: upf-config }
+        - name: dev-tun
+          hostPath: { path: /dev/net/tun, type: CharDevice }

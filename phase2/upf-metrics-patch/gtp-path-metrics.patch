@@ -1,0 +1,35 @@
+--- orig/open5gs-2.8.0/src/upf/gtp-path.c	2026-06-19 23:10:28.000000000 -0500
++++ open5gs-2.8.0/src/upf/gtp-path.c	2026-07-17 19:53:18.443614063 -0500
+@@ -222,12 +222,12 @@
+      * Metrics reduce data plane performance.
+      * It should not be used on the UPF/SGW-U data plane
+      * until this issue is resolved.
++     *
++     * NeonCore 5G: re-enabled, see matching comment in the ingress path above.
+      */
+-#if 0
+     upf_metrics_inst_global_inc(UPF_METR_GLOB_CTR_GTP_OUTDATAPKTN3UPF);
+     upf_metrics_inst_by_qfi_add(pdr->qer->qfi,
+         UPF_METR_CTR_GTP_OUTDATAVOLUMEQOSLEVELN3UPF, recvbuf->len);
+-#endif
+ 
+     if (report.type.downlink_data_report) {
+         ogs_assert(pdr->sess);
+@@ -394,12 +394,15 @@
+          * Metrics reduce data plane performance.
+          * It should not be used on the UPF/SGW-U data plane
+          * until this issue is resolved.
++         *
++         * NeonCore 5G: re-enabled for this single-UE dev testbed, where the
++         * per-packet metrics overhead upstream is guarding against is
++         * negligible and Grafana visibility is worth more than hot-path
++         * throughput headroom we don't need here.
+          */
+-#if 0
+         upf_metrics_inst_global_inc(UPF_METR_GLOB_CTR_GTP_INDATAPKTN3UPF);
+         upf_metrics_inst_by_qfi_add(header_desc.qos_flow_identifier,
+                 UPF_METR_CTR_GTP_INDATAVOLUMEQOSLEVELN3UPF, pkbuf->len);
+-#endif
+ 
+         pfcp_object = ogs_pfcp_object_find_by_teid(header_desc.teid);
+         if (!pfcp_object) {

@@ -1,0 +1,107 @@
+apiVersion: v1
+data:
+  neoncore-5g.json: |
+    {
+      "title": "NeonCore 5G",
+      "uid": "neoncore-5g",
+      "timezone": "browser",
+      "refresh": "10s",
+      "time": { "from": "now-30m", "to": "now" },
+      "schemaVersion": 39,
+      "panels": [
+        {
+          "id": 1, "title": "Pod status (neoncore namespace)",
+          "type": "stat",
+          "gridPos": { "h": 6, "w": 12, "x": 0, "y": 0 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [{ "expr": "sum by (pod) (kube_pod_status_phase{namespace=\"neoncore\", phase=\"Running\"})", "legendFormat": "{{pod}}" }],
+          "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "steps": [{ "color": "green", "value": null }] } }, "overrides": [] },
+          "options": { "colorMode": "background", "graphMode": "none", "textMode": "name" }
+        },
+        {
+          "id": 2, "title": "Pod restarts (neoncore namespace)",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 12, "x": 12, "y": 0 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [{ "expr": "sum by (pod) (kube_pod_container_status_restarts_total{namespace=\"neoncore\"})", "legendFormat": "{{pod}}" }]
+        },
+        {
+          "id": 3, "title": "AMF: gNBs connected",
+          "type": "stat",
+          "gridPos": { "h": 6, "w": 6, "x": 0, "y": 6 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [{ "expr": "gnb{nf=\"amf\"}", "legendFormat": "gNBs" }]
+        },
+        {
+          "id": 4, "title": "AMF: Registration requests vs successes",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 18, "x": 6, "y": 6 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            { "expr": "fivegs_amffunction_rm_reginitreq{nf=\"amf\"}", "legendFormat": "Initial reg. requests" },
+            { "expr": "fivegs_amffunction_rm_reginitsucc{nf=\"amf\"}", "legendFormat": "Initial reg. successes" }
+          ]
+        },
+        {
+          "id": 5, "title": "SMF: Active PDU sessions",
+          "type": "stat",
+          "gridPos": { "h": 6, "w": 6, "x": 0, "y": 12 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [{ "expr": "fivegs_smffunction_sm_sessionnbr{nf=\"smf\"}", "legendFormat": "Sessions" }]
+        },
+        {
+          "id": 6, "title": "SMF: PDU session establishment (req/succ/fail)",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 18, "x": 6, "y": 12 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            { "expr": "fivegs_smffunction_sm_pdusessioncreationreq{nf=\"smf\"}", "legendFormat": "Requested" },
+            { "expr": "fivegs_smffunction_sm_pdusessioncreationsucc{nf=\"smf\"}", "legendFormat": "Succeeded" },
+            { "expr": "fivegs_smffunction_sm_pdusessioncreationfail{nf=\"smf\"}", "legendFormat": "Failed" }
+          ]
+        },
+        {
+          "id": 7, "title": "UPF: Active sessions / QoS flows",
+          "type": "stat",
+          "gridPos": { "h": 6, "w": 6, "x": 0, "y": 18 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            { "expr": "fivegs_upffunction_upf_sessionnbr{nf=\"upf\"}", "legendFormat": "Sessions" },
+            { "expr": "fivegs_upffunction_upf_qosflows{nf=\"upf\"}", "legendFormat": "QoS flows" }
+          ]
+        },
+        {
+          "id": 8, "title": "UPF: N3 GTP data packets (in/out, rate)",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 18, "x": 6, "y": 18 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            { "expr": "rate(fivegs_ep_n3_gtp_indatapktn3upf{nf=\"upf\"}[1m])", "legendFormat": "In" },
+            { "expr": "rate(fivegs_ep_n3_gtp_outdatapktn3upf{nf=\"upf\"}[1m])", "legendFormat": "Out" }
+          ]
+        },
+        {
+          "id": 9, "title": "PCF: Policy associations (AM / SM)",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 12, "x": 0, "y": 24 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            { "expr": "fivegs_pcffunction_pa_policyamassoreq{nf=\"pcf\"}", "legendFormat": "AM assoc. requests" },
+            { "expr": "fivegs_pcffunction_pa_policyamassosucc{nf=\"pcf\"}", "legendFormat": "AM assoc. successes" },
+            { "expr": "fivegs_pcffunction_pa_policysmassoreq{nf=\"pcf\"}", "legendFormat": "SM assoc. requests" },
+            { "expr": "fivegs_pcffunction_pa_policysmassosucc{nf=\"pcf\"}", "legendFormat": "SM assoc. successes" }
+          ]
+        },
+        {
+          "id": 10, "title": "NF process memory (RSS)",
+          "type": "timeseries",
+          "gridPos": { "h": 6, "w": 12, "x": 12, "y": 24 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [{ "expr": "process_resident_memory_bytes", "legendFormat": "{{nf}}" }]
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  name: grafana-dashboard-neoncore
+  namespace: monitoring
