@@ -1,0 +1,935 @@
+{
+  "e2_window_list": [
+    {
+      "in_max_rate": 0.16,
+      "out_max_rate": 0.16,
+      "window": [
+        1794346182.522959,
+        1794346201.6848352
+      ]
+    },
+    {
+      "in_max_rate": 0.36,
+      "out_max_rate": 0.36,
+      "window": [
+        1794346256.2702754,
+        1794346275.4545372
+      ]
+    },
+    {
+      "in_max_rate": 0.36,
+      "out_max_rate": 0.36,
+      "window": [
+        1794346329.8005636,
+        1794346348.9664514
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "error": null,
+      "expr": "sum by (pod) (kube_pod_status_phase{namespace=\"neoncore\", phase=\"Running\"})",
+      "panel_id": 1,
+      "series": [
+        {
+          "first": 1,
+          "labels": {
+            "pod": "amf-585964fc8f-sb86s"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "ausf-5c68bc8dbb-gmlsw"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "bsf-7db47b554-wldx5"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "dbctl-579lw"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "gnb-778d4cd687-5zhmx"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "mongo-5b8c549f7d-b8glx"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "nrf-659db89bb8-clz6j"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "pcf-bb788889b-pftgc"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346585"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346647"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346699"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346803"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346560"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346622"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346675"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346726"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346636"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346739"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346792"
+          },
+          "last": 1,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "smf-76c64f854b-gkqxm"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "tracer-9d8c9bc9d-7v4rq"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "udm-579564b488-xkjvl"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "udr-654bd5c46b-kfvcf"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "ue-79b484969d-xh2cr"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 1,
+          "labels": {
+            "pod": "upf-84d8b46b55-6d7x6"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 25,
+      "series_with_data": 25,
+      "title": "Pod status (neoncore namespace)"
+    },
+    {
+      "error": null,
+      "expr": "sum by (pod) (kube_pod_container_status_restarts_total{namespace=\"neoncore\"})",
+      "panel_id": 2,
+      "series": [
+        {
+          "first": 0,
+          "labels": {
+            "pod": "amf-585964fc8f-sb86s"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "ausf-5c68bc8dbb-gmlsw"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "bsf-7db47b554-wldx5"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "dbctl-579lw"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "gnb-778d4cd687-5zhmx"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "mongo-5b8c549f7d-b8glx"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "nrf-659db89bb8-clz6j"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "pcf-bb788889b-pftgc"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346585"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346647"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346699"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-deregistration-1794346803"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346560"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346622"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346675"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-initial-registration-1794346726"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346636"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346739"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "scenario-ue-registration-reject-1794346792"
+          },
+          "last": 0,
+          "nonnull": 1,
+          "points": 1
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "smf-76c64f854b-gkqxm"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "tracer-9d8c9bc9d-7v4rq"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "udm-579564b488-xkjvl"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "udr-654bd5c46b-kfvcf"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "ue-79b484969d-xh2cr"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 0,
+          "labels": {
+            "pod": "upf-84d8b46b55-6d7x6"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 25,
+      "series_with_data": 25,
+      "title": "Pod restarts (neoncore namespace)"
+    },
+    {
+      "error": null,
+      "expr": "gnb{nf=\"amf\"}",
+      "panel_id": 3,
+      "series": [
+        {
+          "first": 1,
+          "labels": {
+            "__name__": "gnb",
+            "instance": "10.42.0.15:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "amf"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "AMF: gNBs connected"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_amffunction_rm_reginitreq{nf=\"amf\"}",
+      "panel_id": 4,
+      "series": [
+        {
+          "first": 22,
+          "labels": {
+            "__name__": "fivegs_amffunction_rm_reginitreq",
+            "instance": "10.42.0.15:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "amf"
+          },
+          "last": 42,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "AMF: Registration requests vs successes"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_amffunction_rm_reginitsucc{nf=\"amf\"}",
+      "panel_id": 4,
+      "series": [
+        {
+          "first": 16,
+          "labels": {
+            "__name__": "fivegs_amffunction_rm_reginitsucc",
+            "instance": "10.42.0.15:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "amf"
+          },
+          "last": 31,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "AMF: Registration requests vs successes"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_smffunction_sm_sessionnbr{nf=\"smf\"}",
+      "panel_id": 5,
+      "series": [
+        {
+          "first": 1,
+          "labels": {
+            "__name__": "fivegs_smffunction_sm_sessionnbr",
+            "instance": "10.42.0.26:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "smf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 1,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "SMF: Active PDU sessions"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_smffunction_sm_pdusessioncreationreq{nf=\"smf\"}",
+      "panel_id": 6,
+      "series": [
+        {
+          "first": 15,
+          "labels": {
+            "__name__": "fivegs_smffunction_sm_pdusessioncreationreq",
+            "instance": "10.42.0.26:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "smf"
+          },
+          "last": 30,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 15,
+          "labels": {
+            "__name__": "fivegs_smffunction_sm_pdusessioncreationreq",
+            "instance": "10.42.0.26:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "smf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 30,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 2,
+      "series_with_data": 2,
+      "title": "SMF: PDU session establishment (req/succ/fail)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_smffunction_sm_pdusessioncreationsucc{nf=\"smf\"}",
+      "panel_id": 6,
+      "series": [
+        {
+          "first": 30,
+          "labels": {
+            "__name__": "fivegs_smffunction_sm_pdusessioncreationsucc",
+            "instance": "10.42.0.26:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "smf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 60,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "SMF: PDU session establishment (req/succ/fail)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_smffunction_sm_pdusessioncreationfail{nf=\"smf\"}",
+      "lazy_exception": true,
+      "panel_id": 6,
+      "series": [],
+      "series_count": 0,
+      "series_with_data": 0,
+      "title": "SMF: PDU session establishment (req/succ/fail)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_upffunction_upf_sessionnbr{nf=\"upf\"}",
+      "panel_id": 7,
+      "series": [
+        {
+          "first": 2,
+          "labels": {
+            "__name__": "fivegs_upffunction_upf_sessionnbr",
+            "instance": "10.42.0.17:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "upf"
+          },
+          "last": 2,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "UPF: Active sessions / QoS flows"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_upffunction_upf_qosflows{nf=\"upf\"}",
+      "panel_id": 7,
+      "series": [
+        {
+          "first": 2,
+          "labels": {
+            "__name__": "fivegs_upffunction_upf_qosflows",
+            "dnn": "internet",
+            "instance": "10.42.0.17:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "upf"
+          },
+          "last": 2,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "UPF: Active sessions / QoS flows"
+    },
+    {
+      "error": null,
+      "expr": "rate(fivegs_ep_n3_gtp_indatapktn3upf{nf=\"upf\"}[1m])",
+      "panel_id": 8,
+      "series": [
+        {
+          "first": 0,
+          "labels": {
+            "instance": "10.42.0.17:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "upf"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "UPF: N3 GTP data packets (in/out, rate)"
+    },
+    {
+      "error": null,
+      "expr": "rate(fivegs_ep_n3_gtp_outdatapktn3upf{nf=\"upf\"}[1m])",
+      "panel_id": 8,
+      "series": [
+        {
+          "first": 0,
+          "labels": {
+            "instance": "10.42.0.17:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "upf"
+          },
+          "last": 0,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "UPF: N3 GTP data packets (in/out, rate)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_pcffunction_pa_policyamassoreq{nf=\"pcf\"}",
+      "panel_id": 9,
+      "series": [
+        {
+          "first": 22,
+          "labels": {
+            "__name__": "fivegs_pcffunction_pa_policyamassoreq",
+            "instance": "10.42.0.12:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "pcf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 42,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "PCF: Policy associations (AM / SM)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_pcffunction_pa_policyamassosucc{nf=\"pcf\"}",
+      "panel_id": 9,
+      "series": [
+        {
+          "first": 22,
+          "labels": {
+            "__name__": "fivegs_pcffunction_pa_policyamassosucc",
+            "instance": "10.42.0.12:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "pcf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 42,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "PCF: Policy associations (AM / SM)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_pcffunction_pa_policysmassoreq{nf=\"pcf\"}",
+      "panel_id": 9,
+      "series": [
+        {
+          "first": 16,
+          "labels": {
+            "__name__": "fivegs_pcffunction_pa_policysmassoreq",
+            "instance": "10.42.0.12:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "pcf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 31,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "PCF: Policy associations (AM / SM)"
+    },
+    {
+      "error": null,
+      "expr": "fivegs_pcffunction_pa_policysmassosucc{nf=\"pcf\"}",
+      "panel_id": 9,
+      "series": [
+        {
+          "first": 16,
+          "labels": {
+            "__name__": "fivegs_pcffunction_pa_policysmassosucc",
+            "instance": "10.42.0.12:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "pcf",
+            "plmnid": "99970",
+            "snssai": "1-000001"
+          },
+          "last": 31,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 1,
+      "series_with_data": 1,
+      "title": "PCF: Policy associations (AM / SM)"
+    },
+    {
+      "error": null,
+      "expr": "process_resident_memory_bytes",
+      "panel_id": 10,
+      "series": [
+        {
+          "first": 25296896,
+          "labels": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "10.42.0.12:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "pcf"
+          },
+          "last": 25821184,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 39976960,
+          "labels": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "10.42.0.15:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "amf"
+          },
+          "last": 40763392,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 35651584,
+          "labels": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "10.42.0.17:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "upf"
+          },
+          "last": 35913728,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 55582720,
+          "labels": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "10.42.0.26:9090",
+            "job": "neoncore-5g-nfs",
+            "namespace": "neoncore",
+            "nf": "smf"
+          },
+          "last": 56348672,
+          "nonnull": 102,
+          "points": 102
+        },
+        {
+          "first": 110989312,
+          "labels": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "localhost:9090",
+            "job": "prometheus"
+          },
+          "last": 113483776,
+          "nonnull": 102,
+          "points": 102
+        }
+      ],
+      "series_count": 5,
+      "series_with_data": 5,
+      "title": "NF process memory (RSS)"
+    }
+  ],
+  "window": [
+    1794346019.350333,
+    1794347520.807124
+  ]
+}

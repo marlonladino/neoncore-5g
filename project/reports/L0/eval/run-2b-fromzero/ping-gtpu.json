@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "echo_reply_frames": 38,
+      "echo_request_frames": 38,
+      "files": [
+        {
+          "file": "neoncore-20261110-201224.pcap",
+          "sha256": "6a7c10f0f6a118350833518af720d3575fec9c514b861de443b22a69fe315617",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 76,
+      "k": 1,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794341842,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794341795.6268804,
+        1794341814.7915545
+      ]
+    },
+    {
+      "echo_reply_frames": 38,
+      "echo_request_frames": 40,
+      "files": [
+        {
+          "file": "neoncore-20261110-201724.pcap",
+          "sha256": "f4981391cf40fa3475ed171accdab0736f7977fa65d2915207db0c2e512f578c",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 78,
+      "k": 2,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794341920,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794341874.9514499,
+        1794341894.1179128
+      ]
+    },
+    {
+      "echo_reply_frames": 38,
+      "echo_request_frames": 40,
+      "files": [
+        {
+          "file": "neoncore-20261110-201724.pcap",
+          "sha256": "4ffb1646a6cfcca5791c344823640b36b1f9a8d95fde09368a5578eaabea80e5",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 78,
+      "k": 3,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794341994,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794341948.3810132,
+        1794341967.5598702
+      ]
+    }
+  ]
+}

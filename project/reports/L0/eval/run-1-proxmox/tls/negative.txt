@@ -1,0 +1,12 @@
+# E10 negative (--selftest-bad-pin), commit 5510a79e3c30d3440895e2eb7bd5f53130b99a1c, clean=False
+result: PASS
+exit_code: 1
+PVEAPIToken_count_trace: 0
+PVEAPIToken_count_stdout: 0
+PVEAPIToken_count_stderr: 0
+names_fingerprint_mismatch: True
+fingerprint_like_string_in_output: False
+terraform_execve: 0
+curl_execve: 0
+trace_lines: 95
+execve_programs (basenames, in order): labenv bash dirname stat lab.sh bash dirname pin_check.sh bash dirname mkdir chmod mktemp chmod mkdir openssl openssl tr tr openssl sed tr tr rm

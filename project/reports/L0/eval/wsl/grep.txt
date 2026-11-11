@@ -1,0 +1,5 @@
+# E6(a) git grep, commit 6e56129840264b8574428d20bb7b62c30d767e72, porcelain lines 1
+# FAIL hits: 2
+infra/README.md:84:4. The WSL2 lab is shut down (owner's timestamp).
+scripts/tests/test_gate.py:86:                  "scan_parse.py", "tls_negative.sh", "wsl_grep.sh", "common.py", "redact.py"):
+# OTHER hits (listed, not failed): 0

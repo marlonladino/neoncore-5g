@@ -1,0 +1,14 @@
+{
+  "C": {
+    "C1": "not tested: no baseline",
+    "C4": "PASS (absolute part only; not tested: no baseline)"
+  },
+  "failures": [
+    "25 soak samples < 26 expected at 60 s"
+  ],
+  "notes": [],
+  "reading_notes": "* \"Running with all containers Ready\" is checked at every sample (start, soak,\n    end) for every pod owned by a Deployment, StatefulSet or DaemonSet.\n  * \"No pod is Pending, Failed, Unknown or CrashLoopBackOff\" is checked for every\n    pod at start and end, and at every soak sample for workload pods and the dbctl\n    pod. phase6's short-lived scenario-ue pods are excluded from soak samples only,\n    because the suite creates them between samples by design.\n  * Sampling coverage: at least floor((end - start) / interval) - 1 soak samples.",
+  "result": "FAIL",
+  "soak_s": 1630.4,
+  "soak_samples": 25
+}

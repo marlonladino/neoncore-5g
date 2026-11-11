@@ -1,0 +1,28 @@
+{
+  "C": {
+    "C1": "not tested",
+    "C4": "not tested"
+  },
+  "failures": [
+    "soak[13]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[14]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[15]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[16]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[17]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[18]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[19]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[20]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[21]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[22]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[23]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "soak[24]: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer",
+    "end: restart delta 1 for neoncore/tracer-5c6c849685-lt96c/tracer"
+  ],
+  "notes": [
+    "no compare.json given: C1/C4 not evaluated here"
+  ],
+  "reading_notes": "* \"Running with all containers Ready\" is checked at every sample (start, soak,\n    end) for every pod owned by a Deployment, StatefulSet or DaemonSet.\n  * \"No pod is Pending, Failed, Unknown or CrashLoopBackOff\" is checked for every\n    pod at start and end, and at every soak sample for workload pods and the dbctl\n    pod. phase6's short-lived scenario-ue pods are excluded from soak samples only,\n    because the suite creates them between samples by design.\n  * Sampling coverage: at least floor((end - start) / interval) - 1 soak samples.",
+  "result": "FAIL",
+  "soak_s": 1518.9,
+  "soak_samples": 25
+}

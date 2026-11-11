@@ -1,0 +1,8 @@
+E6(b) runtime check, R2 (plan L0 section 8, E6)
+captured_utc: 2026-11-10T17:43Z (evaluator, control machine)
+old host VM: N/A, deleted by the owner 2026-11-10 (so R2 ran without it)
+kubeconfig server host vs Terraform configured VM IPv4 (state file, initialization ip_config, 1 static address): match
+method: values compared in memory, only match/no match printed; Terraform has no address output (outputs: vm_id only), so the state attribute was used
+R2 passes: no (E1 and E6(a) failed, see ../run-2-fromzero/README.md)
+E6(b) result: FAIL (its threshold includes "R2 passes"); the kubeconfig part alone: match
+E6(c): not tested (R4 / T15a not run)

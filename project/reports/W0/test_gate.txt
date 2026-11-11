@@ -1,0 +1,83 @@
+test_agents_frontmatter (scripts.tests.test_gate.AgentDefinitionTest.test_agents_frontmatter) ... ok
+test_skills_not_model_invocable (scripts.tests.test_gate.AgentDefinitionTest.test_skills_not_model_invocable) ... ok
+test_01_phase7_write_blocked_without_approval (scripts.tests.test_gate.GateTest.test_01_phase7_write_blocked_without_approval) ... ok
+test_02_phase7_write_passes_after_approval_then_blocked_after_plan_edit (scripts.tests.test_gate.GateTest.test_02_phase7_write_passes_after_approval_then_blocked_after_plan_edit) ... ok
+test_03_evaluator_cannot_edit_phase7 (scripts.tests.test_gate.GateTest.test_03_evaluator_cannot_edit_phase7) ... ok
+test_04_developer_cannot_edit_evals (scripts.tests.test_gate.GateTest.test_04_developer_cannot_edit_evals) ... ok
+test_05_developer_cannot_read_holdout (scripts.tests.test_gate.GateTest.test_05_developer_cannot_read_holdout) ... ok
+test_06_only_lab_ops_runs_terraform_apply (scripts.tests.test_gate.GateTest.test_06_only_lab_ops_runs_terraform_apply) ... ok
+test_10_bash_write_targets (scripts.tests.test_gate.GateTest.test_10_bash_write_targets) ... ok
+test_11_heredoc_body_is_not_parsed_as_commands (scripts.tests.test_gate.GateTest.test_11_heredoc_body_is_not_parsed_as_commands) ... ok
+test_12_path_escapes (scripts.tests.test_gate.GateTest.test_12_path_escapes) ... ok
+test_13_fail_closed (scripts.tests.test_gate.GateTest.test_13_fail_closed) ... ok
+test_14_unknown_agent_is_read_only (scripts.tests.test_gate.GateTest.test_14_unknown_agent_is_read_only) ... ok
+test_15_approvals_and_secrets_untouchable (scripts.tests.test_gate.GateTest.test_15_approvals_and_secrets_untouchable) ... ok
+test_16_process_paths_need_no_approval_but_respect_scope (scripts.tests.test_gate.GateTest.test_16_process_paths_need_no_approval_but_respect_scope) ... ok
+test_17_lead_has_no_product_scope_after_w0 (scripts.tests.test_gate.GateTest.test_17_lead_has_no_product_scope_after_w0) ... ok
+test_18_w0_lead_scope_and_gate_files (scripts.tests.test_gate.GateTest.test_18_w0_lead_scope_and_gate_files) ... ok
+test_19_kubectl_rules (scripts.tests.test_gate.GateTest.test_19_kubectl_rules) ... ok
+test_20_destructive_left_to_user (scripts.tests.test_gate.GateTest.test_20_destructive_left_to_user) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 2.041s
+
+OK
+      blocked: GATE BLOCKED [developer] write to phase7/x.py needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [developer] write to phase7/x.py needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [evaluator] phase7/x.py is outside evaluator's write scope ['evals/']
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] developer may not read datasets/holdout/
+      blocked: GATE BLOCKED [developer] developer may not read datasets/holdout/
+      blocked: GATE BLOCKED [developer] developer may not read datasets/holdout/
+      blocked: GATE BLOCKED [developer] developer may not read or touch datasets/holdout/
+      blocked: GATE BLOCKED [lead] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [developer] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [lab-ops] lab-changing command needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [lead] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [developer] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [developer] write to phase7/y.py needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [lead] .claude/settings.json is part of the gate; only the user changes it after W0
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] evals/m.py is outside developer's write scope ['phase5/', 'phase6/', 'phase7/', 'phase8/', 'phase9/', 'phase10/', 'phase11/', 'phase12/', 'tests/']
+      blocked: GATE BLOCKED [developer] write outside the repo and outside the allowed scratch/plan/memory dirs: /etc/cron.d/x
+      blocked: GATE BLOCKED [developer] project/STAGE is missing (fail closed)
+      blocked: GATE BLOCKED [developer] project/STAGE 'banana' is not a known stage (fail closed)
+      blocked: GATE BLOCKED [?] gate error, failing closed: JSONDecodeError('Expecting property name enclosed in double quotes: line 1 column 2 (char 1)')
+      blocked: GATE BLOCKED [lead] hook input lacks tool_name/tool_input (fail closed)
+      blocked: GATE BLOCKED [lead] project/STAGE 'banana' is not a known stage (fail closed)
+      blocked: GATE BLOCKED [general-purpose] unknown agent type 'general-purpose' is read-only
+      blocked: GATE BLOCKED [general-purpose] unknown agent type 'general-purpose' is read-only
+      blocked: GATE BLOCKED [lead] project/approvals/7.plan.sha256 is never writable by an agent
+      blocked: GATE BLOCKED [lead] commands may not mention project/approvals, approve.sh or .env.lab (the user runs approve.sh; secrets load only via scripts/labenv)
+      blocked: GATE BLOCKED [lead] commands may not mention project/approvals, approve.sh or .env.lab (the user runs approve.sh; secrets load only via scripts/labenv)
+      blocked: GATE BLOCKED [lab-ops] commands may not mention project/approvals, approve.sh or .env.lab (the user runs approve.sh; secrets load only via scripts/labenv)
+      blocked: GATE BLOCKED [lab-ops] .env.lab is read only through scripts/labenv
+      blocked: GATE BLOCKED [telco-reviewer] project/reports/7/security.md is outside telco-reviewer's process scope ['project/reports/7/telco.md']
+      blocked: GATE BLOCKED [developer] project/plans/7.md is outside developer's process scope ['project/notes/']
+      blocked: GATE BLOCKED [lead] phase7/x.py is outside lead's write scope (none)
+      blocked: GATE BLOCKED [lead] README.md is outside lead's write scope (none)
+      blocked: GATE BLOCKED [lead] write to .claude/hooks/gate.py needs an approved plan: project/plans/W0.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh W0 plan
+      blocked: GATE BLOCKED [lead] phase7/x.py is outside lead's write scope ['.claude/', 'project/', 'scripts/', 'CLAUDE.md', '.gitignore', 'docs/roadmap/', 'docs/agent-gate.md', 'DEVLOG.md']
+      blocked: GATE BLOCKED [lead] .claude/hooks/gate.py is part of the gate; only the user changes it after W0
+      blocked: GATE BLOCKED [lead] scripts/approve.sh is part of the gate; only the user changes it after W0
+      blocked: GATE BLOCKED [docs-writer] docs/roadmap/other.pdf is part of the gate; only the user changes it after W0
+      blocked: GATE BLOCKED [developer] kubectl delete in neoncore needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [developer] kubectl apply outside the neoncore/monitoring namespaces or on cluster-level resources is lab-ops only
+      blocked: GATE BLOCKED [lead] running the project CLI against the lab needs an approved plan: project/plans/7.md has no matching approval (missing, or the plan changed since approval). Ask the user to run scripts/approve.sh 7 plan
+      blocked: GATE BLOCKED [developer] kubectl apply outside the neoncore/monitoring namespaces or on cluster-level resources is lab-ops only
+      blocked: GATE BLOCKED [developer] kubectl delete outside the neoncore/monitoring namespaces or on cluster-level resources is lab-ops only
+      blocked: GATE BLOCKED [developer] kubectl label outside the neoncore/monitoring namespaces or on cluster-level resources is lab-ops only
+      blocked: GATE BLOCKED [lab-ops] namespace deletion is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [developer] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [developer] lab-changing command: only lab-ops may run it
+      blocked: GATE BLOCKED [lab-ops] force push is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] force branch delete is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] git reset --hard is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] history rewrite (git rebase) is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] phase7 is outside lab-ops's write scope ['infra/', 'setup/', 'start.sh', 'stop.sh', 'phase2/manifests/', 'phase3/manifests/', 'phase4/manifests/']
+      blocked: GATE BLOCKED [lab-ops] terraform destroy is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] GitHub publication is destructive or publishing: the user runs it themself
+      blocked: GATE BLOCKED [lab-ops] git clean -f is destructive or publishing: the user runs it themself

@@ -1,0 +1,17 @@
+# Monthly spending caps set by the owner. Eval and generator scripts must estimate cost first
+# and abort before a run would push the month's total over a cap.
+currency: USD
+caps:
+  api_usd_month: 25      # Claude API / Bedrock
+  gpu_usd_month: 0       # raised only in the Stage 12 plan
+  cloud_usd_month: 0     # AWS etc. (Stage 9B plan sets this)
+
+# Append one entry per paid run. Totals per month are summed by the scripts.
+ledger: []
+#  - date: 2026-12-01
+#    stage: "8"
+#    what: troubleshooter v0 eval, 240 runs
+#    provider: anthropic
+#    model_id: <from config>
+#    usd: 0.00
+#    report: project/reports/8/eval/run-001.json

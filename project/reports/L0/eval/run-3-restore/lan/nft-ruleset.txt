@@ -1,0 +1,768 @@
+table inet neoncore_guard {
+	chain prerouting {
+		type filter hook prerouting priority mangle; policy accept;
+		iifname != "eth0" accept
+		ct state invalid drop
+		ct state established,related accept
+		ip saddr <admin-ip> tcp dport { 22, 6443, 30030, 30090 } ct state new accept
+		counter packets 133011 bytes 6121086 drop
+	}
+}
+table ip nat {
+	chain DOCKER {
+	}
+
+	chain PREROUTING {
+		type nat hook prerouting priority dstnat; policy accept;
+		 counter packets 1068 bytes 67619 jump KUBE-SERVICES
+		fib daddr type local counter packets 62 bytes 3720 jump DOCKER
+	}
+
+	chain OUTPUT {
+		type nat hook output priority dstnat; policy accept;
+		 counter packets 2483 bytes 149069 jump KUBE-SERVICES
+		ip daddr != 127.0.0.0/8 fib daddr type local counter packets 1 bytes 60 jump DOCKER
+	}
+
+	chain POSTROUTING {
+		type nat hook postrouting priority srcnat; policy accept;
+		 counter packets 3467 bytes 211320 jump KUBE-POSTROUTING
+		ip saddr <ip>/16 oifname != "docker0" counter packets 0 bytes 0 # Warning: table ip nat is managed by iptables-nft, do not touch!
+masquerade
+		 counter packets 3458 bytes 210731 jump FLANNEL-POSTRTG
+	}
+
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+
+	chain KUBE-SERVICES {
+		ip daddr 10.43.0.1 ip protocol tcp  tcp dport 443 counter packets 2 bytes 120 jump KUBE-SVC-NPX46M4PTMTKRN6Y
+		ip daddr 10.43.0.10 ip protocol tcp  tcp dport 53 counter packets 0 bytes 0 jump KUBE-SVC-ERIFXISQEP7F7OF4
+		ip daddr 10.43.0.10 ip protocol tcp  tcp dport 9153 counter packets 0 bytes 0 jump KUBE-SVC-JD5MR3NA4I4DYORP
+		ip daddr 10.43.0.10 ip protocol udp  udp dport 53 counter packets 32 bytes 2614 jump KUBE-SVC-TCOU7JCQXEZGVUNU
+		ip daddr 10.43.199.106 ip protocol tcp  tcp dport 443 counter packets 0 bytes 0 jump KUBE-SVC-Z4ANX4WAEWEBLCTM
+		ip daddr 10.43.4.222 ip protocol tcp  tcp dport 3000 counter packets 0 bytes 0 jump KUBE-SVC-XUJLWDDTZEWKLHU6
+		ip daddr 10.43.239.164 ip protocol tcp  tcp dport 8080 counter packets 0 bytes 0 jump KUBE-SVC-FF54QS3XAMGNXOJU
+		ip daddr 10.43.59.57 ip protocol tcp  tcp dport 27017 counter packets 1 bytes 60 jump KUBE-SVC-IYTT562DA7NFFLE6
+		ip daddr 10.43.6.70 ip protocol tcp  tcp dport 9090 counter packets 0 bytes 0 jump KUBE-SVC-VVO7BBXOSCJQDQML
+		 fib daddr type local counter packets 76 bytes 4560 jump KUBE-NODEPORTS
+	}
+
+	chain KUBE-POSTROUTING {
+		meta mark & 0x00004000 != 0x00004000 counter packets 3293 bytes 198664 return
+		counter packets 2 bytes 120 meta mark set mark xor 0x4000
+		 counter packets 2 bytes 120 masquerade fully-random
+	}
+
+	chain KUBE-NODEPORTS {
+		ip daddr 127.0.0.0/8 ip protocol tcp  tcp dport 30030 xt match "nfacct" counter packets 0 bytes 0 jump KUBE-EXT-XUJLWDDTZEWKLHU6
+		ip protocol tcp  tcp dport 30030 counter packets 0 bytes 0 jump KUBE-EXT-XUJLWDDTZEWKLHU6
+		ip daddr 127.0.0.0/8 ip protocol tcp  tcp dport 30090 xt match "nfacct" counter packets 0 bytes 0 jump KUBE-EXT-VVO7BBXOSCJQDQML
+		ip protocol tcp  tcp dport 30090 counter packets 0 bytes 0 jump KUBE-EXT-VVO7BBXOSCJQDQML
+	}
+
+	chain KUBE-MARK-MASQ {
+		counter packets 4 bytes 240 meta mark set mark or 0x4000
+	}
+
+	chain KUBE-SVC-NPX46M4PTMTKRN6Y {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.0.1 ip protocol tcp  tcp dport 443 counter packets 3 bytes 180 jump KUBE-MARK-MASQ
+		 counter packets 10 bytes 600 jump KUBE-SEP-4UK5LHFF725GSN6O
+	}
+
+	chain KUBE-SEP-4UK5LHFF725GSN6O {
+		ip saddr <vm>  counter packets 3 bytes 180 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 10 bytes 600 dnat to <vm>:6443
+	}
+
+	chain FLANNEL-POSTRTG {
+		meta mark & 0x00004000 == 0x00004000  counter packets 0 bytes 0 return
+		ip saddr 10.42.0.0/24 ip daddr 10.42.0.0/16  counter packets 3372 bytes 205249 return
+		ip saddr 10.42.0.0/16 ip daddr 10.42.0.0/24  counter packets 0 bytes 0 return
+		ip saddr != 10.42.0.0/16 ip daddr 10.42.0.0/24  counter packets 0 bytes 0 return
+		ip saddr 10.42.0.0/16 ip daddr != <ip>/4  counter packets 31 bytes 2142 masquerade fully-random
+		ip saddr != 10.42.0.0/16 ip daddr 10.42.0.0/16  counter packets 0 bytes 0 masquerade fully-random
+	}
+
+	chain KUBE-SVC-ERIFXISQEP7F7OF4 {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.0.10 ip protocol tcp  tcp dport 53 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 0 bytes 0 jump KUBE-SEP-26M5HQU7TOXKOE4S
+	}
+
+	chain KUBE-SEP-26M5HQU7TOXKOE4S {
+		ip saddr 10.42.0.58  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 0 bytes 0 dnat to 10.42.0.58:53
+	}
+
+	chain KUBE-SVC-JD5MR3NA4I4DYORP {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.0.10 ip protocol tcp  tcp dport 9153 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 0 bytes 0 jump KUBE-SEP-64XYT4B3XHOCMWXH
+	}
+
+	chain KUBE-SEP-64XYT4B3XHOCMWXH {
+		ip saddr 10.42.0.58  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 0 bytes 0 dnat to 10.42.0.58:9153
+	}
+
+	chain KUBE-SVC-TCOU7JCQXEZGVUNU {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.0.10 ip protocol udp  udp dport 53 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 115 bytes 9696 jump KUBE-SEP-RZO4X4TAGKUGKGTP
+	}
+
+	chain KUBE-SEP-RZO4X4TAGKUGKGTP {
+		ip saddr 10.42.0.58  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol udp   counter packets 115 bytes 9696 dnat to 10.42.0.58:53
+	}
+
+	chain KUBE-EXT-XUJLWDDTZEWKLHU6 {
+		 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		counter packets 0 bytes 0 jump KUBE-SVC-XUJLWDDTZEWKLHU6
+	}
+
+	chain KUBE-SVC-XUJLWDDTZEWKLHU6 {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.4.222 ip protocol tcp  tcp dport 3000 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 0 bytes 0 jump KUBE-SEP-U6H3GXO5PVDV6NJR
+	}
+
+	chain KUBE-SEP-U6H3GXO5PVDV6NJR {
+		ip saddr 10.42.0.72  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 0 bytes 0 dnat to 10.42.0.72:3000
+	}
+
+	chain KUBE-SVC-FF54QS3XAMGNXOJU {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.239.164 ip protocol tcp  tcp dport 8080 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 1 bytes 60 jump KUBE-SEP-ED6OHR4APCWD66NJ
+	}
+
+	chain KUBE-SEP-ED6OHR4APCWD66NJ {
+		ip saddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 1 bytes 60 dnat to 10.42.0.73:8080
+	}
+
+	chain KUBE-EXT-VVO7BBXOSCJQDQML {
+		 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		counter packets 0 bytes 0 jump KUBE-SVC-VVO7BBXOSCJQDQML
+	}
+
+	chain KUBE-SVC-VVO7BBXOSCJQDQML {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.6.70 ip protocol tcp  tcp dport 9090 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 0 bytes 0 jump KUBE-SEP-6B2P2RRFVCFIHCWZ
+	}
+
+	chain KUBE-SEP-6B2P2RRFVCFIHCWZ {
+		ip saddr 10.42.0.75  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 0 bytes 0 dnat to 10.42.0.75:9090
+	}
+
+	chain KUBE-SVC-IYTT562DA7NFFLE6 {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.59.57 ip protocol tcp  tcp dport 27017 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 2 bytes 120 jump KUBE-SEP-HY5NC6QUDKZ344ML
+	}
+
+	chain KUBE-SEP-HY5NC6QUDKZ344ML {
+		ip saddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 2 bytes 120 dnat to 10.42.0.65:27017
+	}
+
+	chain KUBE-SVC-Z4ANX4WAEWEBLCTM {
+		ip saddr != 10.42.0.0/16 ip daddr 10.43.199.106 ip protocol tcp  tcp dport 443 counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		 counter packets 0 bytes 0 jump KUBE-SEP-5TV3Q2NPXRGKTZ5D
+	}
+
+	chain KUBE-SEP-5TV3Q2NPXRGKTZ5D {
+		ip saddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-MARK-MASQ
+		ip protocol tcp   counter packets 0 bytes 0 dnat to 10.42.0.59:10250
+	}
+}
+table ip6 nat {
+	chain DOCKER {
+	}
+
+	chain PREROUTING {
+		type nat hook prerouting priority dstnat; policy accept;
+		 counter packets 0 bytes 0 jump KUBE-SERVICES
+		fib daddr type local counter packets 0 bytes 0 jump DOCKER
+	}
+
+	chain OUTPUT {
+		type nat hook output priority dstnat; policy accept;
+		 counter packets 0 bytes 0 jump KUBE-SERVICES
+		ip6 daddr != ::1 fib daddr type local counter packets 0 bytes 0 jump DOCKER
+	}
+
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+
+# Warning: table ip6 nat is managed by iptables-nft, do not touch!
+	chain KUBE-SERVICES {
+		ip6 daddr != ::1  fib daddr type local counter packets 0 bytes 0 jump KUBE-NODEPORTS
+	}
+
+	chain KUBE-POSTROUTING {
+		meta mark & 0x00004000 != 0x00004000 counter packets 0 bytes 0 return
+		counter packets 0 bytes 0 meta mark set mark xor 0x4000
+		 counter packets 0 bytes 0 xt target "MASQUERADE"
+	}
+
+	chain POSTROUTING {
+		type nat hook postrouting priority srcnat; policy accept;
+		 counter packets 0 bytes 0 jump KUBE-POSTROUTING
+	}
+
+	chain KUBE-NODEPORTS {
+	}
+
+	chain KUBE-MARK-MASQ {
+		counter packets 0 bytes 0 meta mark set mark or 0x4000
+	}
+}
+table ip6 filter {
+	chain DOCKER {
+	}
+
+	chain DOCKER-FORWARD {
+		# Warning: XT target MASQUERADE not found
+# Warning: table ip6 filter is managed by iptables-nft, do not touch!
+counter packets 3967 bytes 241252 jump DOCKER-CT
+		counter packets 3967 bytes 241252 jump DOCKER-INTERNAL
+		counter packets 3967 bytes 241252 jump DOCKER-BRIDGE
+	}
+
+	chain DOCKER-BRIDGE {
+	}
+
+	chain DOCKER-CT {
+	}
+
+	chain DOCKER-INTERNAL {
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy accept;
+		ct state new  counter packets 0 bytes 0 jump KUBE-PROXY-FIREWALL
+		 counter packets 3967 bytes 241252 jump KUBE-FORWARD
+		ct state new  counter packets 0 bytes 0 jump KUBE-SERVICES
+		ct state new  counter packets 0 bytes 0 jump KUBE-EXTERNAL-SERVICES
+		counter packets 3967 bytes 241252 jump DOCKER-USER
+		counter packets 3967 bytes 241252 jump DOCKER-FORWARD
+	}
+
+	chain DOCKER-USER {
+	}
+
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+
+	chain KUBE-EXTERNAL-SERVICES {
+	}
+
+	chain INPUT {
+		type filter hook input priority filter; policy accept;
+		counter packets 0 bytes 0 jump KUBE-FIREWALL
+		ct state new  counter packets 0 bytes 0 jump KUBE-PROXY-FIREWALL
+		 counter packets 0 bytes 0 jump KUBE-NODEPORTS
+		ct state new  counter packets 0 bytes 0 jump KUBE-EXTERNAL-SERVICES
+	}
+
+	chain KUBE-NODEPORTS {
+	}
+
+	chain KUBE-SERVICES {
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		counter packets 118 bytes 8840 jump KUBE-FIREWALL
+		ct state new  counter packets 0 bytes 0 jump KUBE-PROXY-FIREWALL
+		ct state new  counter packets 0 bytes 0 jump KUBE-SERVICES
+	}
+
+	chain KUBE-FORWARD {
+		ct state invalid xt match "nfacct" counter packets 0 bytes 0 drop
+		 meta mark & 0x00004000 == 0x00004000 counter packets 0 bytes 0 accept
+		 ct state related,established counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-PROXY-FIREWALL {
+	}
+
+	chain KUBE-FIREWALL {
+	}
+}
+table ip mangle {
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-IPTABLES-HINT {
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+}
+table ip6 mangle {
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-IPTABLES-HINT {
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+}
+table ip filter {
+	chain INPUT {
+		type filter hook input priority filter; policy accept;
+		 counter packets 7349 bytes 2367156 jump KUBE-ROUTER-INPUT
+		ct state new  counter packets 30 bytes 1800 jump KUBE-PROXY-FIREWALL
+		 counter packets 4748 bytes 1651821 jump KUBE-NODEPORTS
+		ct state new  counter packets 30 bytes 1800 jump KUBE-EXTERNAL-SERVICES
+		counter packets 4748 bytes 1651821 jump KUBE-FIREWALL
+	}
+
+	chain FORWARD {
+		type filter hook forward priority filter; policy drop;
+		 counter packets 5073 bytes 6249757 jump KUBE-ROUTER-FORWARD
+		ct state new  counter packets 0 bytes 0 jump KUBE-PROXY-FIREWALL
+		 counter packets 0 bytes 0 jump KUBE-FORWARD
+		ct state new  counter packets 0 bytes 0 jump KUBE-SERVICES
+		ct state new  counter packets 0 bytes 0 jump KUBE-EXTERNAL-SERVICES
+		counter packets 0 bytes 0 jump DOCKER-USER
+		counter packets 0 bytes 0 jump DOCKER-FORWARD
+		 counter packets 0 bytes 0 # Warning: table ip filter is managed by iptables-nft, do not touch!
+jump FLANNEL-FWD
+	}
+
+	chain OUTPUT {
+		type filter hook output priority filter; policy accept;
+		 counter packets 7596 bytes 2729550 jump KUBE-ROUTER-OUTPUT
+		ct state new  counter packets 10 bytes 616 jump KUBE-PROXY-FIREWALL
+		ct state new  counter packets 10 bytes 616 jump KUBE-SERVICES
+		counter packets 4711 bytes 2221315 jump KUBE-FIREWALL
+	}
+
+	chain DOCKER {
+		iifname != "docker0" oifname "docker0" counter packets 0 bytes 0 drop
+	}
+
+	chain DOCKER-BRIDGE {
+		oifname "docker0" counter packets 0 bytes 0 jump DOCKER
+	}
+
+	chain DOCKER-CT {
+		oifname "docker0" ct state related,established counter packets 0 bytes 0 accept
+	}
+
+	chain DOCKER-FORWARD {
+		counter packets 0 bytes 0 jump DOCKER-CT
+		counter packets 0 bytes 0 jump DOCKER-INTERNAL
+		counter packets 0 bytes 0 jump DOCKER-BRIDGE
+		iifname "docker0" counter packets 0 bytes 0 accept
+	}
+
+	chain DOCKER-INTERNAL {
+	}
+
+	chain DOCKER-USER {
+	}
+
+	chain FLANNEL-FWD {
+		ip saddr 10.42.0.0/16  counter packets 0 bytes 0 accept
+		ip daddr 10.42.0.0/16  counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-EXTERNAL-SERVICES {
+	}
+
+	chain KUBE-FIREWALL {
+		ip saddr != 127.0.0.0/8 ip daddr 127.0.0.0/8  ct status dnat counter packets 0 bytes 0 drop
+	}
+
+	chain KUBE-FORWARD {
+		ct state invalid xt match "nfacct" counter packets 0 bytes 0 drop
+		 meta mark & 0x00004000 == 0x00004000 counter packets 0 bytes 0 accept
+		 ct state related,established counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-KUBELET-CANARY {
+	}
+
+	chain KUBE-NODEPORTS {
+	}
+
+	chain KUBE-NWPLCY-COMMON {
+		 ct state invalid counter packets 0 bytes 0 drop
+		 ct state related,established counter packets 10185 bytes 7450533 accept
+		ip protocol icmp  icmp type echo-request counter packets 1 bytes 84 accept
+		ip protocol icmp  icmp type destination-unreachable counter packets 0 bytes 0 accept
+		ip protocol icmp  icmp type time-exceeded counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-NWPLCY-DEFAULT {
+		 counter packets 408 bytes 25674 meta mark set mark or 0x10000
+	}
+
+	chain KUBE-NWPLCY-TAIL {
+		 meta mark & 0x00020000 == 0x00020000 counter packets 105 bytes 6630 accept
+	}
+
+	chain KUBE-PROXY-CANARY {
+	}
+
+	chain KUBE-PROXY-FIREWALL {
+	}
+
+	chain KUBE-ROUTER-FORWARD {
+		ip daddr 10.42.0.70  counter packets 44 bytes 3070 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip daddr 10.42.0.70 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip saddr 10.42.0.70  counter packets 66 bytes 7898 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip saddr 10.42.0.70 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip daddr 10.42.0.72  counter packets 21 bytes 6702 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip daddr 10.42.0.72 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip saddr 10.42.0.72  counter packets 24 bytes 3308 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip saddr 10.42.0.72 xt match "physdev"  counter packets 10 bytes 820 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip daddr 10.42.0.74  counter packets 44 bytes 3070 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip daddr 10.42.0.74 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip saddr 10.42.0.74  counter packets 66 bytes 7920 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip saddr 10.42.0.74 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip daddr 10.42.0.77  counter packets 266 bytes 14647 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip daddr 10.42.0.77 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip saddr 10.42.0.77  counter packets 222 bytes 12021 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip saddr 10.42.0.77 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip daddr 10.42.0.60  counter packets 0 bytes 0 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip daddr 10.42.0.60 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip saddr 10.42.0.60  counter packets 0 bytes 0 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip saddr 10.42.0.60 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip daddr 10.42.0.75  counter packets 1771 bytes 5993866 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip daddr 10.42.0.75 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip saddr 10.42.0.75  counter packets 1787 bytes 127074 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip saddr 10.42.0.75 xt match "physdev"  counter packets 90 bytes 5400 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip daddr 10.42.0.71  counter packets 336 bytes 40275 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip daddr 10.42.0.71 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip saddr 10.42.0.71  counter packets 224 bytes 15628 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip saddr 10.42.0.71 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip daddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip daddr 10.42.0.73 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip saddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip saddr 10.42.0.73 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip daddr 10.42.0.69  counter packets 46 bytes 4340 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip daddr 10.42.0.69 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip saddr 10.42.0.69  counter packets 46 bytes 4340 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip saddr 10.42.0.69 xt match "physdev"  counter packets 1 bytes 128 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip daddr 10.42.0.63  counter packets 68 bytes 3548 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip daddr 10.42.0.63 xt match "physdev"  counter packets 23 bytes 1448 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip saddr 10.42.0.63  counter packets 45 bytes 2100 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip saddr 10.42.0.63 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip daddr 10.42.0.61  counter packets 25 bytes 1476 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip daddr 10.42.0.61 xt match "physdev"  counter packets 22 bytes 1320 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip saddr 10.42.0.61  counter packets 3 bytes 156 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip saddr 10.42.0.61 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip daddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip daddr 10.42.0.59 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip saddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip saddr 10.42.0.59 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip daddr 10.42.0.76  counter packets 23 bytes 1380 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip daddr 10.42.0.76 xt match "physdev"  counter packets 23 bytes 1380 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip saddr 10.42.0.76  counter packets 0 bytes 0 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip saddr 10.42.0.76 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip daddr 10.42.0.66  counter packets 23 bytes 1380 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip daddr 10.42.0.66 xt match "physdev"  counter packets 23 bytes 1380 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip saddr 10.42.0.66  counter packets 0 bytes 0 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip saddr 10.42.0.66 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip daddr 10.42.0.58  counter packets 14 bytes 1304 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip daddr 10.42.0.58 xt match "physdev"  counter packets 10 bytes 820 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip saddr 10.42.0.58  counter packets 4 bytes 290 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip saddr 10.42.0.58 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip daddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip daddr 10.42.0.64 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip saddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip saddr 10.42.0.64 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip daddr 10.42.0.67  counter packets 3 bytes 156 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip daddr 10.42.0.67 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip saddr 10.42.0.67  counter packets 3 bytes 156 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip saddr 10.42.0.67 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip daddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		ip daddr 10.42.0.65 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		ip saddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		ip saddr 10.42.0.65 xt match "physdev"  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		 counter packets 105 bytes 6630 jump KUBE-NWPLCY-TAIL
+		 meta mark & 0x00020000 == 0x00020000 counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-ROUTER-INPUT {
+		ip daddr 10.43.0.0/16  counter packets 0 bytes 0 return
+		ip protocol tcp  fib daddr type local tcp dport 30000-32767 counter packets 0 bytes 0 return
+		ip protocol udp  fib daddr type local udp dport 30000-32767 counter packets 0 bytes 0 return
+		ip protocol sctp  fib daddr type local sctp dport 30000-32767 counter packets 0 bytes 0 return
+		ip saddr 10.42.0.70  counter packets 0 bytes 0 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip saddr 10.42.0.72  counter packets 0 bytes 0 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip saddr 10.42.0.74  counter packets 0 bytes 0 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip saddr 10.42.0.77  counter packets 0 bytes 0 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip saddr 10.42.0.60  counter packets 24 bytes 2815 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip saddr 10.42.0.75  counter packets 17 bytes 1206 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip saddr 10.42.0.71  counter packets 0 bytes 0 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip saddr 10.42.0.73  counter packets 325 bytes 23025 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip saddr 10.42.0.69  counter packets 0 bytes 0 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip saddr 10.42.0.63  counter packets 0 bytes 0 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip saddr 10.42.0.61  counter packets 0 bytes 0 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip saddr 10.42.0.59  counter packets 1549 bytes 632977 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip saddr 10.42.0.76  counter packets 0 bytes 0 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip saddr 10.42.0.66  counter packets 0 bytes 0 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip saddr 10.42.0.58  counter packets 686 bytes 55312 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip saddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip saddr 10.42.0.67  counter packets 0 bytes 0 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip saddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		 counter packets 4748 bytes 1651821 jump KUBE-NWPLCY-TAIL
+		 meta mark & 0x00020000 == 0x00020000 counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-ROUTER-OUTPUT {
+		ip daddr 10.42.0.70  counter packets 0 bytes 0 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip saddr 10.42.0.70  counter packets 0 bytes 0 jump KUBE-POD-FW-LQRCN7235XFIKFZQ
+		ip daddr 10.42.0.72  counter packets 0 bytes 0 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip saddr 10.42.0.72  counter packets 0 bytes 0 jump KUBE-POD-FW-JEFG4SKJLQVQX54D
+		ip daddr 10.42.0.74  counter packets 0 bytes 0 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip saddr 10.42.0.74  counter packets 0 bytes 0 jump KUBE-POD-FW-U3TH24VBZ33N463Z
+		ip daddr 10.42.0.77  counter packets 0 bytes 0 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip saddr 10.42.0.77  counter packets 0 bytes 0 jump KUBE-POD-FW-6TYWWVNYLYJQE3EC
+		ip daddr 10.42.0.60  counter packets 18 bytes 2527 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip saddr 10.42.0.60  counter packets 0 bytes 0 jump KUBE-POD-FW-C24GF25AI2YD3EG7
+		ip daddr 10.42.0.75  counter packets 11 bytes 1459 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip saddr 10.42.0.75  counter packets 0 bytes 0 jump KUBE-POD-FW-NMGY7O5LKBEHKXXI
+		ip daddr 10.42.0.71  counter packets 0 bytes 0 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip saddr 10.42.0.71  counter packets 0 bytes 0 jump KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T
+		ip daddr 10.42.0.73  counter packets 252 bytes 57563 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip saddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-POD-FW-TZ5MJUDDA74D5DES
+		ip daddr 10.42.0.69  counter packets 0 bytes 0 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip saddr 10.42.0.69  counter packets 0 bytes 0 jump KUBE-POD-FW-DXB35HEENNHRJAEZ
+		ip daddr 10.42.0.63  counter packets 0 bytes 0 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip saddr 10.42.0.63  counter packets 0 bytes 0 jump KUBE-POD-FW-NF7XQO5VACQEHXAN
+		ip daddr 10.42.0.61  counter packets 0 bytes 0 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip saddr 10.42.0.61  counter packets 0 bytes 0 jump KUBE-POD-FW-6YTLKDMLNEQSZSNG
+		ip daddr 10.42.0.59  counter packets 1902 bytes 393181 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip saddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-POD-FW-LWRA2WXFWDYZS474
+		ip daddr 10.42.0.76  counter packets 0 bytes 0 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip saddr 10.42.0.76  counter packets 0 bytes 0 jump KUBE-POD-FW-CR7ZCYTRBDYKJNOB
+		ip daddr 10.42.0.66  counter packets 0 bytes 0 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip saddr 10.42.0.66  counter packets 0 bytes 0 jump KUBE-POD-FW-UNJTJK5OACTRVY2Z
+		ip daddr 10.42.0.58  counter packets 702 bytes 53505 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip saddr 10.42.0.58  counter packets 0 bytes 0 jump KUBE-POD-FW-WUCBDODMMN7HVZT5
+		ip daddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip saddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-POD-FW-R2LYNF63TCN6FGSM
+		ip daddr 10.42.0.67  counter packets 0 bytes 0 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip saddr 10.42.0.67  counter packets 0 bytes 0 jump KUBE-POD-FW-GF5Q73ZYGYJ2XQGD
+		ip daddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		ip saddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-POD-FW-WCANBIUHZTFJD4NW
+		 counter packets 4711 bytes 2221315 jump KUBE-NWPLCY-TAIL
+		 meta mark & 0x00020000 == 0x00020000 counter packets 0 bytes 0 accept
+	}
+
+	chain KUBE-SERVICES {
+	}
+
+	chain KUBE-POD-FW-LQRCN7235XFIKFZQ {
+		 counter packets 110 bytes 10968 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.70  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.70  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.70  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-JEFG4SKJLQVQX54D {
+		 counter packets 55 bytes 10830 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.72  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.72  counter packets 21 bytes 1700 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.72  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 21 bytes 1700 meta mark set mark and 0xfffeffff
+		 counter packets 21 bytes 1700 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-U3TH24VBZ33N463Z {
+		 counter packets 110 bytes 10990 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.74  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.74  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.74  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-6TYWWVNYLYJQE3EC {
+		 counter packets 488 bytes 26668 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.77  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.77  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.77  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-C24GF25AI2YD3EG7 {
+		 counter packets 42 bytes 5342 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.60  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.60  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.60  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-NMGY7O5LKBEHKXXI {
+		 counter packets 3676 bytes 6129005 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.75  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.75  counter packets 180 bytes 10800 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.75  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 180 bytes 10800 meta mark set mark and 0xfffeffff
+		 counter packets 180 bytes 10800 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-XJQ2RDRZAPJ7ZU2T {
+		 counter packets 560 bytes 55903 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.71  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.71  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.71  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-TZ5MJUDDA74D5DES {
+		 counter packets 577 bytes 80588 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.73  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.73  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-DXB35HEENNHRJAEZ {
+		 counter packets 93 bytes 8808 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.69  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.69  counter packets 2 bytes 256 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.69  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 2 bytes 256 meta mark set mark and 0xfffeffff
+		 counter packets 2 bytes 256 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-NF7XQO5VACQEHXAN {
+		 counter packets 136 bytes 7096 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.63  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.63  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.63  counter packets 46 bytes 2896 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 46 bytes 2896 meta mark set mark and 0xfffeffff
+		 counter packets 46 bytes 2896 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-6YTLKDMLNEQSZSNG {
+		 counter packets 50 bytes 2952 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.61  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.61  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.61  counter packets 44 bytes 2640 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 44 bytes 2640 meta mark set mark and 0xfffeffff
+		 counter packets 44 bytes 2640 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-LWRA2WXFWDYZS474 {
+		 counter packets 3451 bytes 1026158 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.59  fib saddr type local counter packets 134 bytes 8040 accept
+		ip saddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.59  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-CR7ZCYTRBDYKJNOB {
+		 counter packets 46 bytes 2760 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.76  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.76  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.76  counter packets 46 bytes 2760 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 46 bytes 2760 meta mark set mark and 0xfffeffff
+		 counter packets 46 bytes 2760 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-UNJTJK5OACTRVY2Z {
+		 counter packets 46 bytes 2760 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.66  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.66  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.66  counter packets 46 bytes 2760 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 46 bytes 2760 meta mark set mark and 0xfffeffff
+		 counter packets 46 bytes 2760 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-WUCBDODMMN7HVZT5 {
+		 counter packets 1416 bytes 111231 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.58  fib saddr type local counter packets 134 bytes 8040 accept
+		ip saddr 10.42.0.58  counter packets 3 bytes 222 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.58  counter packets 20 bytes 1640 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 23 bytes 1862 meta mark set mark and 0xfffeffff
+		 counter packets 23 bytes 1862 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-R2LYNF63TCN6FGSM {
+		 counter packets 0 bytes 0 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.64  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.64  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-GF5Q73ZYGYJ2XQGD {
+		 counter packets 6 bytes 312 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.67  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.67  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.67  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+
+	chain KUBE-POD-FW-WCANBIUHZTFJD4NW {
+		 counter packets 0 bytes 0 jump KUBE-NWPLCY-COMMON
+		ip daddr 10.42.0.65  fib saddr type local counter packets 0 bytes 0 accept
+		ip saddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		ip daddr 10.42.0.65  counter packets 0 bytes 0 jump KUBE-NWPLCY-DEFAULT
+		 meta mark & 0x00010000 != 0x00010000 limit rate 10/minute burst 10 packets counter packets 0 bytes 0 log group 100
+		 meta mark & 0x00010000 != 0x00010000 counter packets 0 bytes 0 reject
+		counter packets 0 bytes 0 meta mark set mark and 0xfffeffff
+		 counter packets 0 bytes 0 meta mark set mark or 0x20000
+	}
+}

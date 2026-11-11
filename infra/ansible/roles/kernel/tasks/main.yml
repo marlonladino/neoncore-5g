@@ -1,0 +1,33 @@
+# Ported from setup/enable-sctp.sh and setup/prepare-k3s-kernel-modules.sh.
+# nf_conntrack_proto_sctp is deliberately NOT loaded: on this kernel it is built into
+# nf_conntrack, so modprobe would fail on a healthy VM (telco TA13).
+- name: "Load the modules (A7 - install linux-modules-extra if one is missing)"
+  block:
+    - name: modprobe
+      ansible.builtin.command: modprobe {{ item }}
+      loop: [sctp, iptable_nat, macvlan, ipvlan]
+      changed_when: false
+  rescue:
+    - name: linux-modules-extra for the running kernel
+      ansible.builtin.apt:
+        name: "linux-modules-extra-{{ ansible_kernel }}"
+        state: present
+    - name: modprobe again (fails loudly if still missing)
+      ansible.builtin.command: modprobe {{ item }}
+      loop: [sctp, iptable_nat, macvlan, ipvlan]
+      changed_when: false
+
+- name: Persist the modules across reboots
+  ansible.builtin.copy:
+    dest: /etc/modules-load.d/neoncore-k3s.conf
+    mode: "0644"
+    content: |
+      sctp
+      iptable_nat
+      macvlan
+      ipvlan
+
+- name: Confirm the modules are loaded
+  ansible.builtin.shell: lsmod | awk '{print $1}' | grep -x {{ item }}
+  loop: [sctp, iptable_nat, macvlan, ipvlan]
+  changed_when: false

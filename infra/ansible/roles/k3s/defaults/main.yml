@@ -1,0 +1,10 @@
+k3s_version: "v1.36.6+k3s1"
+# install.sh pinned to the release tag (not the live get.k3s.io script), with its SHA-256.
+# The script itself verifies the k3s binary against the release's sha256sum file.
+k3s_install_url: "https://raw.githubusercontent.com/k3s-io/k3s/v1.36.6%2Bk3s1/install.sh"
+k3s_install_sha256: "46177d4c99440b4c0311b67233823a8e8a2fc09693f6c89af1a7161e152fbfad"
+# Same flags as setup/install-k3s.sh (migrate before improving).
+k3s_exec: "--docker --disable=traefik --disable=servicelb"
+lab_host: "{{ ansible_host }}"
+state_dir: "{{ lookup('env', 'NEONCORE_STATE_DIR') }}"
+kubeconfig_dest: "{{ lookup('env', 'HOME') }}/.kube/config"

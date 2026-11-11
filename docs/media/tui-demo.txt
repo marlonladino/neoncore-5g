@@ -1,0 +1,1143 @@
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ PYTHONPATH=phase5 phase5/.venv/bin/python3 -m neoncore_cli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ PYTHONPATH=phase5 phase5/.venv/bin/python3 -m neoncore_cli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││                                                                    │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││                                                                    │
+│  neoncore    dbctl-579lw                   ││                                                                    │
+│  neoncore    gnb-778d4cd687-x24pd          ││                                                                    │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││                                                                    │
+│  neoncore    nrf-659db89bb8-bb979          ││                                                                    │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││                                                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││                                                                    │
+│  neoncore    udm-579564b488-7bn8z          ││                                                                    │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││                                                                    │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││                                                                    │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││                                                                    │
+│  neoncore    dbctl-579lw                   ││                                                                    │
+│  neoncore    gnb-778d4cd687-x24pd          ││                                                                    │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││                                                                    │
+│  neoncore    nrf-659db89bb8-bb979          ││                                                                    │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││                                                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││                                                                    │
+│  neoncore    udm-579564b488-7bn8z          ││                                                                    │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││                                                                    │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││                                                                    │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││                                                                    │
+│  neoncore    dbctl-579lw                   ││                                                                    │
+│  neoncore    gnb-778d4cd687-x24pd          ││                                                                    │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││                                                                    │
+│  neoncore    nrf-659db89bb8-bb979          ││                                                                    │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││                                                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││                                                                    │
+│  neoncore    udm-579564b488-7bn8z          ││                                                                    │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││                                                                    │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││ === UE CONNECTION TEST ===                                         │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││                                                                    │
+│  neoncore    dbctl-579lw                   ││                                                                    │
+│  neoncore    gnb-778d4cd687-x24pd          ││                                                                    │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││                                                                    │
+│  neoncore    nrf-659db89bb8-bb979          ││                                                                    │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││                                                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││                                                                    │
+│  neoncore    udm-579564b488-7bn8z          ││                                                                    │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││                                                                    │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││ === UE CONNECTION TEST ===                                         │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││ Running ping from UE pod (ue-6c56b9dbb-6vncj) via uesimtun0 -> 8   │
+│  neoncore    bsf-7db47b554-p54dx           ││ PING 8.8.8.8 (8.8.8.8) from 10.45.0.2 uesimtun0: 56(84) bytes of   │
+│  neoncore    dbctl-579lw                   ││ 64 bytes from 8.8.8.8: icmp_seq=1 ttl=117 time=5.29 ms             │
+│  neoncore    gnb-778d4cd687-x24pd          ││ 64 bytes from 8.8.8.8: icmp_seq=2 ttl=117 time=5.11 ms             │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││ 64 bytes from 8.8.8.8: icmp_seq=3 ttl=117 time=5.19 ms             │
+│  neoncore    nrf-659db89bb8-bb979          ││ 64 bytes from 8.8.8.8: icmp_seq=4 ttl=117 time=4.96 ms             │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││ --- 8.8.8.8 ping statistics ---                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││ 4 packets transmitted, 4 received, 0% packet loss, time 3002ms     │
+│  neoncore    udm-579564b488-7bn8z          ││ rtt min/avg/max/mdev = 4.961/5.138/5.291/0.120 ms                  │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││                                                                    │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ NeonCore 5G Control Center online.                                 │
+│  monitoring  grafana-57c854cc75-72zn9      ││ d=deploy  t=teardown  p=ping test  l=traces  s=scenario  c=start   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ r=refresh  q=quit                                                  │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││                                                                    │
+│  neoncore    amf-585964fc8f-qldh9          ││ === UE CONNECTION TEST ===                                         │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││ Running ping from UE pod (ue-6c56b9dbb-6vncj) via uesimtun0 -> 8   │
+│  neoncore    bsf-7db47b554-p54dx           ││ PING 8.8.8.8 (8.8.8.8) from 10.45.0.2 uesimtun0: 56(84) bytes of   │
+│  neoncore    dbctl-579lw                   ││ 64 bytes from 8.8.8.8: icmp_seq=1 ttl=117 time=5.29 ms             │
+│  neoncore    gnb-778d4cd687-x24pd          ││ 64 bytes from 8.8.8.8: icmp_seq=2 ttl=117 time=5.11 ms             │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││ 64 bytes from 8.8.8.8: icmp_seq=3 ttl=117 time=5.19 ms             │
+│  neoncore    nrf-659db89bb8-bb979          ││ 64 bytes from 8.8.8.8: icmp_seq=4 ttl=117 time=4.96 ms             │
+│  neoncore    pcf-bb788889b-pp6fg           ││                                                                    │
+│  neoncore    smf-85859ff69f-vgl2k          ││ --- 8.8.8.8 ping statistics ---                                    │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││ 4 packets transmitted, 4 received, 0% packet loss, time 3002ms     │
+│  neoncore    udm-579564b488-7bn8z          ││ rtt min/avg/max/mdev = 4.961/5.138/5.291/0.120 ms                  │
+│  neoncore    udr-654bd5c46b-gbcww          ││                                                                    │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ === LATEST NETWORK TRACES ===                                      │
+│  neoncore    upf-84d8b46b55-62cqq          ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                                    │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││   23:13:41.445124 vethc514152e Out IP 10.42.0.71.7777 > 10.42.0.   │
+│  monitoring  grafana-57c854cc75-72zn9      ││ Flags [P.], seq 1:36, ack 204, win 404, options , length 35        │
+│  monitoring  kube-state-metrics-6c69559db9 ││   23:13:41.445131 vethc514152e P   IP 10.42.0.76.56934 > 10.42.0   │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    amf-585964fc8f-qldh9          ││   23:13:41.445134 veth99d0aac8 Out IP 10.42.0.76.56934 > 10.42.0   │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    bsf-7db47b554-p54dx           ││   23:13:41.486327 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    dbctl-579lw                   ││ Flags [P.], seq 1076253625:1076253719, ack 172436795, win 496, o   │
+│  neoncore    gnb-778d4cd687-x24pd          ││ length 94                                                          │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││   23:13:41.486346 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    nrf-659db89bb8-bb979          ││ Flags [P.], seq 0:94, ack 1, win 496, options , length 94          │
+│  neoncore    pcf-bb788889b-pp6fg           ││   23:13:41.486372 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    smf-85859ff69f-vgl2k          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││   23:13:41.486376 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    udm-579564b488-7bn8z          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    udr-654bd5c46b-gbcww          ││   23:13:41.486411 veth99d0aac8 P   IP 10.42.0.71.7777 > 10.42.0.   │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ Flags [.], ack 203, win 396, options , length 0                 ▁▁ │
+│  neoncore    upf-84d8b46b55-62cqq          ││   23:13:41.486419 veth7b880eaa Out IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [.], ack 203, win 396, options , length 0                    │
+│                                            ││   23:13:41.486519 veth99d0aac8 P   IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│                                            ││   23:13:41.486523 veth7b880eaa Out IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│                                            ││   23:13:41.486533 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│                                            ││ Flags [.], ack 36, win 496, options , length 0                     │
+│                                            ││   23:13:41.486536 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│                                            ││ Flags [.], ack 36, win 496, options , length 0                     │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││   23:13:41.445124 vethc514152e Out IP 10.42.0.71.7777 > 10.42.0.   │
+│  monitoring  grafana-57c854cc75-72zn9      ││ Flags [P.], seq 1:36, ack 204, win 404, options , length 35        │
+│  monitoring  kube-state-metrics-6c69559db9 ││   23:13:41.445131 vethc514152e P   IP 10.42.0.76.56934 > 10.42.0   │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    amf-585964fc8f-qldh9          ││   23:13:41.445134 veth99d0aac8 Out IP 10.42.0.76.56934 > 10.42.0   │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    bsf-7db47b554-p54dx           ││   23:13:41.486327 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    dbctl-579lw                   ││ Flags [P.], seq 1076253625:1076253719, ack 172436795, win 496, o   │
+│  neoncore    gnb-778d4cd687-x24pd          ││ length 94                                                          │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││   23:13:41.486346 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    nrf-659db89bb8-bb979          ││ Flags [P.], seq 0:94, ack 1, win 496, options , length 94          │
+│  neoncore    pcf-bb788889b-pp6fg           ││   23:13:41.486372 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    smf-85859ff69f-vgl2k          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││   23:13:41.486376 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    udm-579564b488-7bn8z          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    udr-654bd5c46b-gbcww          ││   23:13:41.486411 veth99d0aac8 P   IP 10.42.0.71.7777 > 10.42.0.   │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ Flags [.], ack 203, win 396, options , length 0                 ▁▁ │
+│  neoncore    upf-84d8b46b55-62cqq          ││   23:13:41.486419 veth7b880eaa Out IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [.], ack 203, win 396, options , length 0                    │
+│                                            ││   23:13:41.486519 veth99d0aac8 P   IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│                                            ││   23:13:41.486523 veth7b880eaa Out IP 10.42.0.71.7777 > 10.42.0.   │
+│                                            ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│                                            ││   23:13:41.486533 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│                                            ││ Flags [.], ack 36, win 496, options , length 0                     │
+│                                            ││   23:13:41.486536 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│                                            ││ Flags [.], ack 36, win 496, options , length 0                     │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ┃                                                                    ┃
+                       ┃                          Run 5G Scenario                           ┃
+                       ┃                                                                    ┃
+                       ┃  UE MSISDN (10 digits, required)                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  0000000100                                                  │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  5QI / QoS index                                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  9                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  ARP priority level (1-15)                                         ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  8                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  AMBR downlink / uplink (bps)                                      ┃
+                       ┃  ╭────────────────────────────────────────────────────────────╮    ┃
+                       ┃  │  1000000000                                                │    ┃
+                       ┃  ╰────────────────────────────────────────────────────────────╯    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ┃                                                                    ┃
+                       ┃                          Run 5G Scenario                           ┃
+                       ┃                                                                    ┃
+                       ┃  UE MSISDN (10 digits, required)                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  0000000100                                                  │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  5QI / QoS index                                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  9                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  ARP priority level (1-15)                                         ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  8                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  AMBR downlink / uplink (bps)                                      ┃
+                       ┃  ╭────────────────────────────────────────────────────────────╮    ┃
+                       ┃  │  1000000000                                                │    ┃
+                       ┃  ╰────────────────────────────────────────────────────────────╯    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ┃                                                                    ┃
+                       ┃                          Run 5G Scenario                           ┃
+                       ┃                                                                    ┃
+                       ┃  UE MSISDN (10 digits, required)                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  0000000100                                                  │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  5QI / QoS index                                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  9                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  ARP priority level (1-15)                                         ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  8                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  AMBR downlink / uplink (bps)                                      ┃
+                       ┃  ╭────────────────────────────────────────────────────────────╮    ┃
+                       ┃  │  1000000000                                                │    ┃
+                       ┃  ╰────────────────────────────────────────────────────────────╯    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ┃                                                                    ┃
+                       ┃                          Run 5G Scenario                           ┃
+                       ┃                                                                    ┃
+                       ┃  UE MSISDN (10 digits, required)                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  0000000100                                                  │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  5QI / QoS index                                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  9                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  ARP priority level (1-15)                                         ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  8                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  AMBR downlink / uplink (bps)                                      ┃
+                       ┃  ╭────────────────────────────────────────────────────────────╮    ┃
+                       ┃  │  1000000000                                                │    ┃
+                       ┃  ╰────────────────────────────────────────────────────────────╯    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                       ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ┃                                                                    ┃
+                       ┃                          Run 5G Scenario                           ┃
+                       ┃                                                                    ┃
+                       ┃  UE MSISDN (10 digits, required)                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  0000000100                                                  │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  5QI / QoS index                                                   ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  9                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  ARP priority level (1-15)                                         ┃
+                       ┃  ╭──────────────────────────────────────────────────────────────╮  ┃
+                       ┃  │  8                                                           │  ┃
+                       ┃  ╰──────────────────────────────────────────────────────────────╯  ┃
+                       ┃  AMBR downlink / uplink (bps)                                      ┃
+                       ┃  ╭────────────────────────────────────────────────────────────╮    ┃
+                       ┃  │  1000000000                                                │    ┃
+                       ┃  ╰────────────────────────────────────────────────────────────╯    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││   23:13:41.445124 vethc514152e Out IP 10.42.0.71.7777 > 10.42.0.   │
+│  monitoring  grafana-57c854cc75-72zn9      ││ Flags [P.], seq 1:36, ack 204, win 404, options , length 35        │
+│  monitoring  kube-state-metrics-6c69559db9 ││   23:13:41.445131 vethc514152e P   IP 10.42.0.76.56934 > 10.42.0   │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    amf-585964fc8f-qldh9          ││   23:13:41.445134 veth99d0aac8 Out IP 10.42.0.76.56934 > 10.42.0   │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    bsf-7db47b554-p54dx           ││   23:13:41.486327 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    dbctl-579lw                   ││ Flags [P.], seq 1076253625:1076253719, ack 172436795, win 496, o   │
+│  neoncore    gnb-778d4cd687-x24pd          ││ length 94                                                          │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││   23:13:41.486346 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    nrf-659db89bb8-bb979          ││ Flags [P.], seq 0:94, ack 1, win 496, options , length 94          │
+│  neoncore    pcf-bb788889b-pp6fg           ││   23:13:41.486372 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    smf-85859ff69f-vgl2k          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││   23:13:41.486376 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    udm-579564b488-7bn8z          ││ Flags [P.], seq 94:203, ack 1, win 496, options , length 109       │
+│  neoncore    udr-654bd5c46b-gbcww          ││   23:13:41.486411 veth99d0aac8 P   IP 10.42.0.71.7777 > 10.42.0.   │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ Flags [.], ack 203, win 396, options , length 0                 ▁▁ │
+│  neoncore    upf-84d8b46b55-62cqq                                                         ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃                                                                    ┃
+                       ┃         ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔         ┃
+                       ┃           Initial Reg       Reg Reject       Deregister            ┃
+                       ┃   ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔                                                 ┃
+                       ┃        Cancel                                                      ┃
+                       ┃   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁                                                 ┃
+                       ┃                                                                    ┃
+                       ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│  monitoring  grafana-57c854cc75-72zn9      ││   23:13:41.486533 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││   23:13:41.486536 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    amf-585964fc8f-qldh9          ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││ === SCENARIO: initial-registration  msisdn=0000000100 ===          │
+│  neoncore    dbctl-579lw                   ││ === scenario: initial-registration  imsi=999700000000100 ===       │
+│  neoncore    gnb-778d4cd687-x24pd          ││ [provision] provisioning subscriber...                             │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││   provisioned 999700000000100                                      │
+│  neoncore    nrf-659db89bb8-bb979          ││ [capture] starting scoped capture                                  │
+│  neoncore    pcf-bb788889b-pp6fg           ││ (scenario-initial-registration-0000000100-20261111-000735.pcap).   │
+│  neoncore    smf-85859ff69f-vgl2k          ││ [watch] tailing logs for expected event...                         │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││ [ue] applying ephemeral UE pod                                     │
+│  neoncore    udm-579564b488-7bn8z          ││ (scenario-ue-initial-registration-1794355655)...                   │
+│  neoncore    udr-654bd5c46b-gbcww          ││   pod/scenario-ue-initial-registration-1794355655 created          │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ [watch] waiting up to 60s for 'Registration complete' (occurrenc   │
+│  neoncore    upf-84d8b46b55-62cqq          ││ [result] PASS: 11/11 00:07:38.581: [gmm] INFcomplete' (occurrenc   │
+│                    ▎                       ││ [imsi-999700000000100] Registration complete (../src/amf/gmm-sm.   │
+│                                            ││ [capture] checking capture health...                            ▇▇ │
+│                                            ││   capture_healthy=True (growing (60212 -> 107442 bytes))           │
+│                                            ││ [capture] collected                                                │
+│                                            ││ traces/scenario-runs/scenario-initial-registration-0000000100-20   │
+│                                            ││ pcap (107526 bytes)                                                │
+│                                            ││ [cleanup] deleting ephemeral UE pod...                             │
+│                                            ││ [cleanup] deprovisioning subscriber...                             │
+│                                            ││   1 subscriber(s) removed                                          │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+                                           ▓▒░ N E O N C O R E   5 G ░▒▓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                            Kubernetes 5G Core Control Center — press a key below to act
+╭─ 5G CORE // POD STATUS ────────────────────╮╭─ ACTION LOG ───────────────────────────────────────────────────────╮
+│  NS          POD                           ││ Flags [P.], seq 1:36, ack 203, win 396, options , length 35        │
+│  monitoring  grafana-57c854cc75-72zn9      ││   23:13:41.486533 veth7b880eaa P   IP 10.42.0.70.52080 > 10.42.0   │
+│  monitoring  kube-state-metrics-6c69559db9 ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  monitoring  prometheus-b89d64f5f-knd9b    ││   23:13:41.486536 veth99d0aac8 Out IP 10.42.0.70.52080 > 10.42.0   │
+│  neoncore    amf-585964fc8f-qldh9          ││ Flags [.], ack 36, win 496, options , length 0                     │
+│  neoncore    ausf-5c68bc8dbb-7wcz4         ││                                                                    │
+│  neoncore    bsf-7db47b554-p54dx           ││ === SCENARIO: initial-registration  msisdn=0000000100 ===          │
+│  neoncore    dbctl-579lw                   ││ === scenario: initial-registration  imsi=999700000000100 ===       │
+│  neoncore    gnb-778d4cd687-x24pd          ││ [provision] provisioning subscriber...                             │
+│  neoncore    mongo-5b8c549f7d-k4nnt        ││   provisioned 999700000000100                                      │
+│  neoncore    nrf-659db89bb8-bb979          ││ [capture] starting scoped capture                                  │
+│  neoncore    pcf-bb788889b-pp6fg           ││ (scenario-initial-registration-0000000100-20261111-000735.pcap).   │
+│  neoncore    smf-85859ff69f-vgl2k          ││ [watch] tailing logs for expected event...                         │
+│  neoncore    tracer-9d8c9bc9d-5fpsf        ││ [ue] applying ephemeral UE pod                                     │
+│  neoncore    udm-579564b488-7bn8z          ││ (scenario-ue-initial-registration-1794355655)...                   │
+│  neoncore    udr-654bd5c46b-gbcww          ││   pod/scenario-ue-initial-registration-1794355655 created          │
+│  neoncore    ue-6c56b9dbb-6vncj            ││ [watch] waiting up to 60s for 'Registration complete' (occurrenc   │
+│  neoncore    upf-84d8b46b55-62cqq          ││ [result] PASS: 11/11 00:07:38.581: [gmm] INFcomplete' (occurrenc   │
+│                    ▎                       ││ [imsi-999700000000100] Registration complete (../src/amf/gmm-sm.   │
+│                                            ││ [capture] checking capture health...                            ▇▇ │
+│                                            ││   capture_healthy=True (growing (60212 -> 107442 bytes))           │
+│                                            ││ [capture] collected                                                │
+│                                            ││ traces/scenario-runs/scenario-initial-registration-0000000100-20   │
+│                                            ││ pcap (107526 bytes)                                                │
+│                                            ││ [cleanup] deleting ephemeral UE pod...                             │
+│                                            ││ [cleanup] deprovisioning subscriber...                             │
+│                                            ││   1 subscriber(s) removed                                          │
+│                                            ││                                                     ▋              │
+╰────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────╯
+                                     16/17 pods Running — last refresh just now
+ d Deploy  t Teardown  p UE Ping Test  l Latest Traces  s Run Scenario  c Start/Stop Capture  r Refresh ▏^p palette
+────────────────────────────────────────────────────────────────────────────────
+$ PYTHONPATH=phase5 phase5/.venv/bin/python3 -m neoncore_cli
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────

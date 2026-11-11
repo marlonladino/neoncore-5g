@@ -1,0 +1,6 @@
+# L0 evidence pcaps stay local and uncommitted (plan section 8 §7); only their
+# sha256 goes into SHA256SUMS. The security-reviewer decides publication at close.
+**/pcaps/
+*.pcap
+*.pcap.gz
+*.pcapng

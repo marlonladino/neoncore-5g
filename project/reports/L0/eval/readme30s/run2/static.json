@@ -1,0 +1,76 @@
+{
+  "S1": {
+    "limit": 120,
+    "pass": true,
+    "prose_words": 59,
+    "title_found": true
+  },
+  "S2": {
+    "embedded_in_top": true,
+    "exists": true,
+    "file_says_gif": true,
+    "pass": true,
+    "size": 3084694
+  },
+  "S3": {
+    "links_pdf": true,
+    "missing": [],
+    "pass": true,
+    "pdf_exists": true,
+    "section_found": true,
+    "stages_with_status": [
+      "W0",
+      "L0",
+      "7",
+      "8",
+      "9",
+      "10",
+      "9B",
+      "11",
+      "12"
+    ]
+  },
+  "S4": {
+    "in_first_section_after": true,
+    "in_top": true,
+    "pass": true
+  },
+  "S5": {
+    "applied_on_github": "not tested (owner deferred until T15b)",
+    "bad_topics": [],
+    "description_chars": 297,
+    "file_exists": true,
+    "format_recognized": true,
+    "pass": true,
+    "topics": [
+      "5g",
+      "5g-core",
+      "open5gs",
+      "ueransim",
+      "kubernetes",
+      "k3s",
+      "proxmox",
+      "prometheus",
+      "grafana",
+      "telecom",
+      "fault-injection",
+      "rag",
+      "mcp",
+      "llm",
+      "ai-agents",
+      "nwdaf"
+    ]
+  },
+  "S6": {
+    "directory_links": [],
+    "pass": true,
+    "resolved_files": 12,
+    "unresolved": []
+  },
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 3,
+    "git_sha": "a59970bff3b5b2edf352ce4f419786e59815ac40"
+  },
+  "result": "PASS"
+}

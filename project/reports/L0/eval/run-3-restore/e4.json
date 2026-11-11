@@ -1,0 +1,20 @@
+{
+  "failures": [],
+  "notes": [
+    "panel 1 excluded (Job / scenario-ue / other owner): ['dbctl-579lw']",
+    "panel 1 series for pods not in the pods JSON (not evaluated): ['scenario-ue-deregistration-1794352386', 'scenario-ue-deregistration-1794352428', 'scenario-ue-initial-registration-1794352320', 'scenario-ue-initial-registration-1794352362', 'scenario-ue-registration-reject-1794352333', 'scenario-ue-registration-reject-1794352417']",
+    "fivegs_amffunction_rm_reginitreq increase 12 (need >= 9)",
+    "fivegs_amffunction_rm_reginitsucc increase 8 (need >= 6)"
+  ],
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 28,
+    "git_sha": "24831040bab7b0506793cfa3fe14c56e8751eb8f"
+  },
+  "result": "PASS",
+  "suites": 3,
+  "window": [
+    1794352064.4096963,
+    1794353085.6083198
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "coverage": {
+    "sctp": 2,
+    "tcp": 65535,
+    "udp": 8
+  },
+  "failures": [],
+  "open": {
+    "sctp": [],
+    "tcp": [],
+    "udp": []
+  },
+  "open|filtered": {
+    "sctp": [],
+    "tcp": [],
+    "udp": [
+      53,
+      123,
+      2152,
+      4789,
+      8472,
+      8805,
+      51820,
+      51821
+    ]
+  },
+  "result": "PASS"
+}

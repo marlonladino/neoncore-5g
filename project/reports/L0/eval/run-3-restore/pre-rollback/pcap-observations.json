@@ -1,0 +1,165 @@
+{
+  "aggregate": {
+    "5gmm_status_causes": [
+      101
+    ],
+    "auth_failure_causes_other": [],
+    "auth_failure_causes_run_ue": [
+      21,
+      21
+    ],
+    "nea0_selected_in_every_smc": true,
+    "observed": 3,
+    "other_ue_identity_types": [
+      "5G-GUTI"
+    ],
+    "other_ue_registrations": 1,
+    "pcaps": 3,
+    "pcaps_with_run_ue_guti_reregistration": 1,
+    "smc_count": 3
+  },
+  "note": "Report-only observations (telco TB7(b), TA21). They do not change V0-V3; the pass/fail evidence is pcap-summary*.json.",
+  "pcaps": [
+    {
+      "5gmm_status_causes": {
+        "other": [
+          101
+        ],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-220759.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc000056f"
+          ],
+          "first_frame": 539,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "6",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "5"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc000056f"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "6"
+      ],
+      "scenario": "deregistration",
+      "sha256": "f792d60f68942dc5303d924ad3abcf98ce6dbdfe76211f3ec97d77a3003fae99",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-220735.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "3"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc0000580"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "345b07606cf3c52c572228af55d88038fbb6f9ec021cdf935ea24a283fab09ce",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-220748.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "4"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "286e8708d6b1f5e40c34c8fdcb8f0cf1f33586bb76072a470789091d845e29fb",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 1,
+    "git_sha": "cd4fe999f056cd2d876c3cf6ddce4e528a8a797f"
+  },
+  "report_only": true,
+  "tool": {
+    "dup_window_s": 0.05,
+    "null_decipher": true,
+    "tshark": "4.2.2"
+  }
+}

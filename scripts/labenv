@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Run a command with the lab credentials from the gitignored .env.lab loaded.
+#
+#   scripts/labenv terraform -chdir=infra/terraform plan
+#
+# Agents never read .env.lab directly (the gate blocks it); they go through this
+# wrapper, which loads the values into the child's environment and never prints them.
+set -euo pipefail
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+envfile="$repo/.env.lab"
+
+[ $# -ge 1 ] || { echo "usage: scripts/labenv <command> [args...]" >&2; exit 1; }
+[ -f "$envfile" ] || { echo "labenv: .env.lab not found in the repo root (see project/WORKFLOW.md, Credentials)" >&2; exit 1; }
+
+perm="$(stat -c %a "$envfile")"
+case "$perm" in 600|400) ;; *) echo "labenv: .env.lab must be mode 600 or 400 (is $perm). Run: chmod 600 .env.lab" >&2; exit 1;; esac
+
+set -a
+# shellcheck disable=SC1090
+. "$envfile"
+set +a
+
+# Required variables are checked by name only; values are never echoed.
+required="${LABENV_REQUIRED:-PVE_ENDPOINT PVE_API_TOKEN}"
+missing=""
+for v in $required; do
+    [ -n "${!v:-}" ] || missing="$missing $v"
+done
+[ -z "$missing" ] || { echo "labenv: missing in .env.lab:$missing" >&2; exit 1; }
+
+exec "$@"

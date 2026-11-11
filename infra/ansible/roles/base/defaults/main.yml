@@ -1,0 +1,9 @@
+lab_user: "{{ lookup('env', 'TF_VAR_vm_user') }}"
+evidence_dir: "{{ lookup('env', 'NEONCORE_STATE_DIR') }}/evidence"
+egress_urls:
+  - https://archive.ubuntu.com/
+  - https://download.docker.com/linux/ubuntu/gpg
+  - https://registry-1.docker.io/v2/
+  - https://github.com/
+  - https://raw.githubusercontent.com/
+  - https://get.k3s.io/

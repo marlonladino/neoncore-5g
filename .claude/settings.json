@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(/.env.lab)",
+      "Edit(/project/approvals/**)",
+      "Write(/project/approvals/**)",
+      "Bash(terraform destroy *)",
+      "Bash(qm destroy *)",
+      "Bash(pct destroy *)",
+      "Bash(git push --force *)",
+      "Edit(/.claude/hooks/**)",
+      "Edit(/.claude/settings.json)",
+      "Edit(/scripts/approve.sh)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(terraform apply *)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit|Bash|Read|Grep|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/gate.py"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "commit-commands@anthropic-plugin-directory": true,
+    "security-guidance@anthropic-plugin-directory": true,
+    "pyright-lsp@anthropic-plugin-directory": true,
+    "context7@anthropic-plugin-directory": true,
+    "claude-md-management@anthropic-plugin-directory": true,
+    "session-report@anthropic-plugin-directory": true,
+    "terraform@anthropic-plugin-directory": true,
+    "frontend-design@anthropic-plugin-directory": false,
+    "playwright@anthropic-plugin-directory": false,
+    "grafana-mcp@anthropic-plugin-directory": false,
+    "huggingface-skills@anthropic-plugin-directory": false,
+    "aws-core@anthropic-plugin-directory": false
+  }
+}

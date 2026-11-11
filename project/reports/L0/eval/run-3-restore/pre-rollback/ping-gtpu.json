@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "echo_reply_frames": 40,
+      "echo_request_frames": 40,
+      "files": [
+        {
+          "file": "neoncore-20261110-220328.pcap",
+          "sha256": "d2d8eebd507d3f642fdb764b73086a741b1d700302ef0d117d21c7341a913107",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 80,
+      "k": 1,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794348441,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794348395.1760073,
+        1794348414.3008025
+      ]
+    }
+  ]
+}

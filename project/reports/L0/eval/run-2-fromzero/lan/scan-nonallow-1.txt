@@ -1,0 +1,8 @@
+# E7 scan, mode=nonallow, label=1, D7=a
+target: <vm>   scanner: <scanner>
+nmap versions: ['7.993']
+result: PASS
+tcp: scanned 65535 ports; open []; open|filtered []
+udp: scanned 8 ports; open []; open|filtered [53, 123, 2152, 4789, 8472, 8805, 51820, 51821]
+sctp: scanned 2 ports; open []; open|filtered []
+extraports: 65535 filtered

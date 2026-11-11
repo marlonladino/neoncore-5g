@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+const posts = Object.values(import.meta.glob('./blog/*.md', { eager: true }))
+  .map((p) => ({ url: p.url, ...p.frontmatter }))
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+---
+<Base title="Home">
+  <h1 class="cursor">NeonCore 5G</h1>
+  <p>A 5G standalone testbed (Open5GS core, UERANSIM RAN, single-node K3s) that is being extended into an AI system, one closed stage at a time.</p>
+  <div class="panel m">
+    <p><strong>How it is built.</strong> This project is built with AI agents (Claude Code, a lead session plus specialist subagents) under the owner's direction. The agents mostly wrote the code, the evaluation scripts and these posts; the owner ran the steps agents may not run (gate patch, approvals, demo recording, rollback). The owner approves every plan and every stage close.</p>
+  </div>
+  <h2>Latest</h2>
+  <ul class="posts">
+    {posts.map((p) => (
+      <li><a class="t" href={p.url}>{p.title}</a><br /><span class="meta">{p.date} // {p.stage}</span><br />{p.summary}</li>
+    ))}
+  </ul>
+  <p>Each post covers one closed stage: what was built, what broke, and the numbers, with each number traced to a report in the repository.</p>
+</Base>

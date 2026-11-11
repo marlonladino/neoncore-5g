@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+const posts = Object.values(import.meta.glob('./*.md', { eager: true }))
+  .map((p) => ({ url: p.url, ...p.frontmatter }))
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+---
+<Base title="Blog">
+  <h1>Blog</h1>
+  <p class="meta">One post per closed stage.</p>
+  <ul class="posts">
+    {posts.map((p) => (
+      <li><a class="t" href={p.url}>{p.title}</a><br /><span class="meta">{p.date} // {p.stage}</span><br />{p.summary}</li>
+    ))}
+  </ul>
+</Base>

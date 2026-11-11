@@ -1,0 +1,13 @@
+{
+  "check": "E6a",
+  "git_sha": "24fbf52e4608399006ceec23a2af6e56d97fbb7f",
+  "porcelain_lines": 3,
+  "fail_hits": 0,
+  "allowed_hits": 1163,
+  "other_hits": 0,
+  "readme_history_lines": [
+    228,
+    234
+  ],
+  "result": "PASS"
+}

@@ -1,0 +1,150 @@
+# LAN exposure guard (security review S-B7), with auto-revert against self-lockout.
+- name: Inputs look sane
+  ansible.builtin.assert:
+    that:
+      # exactly one admin address: /32 (an owner-approved wider range needs a plan change)
+      - lab_admin_cidr is regex('^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])/32$')
+      - ansible_default_ipv4.interface is defined
+    quiet: true
+  no_log: true
+
+- name: LAN NIC name (from the default route)
+  ansible.builtin.set_fact:
+    guard_nic: "{{ ansible_default_ipv4.interface }}"
+
+- name: Config directory
+  ansible.builtin.file:
+    path: /etc/neoncore
+    state: directory
+    mode: "0755"
+
+- name: Guard ruleset file (its own file, only this table)
+  ansible.builtin.template:
+    src: neoncore-guard.nft.j2
+    dest: /etc/neoncore/neoncore-guard.nft
+    mode: "0644"
+  register: guard_file
+  no_log: true
+
+- name: Syntax check of the ruleset file
+  ansible.builtin.command: nft -c -f /etc/neoncore/neoncore-guard.nft
+  changed_when: false
+
+- name: Is the guard table loaded now
+  ansible.builtin.command: nft list table inet neoncore_guard
+  register: guard_loaded
+  failed_when: false
+  changed_when: false
+  no_log: true
+
+# Idempotent: the arm / apply / new-ssh / cancel sequence runs only when the ruleset file
+# changed or the table is not loaded. On a converged host nothing here reports changed.
+- name: Apply the guard with auto-revert
+  when: guard_file.changed or guard_loaded.rc != 0
+  block:
+    - name: Stop any stale revert timer from an earlier run
+      ansible.builtin.command: systemctl stop neoncore-guard-revert.timer
+      failed_when: false
+      changed_when: false
+
+    - name: Arm the auto-revert (120 s) BEFORE applying
+      ansible.builtin.command: >-
+        systemd-run --unit=neoncore-guard-revert --on-active=120
+        /usr/sbin/nft delete table inet neoncore_guard
+      changed_when: true
+
+    - name: Apply the guard table only (no flush ruleset, no nftables.service restart)
+      ansible.builtin.command: nft -f /etc/neoncore/neoncore-guard.nft
+      changed_when: true
+
+    - name: A NEW ssh connection from the control machine must succeed
+      ansible.builtin.command:
+        argv:
+          - ssh
+          - -i
+          - "{{ lab_key }}"
+          - -o
+          - IdentitiesOnly=yes
+          - -o
+          - BatchMode=yes
+          - -o
+          - ConnectTimeout=8
+          - -o
+          - ControlMaster=no
+          - -o
+          - ControlPath=none
+          - -o
+          - StrictHostKeyChecking=yes
+          - -o
+          - UserKnownHostsFile={{ known_hosts }}
+          - "{{ lab_user }}@{{ lab_host }}"
+          - "true"
+      delegate_to: localhost
+      become: false
+      register: newssh
+      retries: 6
+      delay: 3
+      until: newssh.rc == 0
+      changed_when: false
+      no_log: true
+
+    - name: Cancel the revert only now
+      ansible.builtin.command: systemctl stop neoncore-guard-revert.timer
+      changed_when: true
+
+- name: Persistent unit (enabled only after the new connection worked)
+  ansible.builtin.template:
+    src: neoncore-guard.service.j2
+    dest: /etc/systemd/system/neoncore-guard.service
+    mode: "0644"
+
+# Ubuntu's nftables.service loads /etc/nftables.conf, which starts with "flush ruleset". It must
+# never run on this node, so it is masked (not started, stopped or restarted here).
+- name: nftables.service masked (never ordered or enabled alongside the guard)
+  ansible.builtin.systemd:
+    name: nftables.service
+    masked: true
+
+- name: nftables.service state (evidence)
+  ansible.builtin.command: systemctl is-enabled nftables.service
+  register: nft_unit
+  failed_when: false
+  changed_when: false
+
+- name: nftables.service is disabled or masked
+  ansible.builtin.assert:
+    that: nft_unit.stdout | trim in ['masked', 'disabled']
+    quiet: true
+
+- name: Enable the unit (the table is already loaded, so do not start it again)
+  ansible.builtin.systemd:
+    name: neoncore-guard.service
+    enabled: true
+    daemon_reload: true
+
+- name: Table present and counter in place (evidence)
+  ansible.builtin.command: nft list table inet neoncore_guard
+  register: guard_list
+  changed_when: false
+  no_log: true
+
+- name: Check the rules
+  ansible.builtin.assert:
+    that:
+      - "'ct state invalid drop' in guard_list.stdout"
+      - "'ct state established,related accept' in guard_list.stdout"
+      - "'counter' in guard_list.stdout"
+      # nft prints priority -150 by its name, "mangle"
+      - "('priority mangle' in guard_list.stdout) or ('priority -150' in guard_list.stdout)"
+    quiet: true
+
+- name: Keep the guard evidence on the control machine (state dir)
+  ansible.builtin.copy:
+    # nft prints live packet/byte counters ("counter packets N bytes M"), which differ on every run.
+    # They are traffic data, not configuration, so they are normalised; the ruleset text is kept.
+    content: "{{ guard_list.stdout | regex_replace(guard_counter_re, 'counter packets N bytes N') }}\n"
+    dest: "{{ evidence_dir }}/nft-guard.txt"
+    mode: "0600"
+  delegate_to: localhost
+  become: false
+  no_log: true

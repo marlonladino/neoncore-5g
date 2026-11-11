@@ -1,0 +1,61 @@
+- name: Pinned K3s install script
+  ansible.builtin.get_url:
+    url: "{{ k3s_install_url }}"
+    dest: /usr/local/share/k3s-install.sh
+    checksum: "sha256:{{ k3s_install_sha256 }}"
+    mode: "0755"
+
+- name: Install K3s (same flags as before; skipped when the service already exists)
+  ansible.builtin.command: /usr/local/share/k3s-install.sh
+  environment:
+    INSTALL_K3S_VERSION: "{{ k3s_version }}"
+    INSTALL_K3S_EXEC: "{{ k3s_exec }}"
+  args:
+    creates: /etc/systemd/system/k3s.service
+
+- name: K3s service active
+  ansible.builtin.service:
+    name: k3s
+    state: started
+    enabled: true
+
+- name: Wait for the node to be Ready
+  ansible.builtin.command: k3s kubectl get nodes --no-headers
+  register: nodes
+  until: nodes.rc == 0 and ' Ready ' in nodes.stdout
+  retries: 60
+  delay: 5
+  changed_when: false
+
+- name: Installed K3s version
+  ansible.builtin.command: k3s --version
+  register: k3s_ver
+  changed_when: false
+
+- name: Show the K3s version
+  ansible.builtin.debug:
+    msg: "{{ k3s_ver.stdout_lines[0] }}"
+
+- name: Read the kubeconfig
+  ansible.builtin.slurp:
+    src: /etc/rancher/k3s/k3s.yaml
+  register: kubeconfig_raw
+  no_log: true
+
+- name: kubeconfig directory on the control machine
+  ansible.builtin.file:
+    path: "{{ kubeconfig_dest | dirname }}"
+    state: directory
+    mode: "0700"
+  delegate_to: localhost
+  become: false
+
+- name: Kubeconfig to the control machine, server rewritten to the VM address
+  ansible.builtin.copy:
+    content: "{{ kubeconfig_raw.content | b64decode | replace('https://127.0.0.1:6443', 'https://' ~ lab_host ~ ':6443') }}"
+    dest: "{{ kubeconfig_dest }}"
+    mode: "0600"
+    force: true
+  delegate_to: localhost
+  become: false
+  no_log: true

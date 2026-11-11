@@ -1,0 +1,51 @@
+{
+  "check": "E7: no NetworkAttachmentDefinition puts a pod on the VM LAN NIC",
+  "captured_utc": "2026-11-10T23:14:53Z",
+  "query": "kubectl get network-attachment-definitions -A -o json (evaluator, live, control machine kubeconfig)",
+  "query_exit": 1,
+  "query_result": "error: the server doesn't have a resource type \"network-attachment-definitions\"",
+  "nad_count": 0,
+  "crds_present": [
+    "addons.k3s.cattle.io",
+    "etcdsnapshotfiles.k3s.cattle.io",
+    "helmchartconfigs.helm.cattle.io",
+    "helmcharts.helm.cattle.io"
+  ],
+  "api_resources_matching_network_attachment": 0,
+  "lab_ops_capture": "project/notes/L0.md section R3 post-rollback evidence (lab-ops), commit c675b62, captured 2026-11-10T23:07:55Z after the rollback boot: same resource-type-absent error, same 4 CRDs",
+  "pods_neoncore": {
+    "total": 14,
+    "with_k8s.v1.cni.cncf.io/networks_request": 0,
+    "with_network-status": 1,
+    "network-status_entries": {
+      "cbr0 on eth0, default=True": 1
+    },
+    "note": "only the dbctl pod (created before the golden-l0 snapshot) carries a network-status annotation; the 13 pods started after the rollback carry none (R2b/R2c: 13 of 14). Report-only."
+  },
+  "pods_monitoring": {
+    "total": 3,
+    "with_k8s.v1.cni.cncf.io/networks_request": 0,
+    "with_network-status": 0,
+    "network-status_entries": {}
+  },
+  "pod_interfaces_live": {
+    "gnb": [
+      "lo",
+      "eth0"
+    ],
+    "upf": [
+      "lo",
+      "eth0",
+      "ogstun"
+    ],
+    "ue": [
+      "lo",
+      "eth0",
+      "uesimtun0"
+    ]
+  },
+  "lan_nic": "eth0 (VM), from the guard iifname rule",
+  "judgement": "With the NAD CRD absent the API server cannot store any NetworkAttachmentDefinition, so no NAD can attach a pod to the LAN NIC; no pod requests a secondary network, and the RAN/UPF pods show no extra interface. Same reading as R1, R2 attempt 1, R2b and R2c.",
+  "caveat": "Multus NAD CRD not installed (same observation as earlier runs).",
+  "result": "PASS"
+}

@@ -1,0 +1,23 @@
+NeonCore L0 E5 owner attestation, from-zero attempt 2 (plan L0 section 8, E5: "The owner attests, and the log shows no gap or manual command")
+
+Owner statement, verbatim: "rebuilt, and nothing was added manually"
+Given: to the lead, 2026-11-10; relayed to the evaluator by the lead.
+Refers to: run 3 (from zero), 2026-11-10T19:16:48Z to 2026-11-10T19:23:24Z, exit=0.
+Not seen by the evaluator first-hand (relayed statement).
+
+Evaluator log check (lab-up.log = byte copy of project/notes/L0-fromzero-lab-up-3.log, commit f023bba,
+sha256 517349c6446ded4f6a0df7ce20d804fb834363d9cee2ebc53242c16a447d945e):
+  18 step markers, 1 to 18, in order, no step missing; every step longer than 1 s holds
+  script output (waits such as step 10 Multus, 14 s, and step 16 tracer liveness, 24 s, print one
+  line when their condition is met); longest step 7 = 163 s (Ansible K3s/kubeconfig/UPF image play:
+  K3s install, one node-Ready retry, kubeconfig copy, UPF image build, all with task output).
+  The log has no per-line timestamps inside a step, so a pause within a step cannot be excluded
+  from the log alone; the step durations match attempt 1 (step 7 163 s in both).
+  No prompt, no input line, no manual command visible (searched also for y/n, password,
+  passphrase, "press", "enter", "continue?", "are you sure", "yes/no": 0 lines).
+  Terraform: "Apply complete! Resources: 1 added, 0 changed, 0 destroyed." (line 27).
+  Ansible: site.yml ok=41 changed=17 failed=0 (line 180); k3s.yml ok=17 changed=7 failed=0 (line 244).
+  Ends with "verify: all checks passed" (line 340) and exit=0 (line 342).
+  Host key: pinned by trust on first use (D17), printed by step 5 (line 35); no manual acceptance.
+  Informational: one Terraform provider warning, "error waiting for network interfaces from QEMU agent"
+  (timeout), after which apply completed; the next steps did not depend on it.

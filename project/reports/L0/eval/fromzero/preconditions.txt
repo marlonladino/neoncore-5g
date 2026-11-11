@@ -1,0 +1,35 @@
+NeonCore L0 E5 preconditions (plan L0 section 8, E5; infra/README.md "E5 preconditions")
+Recorded by: evaluator, read-only, before the from-zero command. Branch stage/L0.
+Recorded at: 2026-11-10T16:21Z..16:25Z (UTC)
+
+1. Clean tree
+   git status --porcelain: empty (0 lines)
+   git rev-parse HEAD: 63876920a256308bab92834d406e1825f5a2d2d2
+
+2. VM with the NeonCore VMID present: no
+   Method: scripts/labenv infra/lib/pve_get.sh '/cluster/resources?type=vm' (timeout 30 s),
+   answered within 1 s (16:21:22Z), exit 0. Only aggregate counts were looked at; no guest
+   was printed: 1 entry visible to the lab token, 1 template, 0 non-template VMs.
+   The single entry is a template, consistent with the cloud-init template
+   (TF_VAR_template_vm_id), which survives the destroy per infra/README.md.
+   Limit: no allowlisted eval script compares the list against TF_VAR_vm_id, and the gate
+   allows nothing else under the lab env wrapper for the evaluator. The "no" therefore rests
+   on 0 non-template VMs in the token's view (the token's pool held the NeonCore VM in R1)
+   plus the cross-check below.
+   Cross-check: scripts/labenv infra/lab.sh status (16:24:34Z) queried
+   /nodes/<node>/qemu/<vmid>/status/current for the NeonCore VMID: "vm: status unavailable",
+   "k3s: not reachable".
+
+3. State directory <state> = ${NEONCORE_STATE_DIR:-$HOME/.local/state/neoncore}
+   (NEONCORE_STATE_DIR unset, default used)
+   <state>/terraform.tfstate: absent
+   <state>/terraform.tfstate.backup: absent
+   <state>/known_hosts: absent
+   Remaining entry: <state>/tfdata (Terraform data dir; informational)
+
+4. WSL2: N/A: the WSL2 VM was deleted (owner, 2026-11-10).
+
+Redaction note: written through evals/l0/redact.py with --allow-no-site-values, because
+redact.py is not on the gate's allowlist under the lab env wrapper, so site values are not
+loaded for the post-write scan. This file holds no site values by construction (SHA, yes/no,
+counts, timestamps, placeholders only).

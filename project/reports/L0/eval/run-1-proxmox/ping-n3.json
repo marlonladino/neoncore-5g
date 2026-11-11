@@ -1,0 +1,103 @@
+{
+  "runs": [
+    {
+      "failures": [],
+      "k": 1,
+      "n3_after": {
+        "in": 140.0,
+        "in_series": 1,
+        "out": 140.0,
+        "out_series": 1,
+        "time": 1794287877.3824978
+      },
+      "n3_before": {
+        "in": 120.0,
+        "in_series": 1,
+        "out": 120.0,
+        "out_series": 1,
+        "time": 1794287833.067365
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.09,
+        "p95": 5.52
+      },
+      "sent": 20,
+      "window": [
+        1794287833.0768182,
+        1794287852.2417536
+      ]
+    },
+    {
+      "failures": [],
+      "k": 2,
+      "n3_after": {
+        "in": 160.0,
+        "in_series": 1,
+        "out": 160.0,
+        "out_series": 1,
+        "time": 1794287948.4447243
+      },
+      "n3_before": {
+        "in": 140.0,
+        "in_series": 1,
+        "out": 140.0,
+        "out_series": 1,
+        "time": 1794287904.1346233
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.14,
+        "p95": 5.5
+      },
+      "sent": 20,
+      "window": [
+        1794287904.1438177,
+        1794287923.3065422
+      ]
+    },
+    {
+      "failures": [],
+      "k": 3,
+      "n3_after": {
+        "in": 180.0,
+        "in_series": 1,
+        "out": 180.0,
+        "out_series": 1,
+        "time": 1794288019.4093835
+      },
+      "n3_before": {
+        "in": 160.0,
+        "in_series": 1,
+        "out": 160.0,
+        "out_series": 1,
+        "time": 1794287975.059287
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.15,
+        "p95": 6.79
+      },
+      "sent": 20,
+      "window": [
+        1794287975.0687022,
+        1794287994.2643135
+      ]
+    }
+  ]
+}

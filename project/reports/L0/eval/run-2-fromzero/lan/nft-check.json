@@ -1,0 +1,9 @@
+{
+  "allow_ports_rule": true,
+  "ct_invalid_drop": true,
+  "established_accept": true,
+  "final_drop_with_counter": true,
+  "prerouting_minus150": true,
+  "result": "PASS",
+  "table_present": true
+}

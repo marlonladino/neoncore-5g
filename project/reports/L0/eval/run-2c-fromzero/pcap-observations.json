@@ -1,0 +1,681 @@
+{
+  "aggregate": {
+    "5gmm_status_causes": [],
+    "auth_failure_causes_other": [],
+    "auth_failure_causes_run_ue": [
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21
+    ],
+    "nea0_selected_in_every_smc": true,
+    "observed": 15,
+    "other_ue_identity_types": [
+      "5G-GUTI"
+    ],
+    "other_ue_registrations": 5,
+    "pcaps": 15,
+    "pcaps_with_run_ue_guti_reregistration": 5,
+    "smc_count": 15
+  },
+  "note": "Report-only observations (telco TB7(b), TA21). They do not change V0-V3; the pass/fail evidence is pcap-summary*.json.",
+  "pcaps": [
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-213625.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc000018e"
+          ],
+          "first_frame": 491,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "27",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "26"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc000018e"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "27"
+      ],
+      "scenario": "deregistration",
+      "sha256": "4cdbfb473f48236f428446420430a7372aae326da84895fa3b6e2832e42744fd",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-213727.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc00002e8"
+          ],
+          "first_frame": 511,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "31",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "30"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc00002e8"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "31"
+      ],
+      "scenario": "deregistration",
+      "sha256": "a353aafef3094da3cdf26b98d5b716a8cbfd60842804ece0f7286e8eef0168ba",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-213819.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc00001e3"
+          ],
+          "first_frame": 523,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "35",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "34"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc00001e3"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "35"
+      ],
+      "scenario": "deregistration",
+      "sha256": "1c436a76b9fe3dfa5a9773da178b28da6029141689ff1a414017f63d09774d4b",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-213911.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc0000262"
+          ],
+          "first_frame": 505,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "39",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "38"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc0000262"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "39"
+      ],
+      "scenario": "deregistration",
+      "sha256": "abd032ca01b6ace1d4c1653e54f4add21af43f39ab8a8144772584ab1bf2f1c2",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-deregistration-0000009904-20261110-214003.pcap",
+      "other_ue_ngap_ids": [
+        {
+          "5g_tmsi": [
+            "0xc0000569"
+          ],
+          "first_frame": 501,
+          "identity_type": "5G-GUTI",
+          "ran_ue_ngap_id": "43",
+          "registration_type": [
+            1
+          ],
+          "suci_msin_present": false
+        }
+      ],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "42"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc0000569"
+      ],
+      "run_ue_guti_reregistration": true,
+      "run_ue_guti_reregistration_ran_ids": [
+        "43"
+      ],
+      "scenario": "deregistration",
+      "sha256": "e8c94b71bcb0d51b1c638c6d7f6b973fedbae0c384d73fb624125171ebaf45c9",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [
+            0
+          ],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-213600.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "24"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc000043f"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "698017f381e2fb04d04ef02f7ebfe96ad59e27bb721e1e9ab6d0f11199c819cd",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-213703.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "28"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc00003ed"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "ab5e4520dc45b97e96b4b55d85324879034f8d81c23f53a05ae746aace9d7a61",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-213755.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "32"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc00007f6"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "b1508e161b8ae0177bb48d1cf0833746345d779acc1eb0e714b636a5c0539473",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-213846.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "36"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc0000624"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "da6f2b66ab8a2274b01e6f0472af87e8aca25daea3f1b4d172bdfd9f15856c95",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": [
+          21
+        ]
+      },
+      "file": "scenario-initial-registration-0000009901-20261110-213939.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "40"
+      ],
+      "run_ue_assigned_5g_tmsi": [
+        "0xc00006a4"
+      ],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "initial-registration",
+      "sha256": "c7fbcf5922446dd8ae603b8945700bef45d051c7132a7558f4dc21478d3bf78e",
+      "ta21": {
+        "accept_before_complete": true,
+        "auth_absent_before_reject": "n/a: not a reject scenario",
+        "nea0_selected_in_every_smc": true,
+        "pfcp_52_53": {
+          "52": true,
+          "53": true
+        },
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": [
+            0
+          ]
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-213614.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "25"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "3c0cf0800eb818f90a0048cedb8daa0fef15b297fcf2978cebbec511f668a920",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-213716.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "29"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "dd95ad3296f7c3d6a4d7f58c11c73efc6d99a5dd2b94978f760e8ea659005e2b",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-213808.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "33"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "4bf99f68b4ca52d387baf1b86d2ca1aedd0f0574416dba4f35df5040af5addac",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-213859.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "37"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "62393492a689234387e27bfaf8a51554d8795cd2ce1e25fcb49eb5532a95f992",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    },
+    {
+      "5gmm_status_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "auth_failure_causes": {
+        "other": [],
+        "run_ue": []
+      },
+      "file": "scenario-registration-reject-0000009902-20261110-213952.pcap",
+      "other_ue_ngap_ids": [],
+      "report_only": true,
+      "run_ran_ue_ngap_ids": [
+        "41"
+      ],
+      "run_ue_assigned_5g_tmsi": [],
+      "run_ue_guti_reregistration": false,
+      "run_ue_guti_reregistration_ran_ids": [],
+      "scenario": "registration-reject",
+      "sha256": "8c07f49bb816ebf150b04b43c8972ff8c11503ab4fb3e6658f30237c2e0465e8",
+      "ta21": {
+        "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+        "auth_absent_before_reject": true,
+        "nea0_selected_in_every_smc": "n/a: no SMC",
+        "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+        "smc_ciphering_algorithms": {
+          "other": [],
+          "run_ue": []
+        }
+      }
+    }
+  ],
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 1,
+    "git_sha": "4387a7f01ca27bf3d1ae1215f4c85b0a7a42fa3a"
+  },
+  "report_only": true,
+  "tool": {
+    "dup_window_s": 0.05,
+    "null_decipher": true,
+    "tshark": "4.2.2"
+  }
+}

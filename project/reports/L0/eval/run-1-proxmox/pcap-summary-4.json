@@ -1,0 +1,191 @@
+{
+  "baseline_required": {},
+  "pcaps": [
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "pfcp:50",
+        "pfcp:51"
+      ],
+      "b_items_required": [],
+      "capinfos_packets": 362,
+      "duplicates_removed": 181,
+      "file": "scenario-initial-registration-0000009901-20261110-052347.pcap",
+      "frames_dedup": 181,
+      "frames_raw": 362,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x42",
+        "5gmm:0x43",
+        "5gmm:0x54",
+        "5gmm:0x56",
+        "5gmm:0x57",
+        "5gmm:0x59",
+        "5gmm:0x5d",
+        "5gmm:0x5e",
+        "5gmm:0x67",
+        "5gmm:0x68",
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "ngap:14",
+        "ngap:15",
+        "ngap:29",
+        "ngap:4",
+        "ngap:46",
+        "pfcp:50",
+        "pfcp:51"
+      ],
+      "msin": "0000009901",
+      "non_pod_src_frames": 0,
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "tied",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 11,
+        "ngap": 13,
+        "pfcp": 4,
+        "sctp": 16
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [],
+      "run_ran_ue_ngap_ids": [
+        "14"
+      ],
+      "scenario": "initial-registration",
+      "sha256": "95dce7dd35d5846120af7653d81174c46adc66eb27a51c76d6f31b35afebf668",
+      "size": 69280,
+      "switch_off": [],
+      "valid": true
+    },
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [],
+      "b_items_required": [],
+      "capinfos_packets": 60,
+      "duplicates_removed": 30,
+      "file": "scenario-registration-reject-0000009902-20261110-052400.pcap",
+      "frames_dedup": 30,
+      "frames_raw": 60,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x44",
+        "ngap:15",
+        "ngap:4",
+        "ngap:41"
+      ],
+      "msin": "0000009902",
+      "non_pod_src_frames": 0,
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "no-pfcp",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 2,
+        "ngap": 4,
+        "pfcp": 0,
+        "sctp": 6
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [
+        7
+      ],
+      "run_ran_ue_ngap_ids": [
+        "15"
+      ],
+      "scenario": "registration-reject",
+      "sha256": "67e929a969995104b428c97ecc47b15cbffd3fd963a84ad7f16fde4dd206dd98",
+      "size": 8266,
+      "switch_off": [],
+      "valid": true
+    },
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [
+        "ngap:41",
+        "pfcp:54",
+        "pfcp:55"
+      ],
+      "b_items_required": [],
+      "capinfos_packets": 738,
+      "duplicates_removed": 369,
+      "file": "scenario-deregistration-0000009904-20261110-052411.pcap",
+      "frames_dedup": 369,
+      "frames_raw": 738,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x42",
+        "5gmm:0x43",
+        "5gmm:0x45",
+        "5gmm:0x46",
+        "5gmm:0x54",
+        "5gmm:0x56",
+        "5gmm:0x57",
+        "5gmm:0x59",
+        "5gmm:0x5d",
+        "5gmm:0x5e",
+        "5gmm:0x67",
+        "5gmm:0x68",
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "ngap:14",
+        "ngap:15",
+        "ngap:29",
+        "ngap:4",
+        "ngap:41",
+        "ngap:46",
+        "pfcp:50",
+        "pfcp:51",
+        "pfcp:54",
+        "pfcp:55"
+      ],
+      "msin": "0000009904",
+      "non_pod_src_frames": 0,
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "tied",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 20,
+        "ngap": 25,
+        "pfcp": 10,
+        "sctp": 34
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [],
+      "run_ran_ue_ngap_ids": [
+        "16"
+      ],
+      "scenario": "deregistration",
+      "sha256": "3c0100c8a0ba101e95dac7f6b3cf078b1f6fca3cc2271b4255f2bf8a195289b2",
+      "size": 128114,
+      "switch_off": [
+        0
+      ],
+      "valid": true
+    }
+  ],
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 19,
+    "git_sha": "5510a79e3c30d3440895e2eb7bd5f53130b99a1c"
+  },
+  "tool": {
+    "dup_window_s": 0.05,
+    "null_decipher": true,
+    "tshark": "4.2.2"
+  },
+  "total": 3,
+  "valid_count": 3
+}

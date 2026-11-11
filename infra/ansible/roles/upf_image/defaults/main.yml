@@ -1,0 +1,14 @@
+upf_image_tag: "neoncore-upf:2.8.0-metrics"
+upf_image_src: "{{ playbook_dir }}/../../phase2/upf-metrics-patch"
+upf_image_dest: /opt/neoncore/upf-metrics-patch
+upf_dockerfile_orig: "{{ lookup('ansible.builtin.file', upf_image_src ~ '/Dockerfile') }}"
+upf_builder_from: "FROM debian:bullseye AS builder"
+# Debian bullseye is end of life: deb.debian.org / security.debian.org still list bullseye(-security)
+# but the pool files now 404; they live on archive.debian.org. Applied to the builder stage only
+# (inserted right after its FROM line), so the final gradiant/open5gs:2.8.0 stage is untouched.
+# bullseye-updates no longer exists on the archive, so its lines are dropped. apt-get upgrade and
+# the rest of the recipe stay as they are. Caveat: no more security updates for that stage.
+upf_archive_run: >-
+  RUN for f in /etc/apt/sources.list /etc/apt/sources.list.d/*; do [ -f "$f" ] || continue;
+  sed -i -e 's|deb.debian.org|archive.debian.org|g' -e 's|security.debian.org|archive.debian.org|g' -e '/bullseye-updates/d' "$f"; done
+  && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99archive

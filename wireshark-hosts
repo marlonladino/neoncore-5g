@@ -30,7 +30,7 @@
 10.42.0.96   prometheus
 
 # --- K3s node (hostNetwork services: tracer pod, node itself) ---
-172.31.245.180  k3s-node pcmarlon
+<wsl-ip>  k3s-node <wsl-host>
 
 # --- UE tunnel-side IP (inner IP inside GTP-U payload, N3 interface) ---
 10.45.0.5    ue-tun

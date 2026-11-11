@@ -1,0 +1,13 @@
+mtu_label: R3
+mtu_captured_utc: 2026-11-10T23:14:50Z
+mtu_source_pods: kubectl -n neoncore exec deploy/<pod> -- ip -o link show
+mtu_pod_gnb_eth0: 1450
+mtu_pod_upf_eth0: 1450
+mtu_pod_upf_ogstun: 1500
+mtu_pod_ue_eth0: 1450
+mtu_pod_ue_uesimtun0: 1400
+mtu_vm_nic: not captured (needs a shell on the VM; lab-ops runs: evals/l0/mtu_check.sh --print-node-commands)
+mtu_flannel.1: not captured (lab-ops, as above)
+mtu_cni0: not captured (lab-ops, as above)
+mtu_proxmox_bridge: not captured (owner or lab-ops on the Proxmox host)
+pmtu_note: the 1372-byte DF ping is not run by mtu_check.sh (ping_check.sh --pmtu, informational, no threshold)

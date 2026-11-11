@@ -1,0 +1,95 @@
+{
+  "erratum": {
+    "date": "2026-11-10",
+    "by": "evaluator",
+    "commit_of_fix": "3b89588",
+    "reason": "telco build review R1, TB5: all 3 runs read neoncore-20261110-044839.pcap (same sha256), whose last write was 04:53:42Z, before every E2 ping window (from 05:17Z). Nothing was measured in those windows, so the item is not tested. The original entries said status \"tested\" with 0 frames.",
+    "e2_result_unchanged": "E2 PASS stands; [B] GTP-U is reported, not required without baseline B."
+  },
+  "runs": [
+    {
+      "k": 1,
+      "status": "not tested: tracer pcap stale (last write 04:53:42Z, before window)",
+      "window": [
+        1794287833.0768182,
+        1794287852.2417536
+      ],
+      "superseded_stale_file_read": {
+        "echo_reply_frames": 0,
+        "echo_request_frames": 0,
+        "files": [
+          {
+            "file": "neoncore-20261110-044839.pcap",
+            "sha256": "eadd582e4deb2e39bb0ba059e50db67fb8d9c956d452fda0238183d508a6e8da",
+            "tshark_rc": 0
+          }
+        ],
+        "gtp_icmp_frames": 0,
+        "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+        "status": "tested",
+        "tshark": "4.2.2",
+        "window": [
+          1794287833.0768182,
+          1794287852.2417536
+        ],
+        "note_erratum": "read of a stale file, not a measurement of this window"
+      }
+    },
+    {
+      "k": 2,
+      "status": "not tested: tracer pcap stale (last write 04:53:42Z, before window)",
+      "window": [
+        1794287904.1438177,
+        1794287923.3065422
+      ],
+      "superseded_stale_file_read": {
+        "echo_reply_frames": 0,
+        "echo_request_frames": 0,
+        "files": [
+          {
+            "file": "neoncore-20261110-044839.pcap",
+            "sha256": "eadd582e4deb2e39bb0ba059e50db67fb8d9c956d452fda0238183d508a6e8da",
+            "tshark_rc": 0
+          }
+        ],
+        "gtp_icmp_frames": 0,
+        "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+        "status": "tested",
+        "tshark": "4.2.2",
+        "window": [
+          1794287904.1438177,
+          1794287923.3065422
+        ],
+        "note_erratum": "read of a stale file, not a measurement of this window"
+      }
+    },
+    {
+      "k": 3,
+      "status": "not tested: tracer pcap stale (last write 04:53:42Z, before window)",
+      "window": [
+        1794287975.0687022,
+        1794287994.2643135
+      ],
+      "superseded_stale_file_read": {
+        "echo_reply_frames": 0,
+        "echo_request_frames": 0,
+        "files": [
+          {
+            "file": "neoncore-20261110-044839.pcap",
+            "sha256": "eadd582e4deb2e39bb0ba059e50db67fb8d9c956d452fda0238183d508a6e8da",
+            "tshark_rc": 0
+          }
+        ],
+        "gtp_icmp_frames": 0,
+        "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+        "status": "tested",
+        "tshark": "4.2.2",
+        "window": [
+          1794287975.0687022,
+          1794287994.2643135
+        ],
+        "note_erratum": "read of a stale file, not a measurement of this window"
+      }
+    }
+  ]
+}

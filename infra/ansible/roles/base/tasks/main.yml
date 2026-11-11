@@ -1,0 +1,84 @@
+- name: Base packages (includes qemu-guest-agent)
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    name:
+      - qemu-guest-agent
+      - ca-certificates
+      - curl
+      - gnupg
+      - nftables
+      - python3-venv
+      - python3-pip
+      - jq
+    state: present
+
+- name: qemu-guest-agent running
+  ansible.builtin.service:
+    name: qemu-guest-agent
+    state: started
+
+- name: Time sync active
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    state: started
+    enabled: true
+
+- name: sshd hardening drop-in (read before cloud-init's 50-cloud-init.conf)
+  ansible.builtin.copy:
+    dest: /etc/ssh/sshd_config.d/00-neoncore.conf
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PermitRootLogin no
+      AllowUsers {{ lab_user }}
+  register: sshd_dropin
+  no_log: true
+
+- name: sshd config test
+  ansible.builtin.command: sshd -t
+  changed_when: false
+
+- name: Reload sshd when the drop-in changed
+  ansible.builtin.service:
+    name: ssh
+    state: reloaded
+  when: sshd_dropin.changed
+
+- name: Effective sshd settings (evidence)
+  ansible.builtin.shell: sshd -T | grep -E '^(passwordauthentication|kbdinteractiveauthentication|permitrootlogin|allowusers|pubkeyauthentication) '
+  register: sshd_effective
+  changed_when: false
+  no_log: true
+
+- name: Check the effective values
+  ansible.builtin.assert:
+    that:
+      - "'passwordauthentication no' in sshd_effective.stdout_lines"
+      - "'kbdinteractiveauthentication no' in sshd_effective.stdout_lines"
+      - "'permitrootlogin no' in sshd_effective.stdout_lines"
+      - "('allowusers ' ~ lab_user) in sshd_effective.stdout_lines"
+    quiet: true
+
+- name: Keep sshd -T evidence on the control machine (state dir, mode 700)
+  ansible.builtin.copy:
+    content: "{{ sshd_effective.stdout }}\n"
+    dest: "{{ evidence_dir }}/sshd-T.txt"
+    mode: "0600"
+  delegate_to: localhost
+  become: false
+  no_log: true
+
+- name: A5 egress (HTTP HEAD, status codes only)
+  ansible.builtin.command: curl -sI -m 20 -o /dev/null -w '%{http_code}' {{ item }}
+  loop: "{{ egress_urls }}"
+  register: egress
+  changed_when: false
+  failed_when: egress.stdout is not regex('^[23][0-9][0-9]$') and egress.stdout != '401'
+
+- name: A5 egress, ICMP to 8.8.8.8 (the UE ping target)
+  ansible.builtin.command: ping -c 2 -W 3 8.8.8.8
+  changed_when: false

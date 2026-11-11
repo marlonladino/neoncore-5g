@@ -1,0 +1,62 @@
+Installed plugins:
+
+  ❯ aws-core@anthropic-plugin-directory
+    Version: 1.2.0-e1f50d7224bc
+    Scope: project
+    Status: ✘ disabled
+
+  ❯ claude-md-management@anthropic-plugin-directory
+    Version: 1.0.0-0412be76f50a
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ commit-commands@anthropic-plugin-directory
+    Version: 1.0.1-0412be76f50a
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ context7@anthropic-plugin-directory
+    Version: 0412be76f50a-abb48b51
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ frontend-design@anthropic-plugin-directory
+    Version: 1.1.1-0412be76f50a
+    Scope: project
+    Status: ✘ disabled
+
+  ❯ grafana-mcp@anthropic-plugin-directory
+    Version: 0.2.0-12be5634a492
+    Scope: project
+    Status: ✘ disabled
+
+  ❯ huggingface-skills@anthropic-plugin-directory
+    Version: 1.0.37-25910b3d0ba3
+    Scope: project
+    Status: ✘ disabled
+
+  ❯ playwright@anthropic-plugin-directory
+    Version: 7d7dbbd9bc87-be1b3418
+    Scope: project
+    Status: ✘ disabled
+
+  ❯ pyright-lsp@anthropic-plugin-directory
+    Version: 1.0.0-0412be76f50a
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ security-guidance@anthropic-plugin-directory
+    Version: 2.0.17-fa4eb54397ee
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ session-report@anthropic-plugin-directory
+    Version: 0412be76f50a-3e47eefe
+    Scope: project
+    Status: ✔ enabled
+
+  ❯ terraform@anthropic-plugin-directory
+    Version: 0412be76f50a-079a2d34
+    Scope: project
+    Status: ✔ enabled
+

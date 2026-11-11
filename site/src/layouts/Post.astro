@@ -1,0 +1,14 @@
+---
+import Base from './Base.astro';
+const { frontmatter: fm } = Astro.props;
+---
+<Base title={fm.title} description={fm.summary}>
+  <article>
+    <p class="meta">{fm.date} // {fm.stage}</p>
+    <h1>{fm.title}</h1>
+    <div class="panel m">
+      <p>Built with AI agents under the owner's direction: the notes, code, evaluation and this post were mostly written by Claude Code agents. The owner ran the steps agents may not run: the gate patch, the approvals, the terminal-demo recording (vhs) and the snapshot rollback. Numbers are quoted from reports in the repository's <code>project/reports/L0/</code>; anything not run is marked "not tested".</p>
+    </div>
+    <slot />
+  </article>
+</Base>

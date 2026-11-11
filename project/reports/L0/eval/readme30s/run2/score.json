@@ -1,0 +1,242 @@
+{
+  "attempt": 2,
+  "attempt1_vs_attempt2_strict": {
+    "haiku": [
+      4,
+      4
+    ],
+    "opus": [
+      5,
+      6
+    ],
+    "sonnet": [
+      5,
+      6
+    ]
+  },
+  "attempt_note": "Second attempt after a README change (a59970b, one sentence naming the staged roadmap, written with knowledge of the attempt-1 answers and aimed at Q6). Not an independent first run: the README was tuned against the same questions and key, so the Q6 result here is not an independent measure. Attempt 1 (8b9cab9, readme30s/) FAILED strict and stays on record.",
+  "check": "E9(b) reader test, plan L0 section 8.5 -- ATTEMPT 2",
+  "cost_note": "Claude Code session usage, reported by the CLI; outside budget.yaml per plan section 10 (as attempt 1). Pre-run estimate < $0.10; abort rule > $0.10 per session not triggered.",
+  "git_porcelain_lines": 3,
+  "git_sha": "fb1bab2346846bb6cdc1c84df2e03104873c228b",
+  "human_reader": "not tested",
+  "inputs": {
+    "frame": "GIF frame index 250 of 1123, the same PNG bytes as attempt 1 (recovered from the attempt-1 input and hash-checked); main TUI screen with pod list and UE ping output",
+    "frame_png_sha256": "43db9481f266697f41198aea13121a3f5991a93ced5ef82ddb471aed19f9c44a",
+    "gif_sha256": "917b47a466329015c7bd5b4da061a8843cb2b2292312feae363a4b1ea43bbb00",
+    "input_jsonl_sha256": "3ce5020a8075c5adffbb7423de5dca6fe57d328a7e791b3bbb7825ce0bb5457b",
+    "method_scripts_sha256": {
+      "build_input.py": "91df8a567fa2834cd78d5a041561c71797b5a9b5a2b3954230fd0b1c490bb86a",
+      "drive.py": "e5ed78b7454bfa9d38f0bd0fce848fd52dafaf42b7f4a5bd8292f0c50039e3dd",
+      "note": "byte-identical to attempt 1; session scratch, not committed"
+    },
+    "prompt_hash_note": "turn_text_sha256 covers the system-visible prompt text; system prompt: 'You are a participant in a short reading test. Follow the instructions in each message.'",
+    "readme_sha256": "6a50def2f96596706f83655266db760a6d3478ac1e72e13c2e73fa4199b3422d",
+    "turn_text_diff_vs_attempt1": "only the added README sentence (diff checked)",
+    "turn_text_sha256": "bcafd56cb851e22d8057abe4812b1526fb6c72ca857ec091852e1ca471793460"
+  },
+  "latency_s_turn2": [
+    4.306,
+    6.521,
+    6.528
+  ],
+  "n_readers": 3,
+  "owner_decision": "D15: model readers only; human reader check not tested",
+  "preregistered": "run2/preregistration.md, committed fb1bab2 before any attempt-2 reader ran: 3 model readers (opus, sonnet, haiku), all count toward the threshold; one run per reader; repeats for nondeterminism not tested.",
+  "readers": [
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 4.791,
+        "turn2": 6.528
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "opus",
+      "model_id": "claude-opus-5-5",
+      "pass_lenient": true,
+      "pass_strict": true,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": true,
+      "rc": 0,
+      "reader": 1,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "5G SA testbed; Open5GS core + UERANSIM gNB/UE named in the answer",
+          "strict": 1
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults and AI to find them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "terminal control center (TUI), run scenarios, packet capture, Grafana dashboards",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "lab working (core, RAN sim, monitoring, tracing), labeled faults + AI planned, names stages and the roadmap PDF; all three strict elements in this answer",
+          "strict": 1
+        }
+      },
+      "session_cost_usd_reported": 0.031925999999999996,
+      "strict_total": 6,
+      "tokens_session": {
+        "claude-opus-5-5": {
+          "cacheCreationInputTokens": 2938,
+          "cacheReadInputTokens": 1490,
+          "inputTokens": 6,
+          "outputTokens": 405
+        }
+      },
+      "turn1_reply": "done"
+    },
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 4.114,
+        "turn2": 6.521
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "sonnet",
+      "model_id": "claude-sonnet-5-5",
+      "pass_lenient": true,
+      "pass_strict": true,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": true,
+      "rc": 0,
+      "reader": 2,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "5G SA testbed; Open5GS core + UERANSIM gNB/UE named in the answer",
+          "strict": 1
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults plus AI that finds them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "terminal control center (TUI), running a scenario, start/stop capture, Grafana",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "testbed working, labeled faults + AI planned, staged roadmap (W0 to 12) named; all three strict elements in this answer",
+          "strict": 1
+        }
+      },
+      "session_cost_usd_reported": 0.017259,
+      "strict_total": 6,
+      "tokens_session": {
+        "claude-sonnet-5-5": {
+          "cacheCreationInputTokens": 2952,
+          "cacheReadInputTokens": 1490,
+          "inputTokens": 6,
+          "outputTokens": 529
+        }
+      },
+      "turn1_reply": "done"
+    },
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 3.141,
+        "turn2": 4.306
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "haiku",
+      "model_id": "claude-haiku-5-5",
+      "pass_lenient": true,
+      "pass_strict": false,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": false,
+      "rc": 0,
+      "reader": 3,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "says '5G standalone (SA) testbed project, with a terminal control center' but names none of Open5GS, UERANSIM, simulated gNB/UE in this answer (they appear only in its Q3 answer); strict per-answer rule -> incorrect (same failure as attempt 1)",
+          "strict": 0
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults and AI that finds them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "Open5GS/UERANSIM on single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "run scenarios, start or stop capture (two of the key items; same reading as attempt 1)",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "names the staged roadmap (W0 to 12) and says labeled faults + AI are planned, but says 'I don't know which stages are done' and does not say the lab is done or working -> strict 0. Lenient 1 (judgment call): its Q3/Q5 answers describe a running lab ('16 of 17 pods Running', successful UE ping)",
+          "strict": 0
+        }
+      },
+      "session_cost_usd_reported": 0.0008139,
+      "strict_total": 4,
+      "tokens_session": {
+        "claude-haiku-5-5": {
+          "cacheCreationInputTokens": 3013,
+          "cacheReadInputTokens": 1490,
+          "inputTokens": 4,
+          "outputTokens": 392
+        }
+      },
+      "turn1_reply": "done"
+    }
+  ],
+  "readers_pass_lenient": 3,
+  "readers_pass_strict": 2,
+  "readme_commit": "a59970bff3b5b2edf352ce4f419786e59815ac40",
+  "result": "FAIL",
+  "result_lenient": "PASS",
+  "result_strict": "FAIL",
+  "run_utc": "2026-11-11T01:00:59Z to 01:01:38Z",
+  "scoring_rule": "STRICT (official): each answer scored on its own text; every element the key names must be present (Q1 needs Open5GS/UERANSIM/simulated gNB-UE; Q6 needs roadmap or stages AND lab done/working AND AI planned). LENIENT (sensitivity only): whole answer sheet counts; Q6 accepts a done/planned split.",
+  "scoring_rule_timing": "Answer key fixed at PLAN time. Strict and lenient readings fixed in preregistration.md before this attempt's answers were seen (same readings attempt 1 used).",
+  "threshold": "each reader >= 5/6 with Q1 correct; >= 2 readers",
+  "total_cost_usd_reported": 0.0499989
+}

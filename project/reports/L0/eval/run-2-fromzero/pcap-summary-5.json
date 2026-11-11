@@ -1,0 +1,301 @@
+{
+  "baseline_required": {},
+  "pcaps": [
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [
+        "ngap:41",
+        "pfcp:54",
+        "pfcp:55"
+      ],
+      "b_items_required": [],
+      "capinfos_packets": 886,
+      "duplicates_removed": 443,
+      "file": "scenario-deregistration-0000009904-20261110-174801.pcap",
+      "frames_dedup": 443,
+      "frames_raw": 886,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x42",
+        "5gmm:0x43",
+        "5gmm:0x45",
+        "5gmm:0x46",
+        "5gmm:0x54",
+        "5gmm:0x56",
+        "5gmm:0x57",
+        "5gmm:0x59",
+        "5gmm:0x5d",
+        "5gmm:0x5e",
+        "5gmm:0x67",
+        "5gmm:0x68",
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "ngap:14",
+        "ngap:15",
+        "ngap:29",
+        "ngap:4",
+        "ngap:41",
+        "ngap:46",
+        "pfcp:50",
+        "pfcp:51",
+        "pfcp:54",
+        "pfcp:55"
+      ],
+      "msin": "0000009904",
+      "non_pod_src_frames": 0,
+      "observations": {
+        "5gmm_status_causes": {
+          "other": [],
+          "run_ue": []
+        },
+        "auth_failure_causes": {
+          "other": [],
+          "run_ue": [
+            21
+          ]
+        },
+        "other_ue_ngap_ids": [
+          {
+            "5g_tmsi": [
+              "0xc000035d"
+            ],
+            "first_frame": 539,
+            "identity_type": "5G-GUTI",
+            "ran_ue_ngap_id": "22",
+            "registration_type": [
+              1
+            ],
+            "suci_msin_present": false
+          }
+        ],
+        "report_only": true,
+        "run_ue_assigned_5g_tmsi": [
+          "0xc000035d"
+        ],
+        "run_ue_guti_reregistration": true,
+        "run_ue_guti_reregistration_ran_ids": [
+          "22"
+        ],
+        "ta21": {
+          "accept_before_complete": true,
+          "auth_absent_before_reject": "n/a: not a reject scenario",
+          "nea0_selected_in_every_smc": true,
+          "pfcp_52_53": {
+            "52": true,
+            "53": true
+          },
+          "smc_ciphering_algorithms": {
+            "other": [
+              0
+            ],
+            "run_ue": [
+              0
+            ]
+          }
+        }
+      },
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "tied",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 22,
+        "ngap": 28,
+        "pfcp": 14,
+        "sctp": 38
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [],
+      "run_ran_ue_ngap_ids": [
+        "21"
+      ],
+      "scenario": "deregistration",
+      "sha256": "1fe1cb90565cc54df6ff99d5ab059abed40640e4d0aebc8bc7b0bbc9761dd9b9",
+      "size": 158394,
+      "switch_off": [
+        0
+      ],
+      "valid": true
+    },
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "pfcp:50",
+        "pfcp:51"
+      ],
+      "b_items_required": [],
+      "capinfos_packets": 380,
+      "duplicates_removed": 190,
+      "file": "scenario-initial-registration-0000009901-20261110-174737.pcap",
+      "frames_dedup": 190,
+      "frames_raw": 380,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x42",
+        "5gmm:0x43",
+        "5gmm:0x54",
+        "5gmm:0x56",
+        "5gmm:0x57",
+        "5gmm:0x59",
+        "5gmm:0x5d",
+        "5gmm:0x5e",
+        "5gmm:0x67",
+        "5gmm:0x68",
+        "5gsm:0xc1",
+        "5gsm:0xc2",
+        "ngap:14",
+        "ngap:15",
+        "ngap:29",
+        "ngap:4",
+        "ngap:46",
+        "pfcp:50",
+        "pfcp:51"
+      ],
+      "msin": "0000009901",
+      "non_pod_src_frames": 0,
+      "observations": {
+        "5gmm_status_causes": {
+          "other": [],
+          "run_ue": []
+        },
+        "auth_failure_causes": {
+          "other": [],
+          "run_ue": [
+            21
+          ]
+        },
+        "other_ue_ngap_ids": [],
+        "report_only": true,
+        "run_ue_assigned_5g_tmsi": [
+          "0xc0000493"
+        ],
+        "run_ue_guti_reregistration": false,
+        "run_ue_guti_reregistration_ran_ids": [],
+        "ta21": {
+          "accept_before_complete": true,
+          "auth_absent_before_reject": "n/a: not a reject scenario",
+          "nea0_selected_in_every_smc": true,
+          "pfcp_52_53": {
+            "52": true,
+            "53": true
+          },
+          "smc_ciphering_algorithms": {
+            "other": [],
+            "run_ue": [
+              0
+            ]
+          }
+        }
+      },
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "tied",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 11,
+        "ngap": 13,
+        "pfcp": 4,
+        "sctp": 18
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [],
+      "run_ran_ue_ngap_ids": [
+        "19"
+      ],
+      "scenario": "initial-registration",
+      "sha256": "635d937199ffceb889570d539d8bae957fbceee431f11b89e7c131bcc20848a8",
+      "size": 71528,
+      "switch_off": [],
+      "valid": true
+    },
+    {
+      "V0": true,
+      "V1": true,
+      "V2": true,
+      "ambiguous_frames": 0,
+      "b_items_present": [],
+      "b_items_required": [],
+      "capinfos_packets": 60,
+      "duplicates_removed": 30,
+      "file": "scenario-registration-reject-0000009902-20261110-174750.pcap",
+      "frames_dedup": 30,
+      "frames_raw": 60,
+      "items": [
+        "5gmm:0x41",
+        "5gmm:0x44",
+        "ngap:15",
+        "ngap:4",
+        "ngap:41"
+      ],
+      "msin": "0000009902",
+      "non_pod_src_frames": 0,
+      "observations": {
+        "5gmm_status_causes": {
+          "other": [],
+          "run_ue": []
+        },
+        "auth_failure_causes": {
+          "other": [],
+          "run_ue": []
+        },
+        "other_ue_ngap_ids": [],
+        "report_only": true,
+        "run_ue_assigned_5g_tmsi": [],
+        "run_ue_guti_reregistration": false,
+        "run_ue_guti_reregistration_ran_ids": [],
+        "ta21": {
+          "accept_before_complete": "n/a: 0x42 and 0x43 not both present",
+          "auth_absent_before_reject": true,
+          "nea0_selected_in_every_smc": "n/a: no SMC",
+          "pfcp_52_53": "n/a: no PFCP session tied to the run UE",
+          "smc_ciphering_algorithms": {
+            "other": [],
+            "run_ue": []
+          }
+        }
+      },
+      "pdu_reject_5gsm_causes": [],
+      "pfcp_tie": "no-pfcp",
+      "protocol_frames": {
+        "gtp": 0,
+        "icmp": 0,
+        "nas-5gs": 2,
+        "ngap": 4,
+        "pfcp": 0,
+        "sctp": 6
+      },
+      "reasons": [],
+      "reject_5gmm_causes": [
+        7
+      ],
+      "run_ran_ue_ngap_ids": [
+        "20"
+      ],
+      "scenario": "registration-reject",
+      "sha256": "fdaaaf77a5ea453b6466b03b6b8b4ec7a15722654736fb071b2edb25701af689",
+      "size": 8270,
+      "switch_off": [],
+      "valid": true
+    }
+  ],
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 2,
+    "git_sha": "6e56129840264b8574428d20bb7b62c30d767e72"
+  },
+  "tool": {
+    "dup_window_s": 0.05,
+    "null_decipher": true,
+    "tshark": "4.2.2"
+  },
+  "total": 3,
+  "valid_count": 3
+}

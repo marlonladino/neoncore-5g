@@ -1,0 +1,262 @@
+{
+  "image_ids": [
+    {
+      "container": "grafana",
+      "image": "grafana/grafana:11.4.0",
+      "imageID": "docker-pullable://grafana/grafana@sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb",
+      "ns": "monitoring",
+      "owner": "grafana",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "kube-state-metrics",
+      "image": "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.13.0",
+      "imageID": "docker-pullable://registry.k8s.io/kube-state-metrics/kube-state-metrics@sha256:639a1e2da549210adddc0391ff91e270e83f7873014aec53258462812f741e6f",
+      "ns": "monitoring",
+      "owner": "kube-state-metrics",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "prometheus",
+      "image": "prom/prometheus:v2.55.1",
+      "imageID": "docker-pullable://prom/prometheus@sha256:2659f4c2ebb718e7695cb9b25ffa7d6be64db013daba13e05c875451cf51b0d3",
+      "ns": "monitoring",
+      "owner": "prometheus",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "amf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "amf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "ausf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "ausf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "bsf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "bsf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "dbctl",
+      "image": "mongo:7.0",
+      "imageID": "docker-pullable://mongo@sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4",
+      "ns": "neoncore",
+      "owner": "dbctl",
+      "owner_kind": "Job"
+    },
+    {
+      "container": "gnb",
+      "image": "gradiant/ueransim:3.3.0",
+      "imageID": "docker-pullable://gradiant/ueransim@sha256:875aaa4a713e6a9a2311cb779f8fd998cd3e57b6e9c8c946e118025b27e69a84",
+      "ns": "neoncore",
+      "owner": "gnb",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "mongo",
+      "image": "mongo:7.0",
+      "imageID": "docker-pullable://mongo@sha256:8bb4442761a63a8dda452744082cdac9644b429807eb977b42324a63cef59ca4",
+      "ns": "neoncore",
+      "owner": "mongo",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "nrf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "nrf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "pcf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "pcf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "smf",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "smf",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "tracer",
+      "image": "nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70",
+      "imageID": "docker-pullable://nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70",
+      "ns": "neoncore",
+      "owner": "tracer",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "udm",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "udm",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "udr",
+      "image": "gradiant/open5gs:2.8.0",
+      "imageID": "docker-pullable://gradiant/open5gs@sha256:012d47b034b3ace4fd2fa41e861cd2453bead9a50b12bb60f31c2c1be2209bdb",
+      "ns": "neoncore",
+      "owner": "udr",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "ue",
+      "image": "gradiant/ueransim:3.3.0",
+      "imageID": "docker-pullable://gradiant/ueransim@sha256:875aaa4a713e6a9a2311cb779f8fd998cd3e57b6e9c8c946e118025b27e69a84",
+      "ns": "neoncore",
+      "owner": "ue",
+      "owner_kind": "Deployment"
+    },
+    {
+      "container": "upf",
+      "image": "neoncore-upf:2.8.0-metrics",
+      "imageID": "docker-pullable://neoncore-upf@sha256:88663f792db8e2b528df75e2a734de5d5e4216f72337ba4602aa54a65bea2825",
+      "ns": "neoncore",
+      "owner": "upf",
+      "owner_kind": "Deployment"
+    }
+  ],
+  "taken_at": 1794348363.4136002,
+  "workloads": [
+    {
+      "container": "grafana",
+      "image": "grafana/grafana:11.4.0",
+      "kind": "Deployment",
+      "name": "grafana",
+      "ns": "monitoring"
+    },
+    {
+      "container": "kube-state-metrics",
+      "image": "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.13.0",
+      "kind": "Deployment",
+      "name": "kube-state-metrics",
+      "ns": "monitoring"
+    },
+    {
+      "container": "prometheus",
+      "image": "prom/prometheus:v2.55.1",
+      "kind": "Deployment",
+      "name": "prometheus",
+      "ns": "monitoring"
+    },
+    {
+      "container": "amf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "amf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "ausf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "ausf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "bsf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "bsf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "gnb",
+      "image": "gradiant/ueransim:3.3.0",
+      "kind": "Deployment",
+      "name": "gnb",
+      "ns": "neoncore"
+    },
+    {
+      "container": "mongo",
+      "image": "mongo:7.0",
+      "kind": "Deployment",
+      "name": "mongo",
+      "ns": "neoncore"
+    },
+    {
+      "container": "nrf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "nrf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "pcf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "pcf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "smf",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "smf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "tracer",
+      "image": "nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70",
+      "kind": "Deployment",
+      "name": "tracer",
+      "ns": "neoncore"
+    },
+    {
+      "container": "udm",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "udm",
+      "ns": "neoncore"
+    },
+    {
+      "container": "udr",
+      "image": "gradiant/open5gs:2.8.0",
+      "kind": "Deployment",
+      "name": "udr",
+      "ns": "neoncore"
+    },
+    {
+      "container": "ue",
+      "image": "gradiant/ueransim:3.3.0",
+      "kind": "Deployment",
+      "name": "ue",
+      "ns": "neoncore"
+    },
+    {
+      "container": "upf",
+      "image": "neoncore-upf:2.8.0-metrics",
+      "kind": "Deployment",
+      "name": "upf",
+      "ns": "neoncore"
+    },
+    {
+      "container": "dbctl",
+      "image": "mongo:7.0",
+      "kind": "Job",
+      "name": "dbctl",
+      "ns": "neoncore"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "runs": [
+    {
+      "failures": [],
+      "k": 1,
+      "n3_after": {
+        "in": 130.0,
+        "in_series": 1,
+        "out": 130.0,
+        "out_series": 1,
+        "time": 1794341839.911889
+      },
+      "n3_before": {
+        "in": 110.0,
+        "in_series": 1,
+        "out": 110.0,
+        "out_series": 1,
+        "time": 1794341795.318866
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "pmtu_informational": {
+        "command": "ping -M do -s 1372 -I uesimtun0 -c 3 -W 2 8.8.8.8",
+        "exit": 0,
+        "loss_line": "3 packets transmitted, 3 received, 0% packet loss, time 2002ms",
+        "note": "informational, no threshold (telco TB6)",
+        "received": 3,
+        "sent": 3
+      },
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.43,
+        "p95": 6.06
+      },
+      "sent": 20,
+      "window": [
+        1794341795.6268804,
+        1794341814.7915545
+      ]
+    },
+    {
+      "failures": [],
+      "k": 2,
+      "n3_after": {
+        "in": 153.0,
+        "in_series": 1,
+        "out": 153.0,
+        "out_series": 1,
+        "time": 1794341919.2274704
+      },
+      "n3_before": {
+        "in": 133.0,
+        "in_series": 1,
+        "out": 133.0,
+        "out_series": 1,
+        "time": 1794341874.622071
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "pmtu_informational": {
+        "command": "ping -M do -s 1372 -I uesimtun0 -c 3 -W 2 8.8.8.8",
+        "exit": 0,
+        "loss_line": "3 packets transmitted, 3 received, 0% packet loss, time 2002ms",
+        "note": "informational, no threshold (telco TB6)",
+        "received": 3,
+        "sent": 3
+      },
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.54,
+        "p95": 9.15
+      },
+      "sent": 20,
+      "window": [
+        1794341874.9514499,
+        1794341894.1179128
+      ]
+    },
+    {
+      "failures": [],
+      "k": 3,
+      "n3_after": {
+        "in": 176.0,
+        "in_series": 1,
+        "out": 176.0,
+        "out_series": 1,
+        "time": 1794341992.6661375
+      },
+      "n3_before": {
+        "in": 156.0,
+        "in_series": 1,
+        "out": 156.0,
+        "out_series": 1,
+        "time": 1794341948.0562315
+      },
+      "n3_in_delta": 20.0,
+      "n3_out_delta": 20.0,
+      "ping_exit": 0,
+      "pmtu_informational": {
+        "command": "ping -M do -s 1372 -I uesimtun0 -c 3 -W 2 8.8.8.8",
+        "exit": 0,
+        "loss_line": "3 packets transmitted, 3 received, 0% packet loss, time 2003ms",
+        "note": "informational, no threshold (telco TB6)",
+        "received": 3,
+        "sent": 3
+      },
+      "received": 20,
+      "result": "PASS",
+      "rtt_ms": {
+        "n": 20,
+        "p50": 5.28,
+        "p95": 11.8
+      },
+      "sent": 20,
+      "window": [
+        1794341948.3810132,
+        1794341967.5598702
+      ]
+    }
+  ]
+}

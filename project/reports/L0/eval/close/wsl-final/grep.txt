@@ -1,0 +1,3 @@
+# E6(a) git grep, commit 7b20f8b344a3712b3e7ad55c60dbbfcace50fef6, porcelain lines 0
+# FAIL hits: 0
+# OTHER hits (listed, not failed): 0

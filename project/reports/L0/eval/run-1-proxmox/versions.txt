@@ -1,0 +1,14 @@
+# R1 versions (2026-11-10, evaluator, control machine and cluster reads)
+k3s (node kubeletVersion): v1.36.6+k3s1
+kubectl client: v1.37.2
+open5gs-upfd -v (upf pod): Open5GS v2.8.0
+UERANSIM image tag (gnb, ue): gradiant/ueransim:3.3.0
+Open5GS image tag (amf ausf bsf nrf pcf smf udm udr): gradiant/open5gs:2.8.0
+UPF image: neoncore-upf:2.8.0-metrics
+mongo image: mongo:7.0
+tracer image: nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70
+tshark: 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3)
+nmap: 7.94SVN
+strace: 6.8
+terraform: 1.17.1
+python3: 3.12.3

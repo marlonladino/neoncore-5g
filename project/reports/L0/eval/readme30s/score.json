@@ -1,0 +1,224 @@
+{
+  "check": "E9(b) reader test, plan L0 section 8.5",
+  "cost_note": "Claude Code session usage, reported by the CLI; outside budget.yaml per plan section 10. Pre-run estimate was < $0.10.",
+  "git_porcelain_lines": 4,
+  "git_sha": "100fd30c0e074aed89f12301df07ebaf008bd3ae",
+  "human_reader": "not tested",
+  "inputs": {
+    "frame": "GIF frame index 250 of 1123 (ffmpeg select=eq(n,250)); main TUI screen with pod list and UE ping output; chosen by the evaluator before any reader ran, because the midpoint frame 561 shows only the scenario form dialog",
+    "frame_png_sha256": "43db9481f266697f41198aea13121a3f5991a93ced5ef82ddb471aed19f9c44a",
+    "gif_sha256": "917b47a466329015c7bd5b4da061a8843cb2b2292312feae363a4b1ea43bbb00",
+    "input_jsonl_sha256": "67f5b8f7c845b52e69e54ab7a697d342d733d1a96b324efbf1efa254c2a47e80",
+    "method_scripts_sha256": {
+      "build_input.py": "91df8a567fa2834cd78d5a041561c71797b5a9b5a2b3954230fd0b1c490bb86a",
+      "drive.py": "e5ed78b7454bfa9d38f0bd0fce848fd52dafaf42b7f4a5bd8292f0c50039e3dd",
+      "note": "session scratch scripts, not committed (they hold local paths); drive.py runs claude -p with the flags listed in each reader file"
+    },
+    "prompt_hash_note": "turn_text_sha256 covers the system-visible prompt text; system prompt: 'You are a participant in a short reading test. Follow the instructions in each message.'",
+    "readme_sha256": "2f5485c6dd2b5d87b1f84d88769893231abc1a7492c591505152c830fc81a089",
+    "turn_text_sha256": "293866a433c0554115a6aed86aa169b607a23b66e50a86ee8031038e996691f3"
+  },
+  "latency_s_turn2": [
+    4.564,
+    5.534,
+    6.48
+  ],
+  "n_readers": 3,
+  "owner_decision": "D15: model readers only; human reader check not tested",
+  "preregistered": "3 model readers (opus, sonnet, haiku), all count toward the threshold; fixed before the first reader ran. One run per reader; repeats for nondeterminism not tested.",
+  "readers": [
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 5.174,
+        "turn2": 5.534
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "opus",
+      "model_id": "claude-opus-5-5",
+      "pass_lenient": true,
+      "pass_strict": true,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": true,
+      "rc": 0,
+      "reader": 1,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "5G SA testbed; Open5GS core + UERANSIM gNB/UE named in the answer",
+          "strict": 1
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults and AI that detects and finds them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "terminal control center (TUI), Grafana, run scenarios, packet capture",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "done/planned split correct (lab done, AI planned), but no roadmap or stages named",
+          "strict": 0
+        }
+      },
+      "session_cost_usd_reported": 0.0302906,
+      "strict_total": 5,
+      "tokens_session": {
+        "claude-opus-5-5": {
+          "cacheCreationInputTokens": 2885,
+          "cacheReadInputTokens": 1433,
+          "inputTokens": 6,
+          "outputTokens": 345
+        }
+      },
+      "turn1_reply": "done"
+    },
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 4.98,
+        "turn2": 6.48
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "sonnet",
+      "model_id": "claude-sonnet-5-5",
+      "pass_lenient": true,
+      "pass_strict": true,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": true,
+      "rc": 0,
+      "reader": 2,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "5G SA testbed; Open5GS core + UERANSIM gNB/UE named in the answer",
+          "strict": 1
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults and AI that finds them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "terminal Control Center (TUI), run scenario, start/stop capture",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "done/planned split correct, but no roadmap or stages named",
+          "strict": 0
+        }
+      },
+      "session_cost_usd_reported": 0.0163313,
+      "strict_total": 5,
+      "tokens_session": {
+        "claude-sonnet-5-5": {
+          "cacheCreationInputTokens": 2889,
+          "cacheReadInputTokens": 1433,
+          "inputTokens": 6,
+          "outputTokens": 462
+        }
+      },
+      "turn1_reply": "done"
+    },
+    {
+      "init_mcp_servers": [],
+      "init_tools": [],
+      "kind": "model (fresh-context Claude Code -p session, no tools, no repo access)",
+      "latency_s": {
+        "turn1": 3.772,
+        "turn2": 4.564
+      },
+      "lenient_total": 6,
+      "model_alias_requested": "haiku",
+      "model_id": "claude-haiku-5-5",
+      "pass_lenient": true,
+      "pass_strict": false,
+      "q1_correct_lenient": true,
+      "q1_correct_strict": false,
+      "rc": 0,
+      "reader": 3,
+      "scores": {
+        "Q1": {
+          "lenient": 1,
+          "note": "says '5G standalone (SA) testbed project' but names none of Open5GS, UERANSIM, simulated gNB/UE in this answer (they appear only in its Q3 answer); strict per-answer rule -> incorrect",
+          "strict": 0
+        },
+        "Q2": {
+          "lenient": 1,
+          "note": "labeled faults plus AI that finds them",
+          "strict": 1
+        },
+        "Q3": {
+          "lenient": 1,
+          "note": "single-node K3s inside a Proxmox VM",
+          "strict": 1
+        },
+        "Q4": {
+          "lenient": 1,
+          "note": "`scripts/labenv infra/lab.sh up`",
+          "strict": 1
+        },
+        "Q5": {
+          "lenient": 1,
+          "note": "run scenarios, start or stop capture (two of the key items)",
+          "strict": 1
+        },
+        "Q6": {
+          "lenient": 1,
+          "note": "done/planned split correct, but no roadmap or stages named",
+          "strict": 0
+        }
+      },
+      "session_cost_usd_reported": 0.00079763,
+      "strict_total": 4,
+      "tokens_session": {
+        "claude-haiku-5-5": {
+          "cacheCreationInputTokens": 2952,
+          "cacheReadInputTokens": 1433,
+          "inputTokens": 4,
+          "outputTokens": 385
+        }
+      },
+      "turn1_reply": "done"
+    }
+  ],
+  "readers_pass_lenient": 3,
+  "readers_pass_strict": 2,
+  "result": "FAIL",
+  "result_lenient": "PASS",
+  "result_strict": "FAIL",
+  "run_utc": "2026-11-11T00:51Z to 00:52Z",
+  "scoring_rule": "STRICT (official): each answer scored on its own text; every element the key names must be present (Q1 parenthetical required; Q6 must name a roadmap or stages). LENIENT (sensitivity only): whole answer sheet counts; Q6 accepts a done/planned split.",
+  "scoring_rule_timing": "The answer key was fixed at PLAN time. The strict/lenient reading of it was chosen by the evaluator at scoring time, after the answers were seen; the stricter reading is used for the verdict so the choice cannot inflate it.",
+  "threshold": "each reader >= 5/6 with Q1 correct; >= 2 readers",
+  "total_cost_usd_reported": 0.04741953
+}

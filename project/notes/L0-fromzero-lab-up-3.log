@@ -1,0 +1,343 @@
+2026-11-10T19:16:48Z
+==> [1] pin check  (19:16:48Z)
+pin: ok
+==> [2] terraform init and plan (plan guard, fail-closed)  (19:16:48Z)
+plan file: 20261110T191648Z-202152.tfplan
+proxmox_virtual_environment_vm.lab create
+summary: 1 create
+==> [3] terraform apply of the saved plan  (19:16:49Z)
+proxmox_virtual_environment_vm.lab create
+summary: 1 create
+proxmox_virtual_environment_vm.lab: Creating...
+proxmox_virtual_environment_vm.lab: Still creating... [00m10s elapsed]
+proxmox_virtual_environment_vm.lab: Still creating... [00m20s elapsed]
+proxmox_virtual_environment_vm.lab: Still creating... [00m30s elapsed]
+proxmox_virtual_environment_vm.lab: Still creating... [00m40s elapsed]
+proxmox_virtual_environment_vm.lab: Creation complete after 41s [id=<site:TF_VAR_vm_id>]
+
+Warning: error waiting for network interfaces from QEMU agent
+
+  with proxmox_virtual_environment_vm.lab,
+  on main.tf line 14, in resource "proxmox_virtual_environment_vm" "lab":
+  14: resource "proxmox_virtual_environment_vm" "lab" {
+
+timeout while waiting for the QEMU agent on VM "<site:TF_VAR_vm_id>" to publish the network
+interfaces
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_id = <site:TF_VAR_vm_id>
+==> [4] VM running  (19:17:30Z)
+vm: already running
+==> [5] cloud-init wait and SSH host key pin  (19:17:31Z)
+hostkey: pinned by trust on first use (D17), strict checking from now on
+==> [6] Ansible: base, kernel, docker, firewall  (19:17:52Z)
+
+PLAY [NeonCore lab base] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [neoncore-lab]
+
+TASK [base : Base packages (includes qemu-guest-agent)] ************************
+changed: [neoncore-lab]
+
+TASK [base : qemu-guest-agent running] *****************************************
+ok: [neoncore-lab]
+
+TASK [base : Time sync active] *************************************************
+ok: [neoncore-lab]
+
+TASK [base : sshd hardening drop-in (read before cloud-init's 50-cloud-init.conf)] ***
+changed: [neoncore-lab]
+
+TASK [base : sshd config test] *************************************************
+ok: [neoncore-lab]
+
+TASK [base : Reload sshd when the drop-in changed] *****************************
+changed: [neoncore-lab]
+
+TASK [base : Effective sshd settings (evidence)] *******************************
+ok: [neoncore-lab]
+
+TASK [base : Check the effective values] ***************************************
+ok: [neoncore-lab]
+
+TASK [base : Keep sshd -T evidence on the control machine (state dir, mode 700)] ***
+changed: [neoncore-lab -> localhost]
+
+TASK [base : A5 egress (HTTP HEAD, status codes only)] *************************
+ok: [neoncore-lab] => (item=https://archive.ubuntu.com/)
+ok: [neoncore-lab] => (item=https://download.docker.com/linux/ubuntu/gpg)
+ok: [neoncore-lab] => (item=https://registry-1.docker.io/v2/)
+ok: [neoncore-lab] => (item=https://github.com/)
+ok: [neoncore-lab] => (item=https://raw.githubusercontent.com/)
+ok: [neoncore-lab] => (item=https://get.k3s.io/)
+
+TASK [base : A5 egress, ICMP to 8.8.8.8 (the UE ping target)] ******************
+ok: [neoncore-lab]
+
+TASK [kernel : modprobe] *******************************************************
+ok: [neoncore-lab] => (item=sctp)
+ok: [neoncore-lab] => (item=iptable_nat)
+ok: [neoncore-lab] => (item=macvlan)
+ok: [neoncore-lab] => (item=ipvlan)
+
+TASK [kernel : Persist the modules across reboots] *****************************
+changed: [neoncore-lab]
+
+TASK [kernel : Confirm the modules are loaded] *********************************
+ok: [neoncore-lab] => (item=sctp)
+ok: [neoncore-lab] => (item=iptable_nat)
+ok: [neoncore-lab] => (item=macvlan)
+ok: [neoncore-lab] => (item=ipvlan)
+
+TASK [docker : Keyrings directory] *********************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker apt key] *************************************************
+[WARNING]: Module remote_tmp /root/.ansible/tmp did not exist and was created
+with a mode of 0700, this may cause issues when running as another user. To
+avoid this, create the remote_tmp dir with the correct permissions manually
+changed: [neoncore-lab]
+
+TASK [docker : Docker apt repository] ******************************************
+changed: [neoncore-lab]
+
+TASK [docker : Docker packages] ************************************************
+changed: [neoncore-lab]
+
+TASK [docker : Docker running and enabled] *************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker version (evidence)] **************************************
+ok: [neoncore-lab]
+
+TASK [docker : Show the Docker version] ****************************************
+ok: [neoncore-lab] => {
+    "msg": "Docker version 29.9.3, build 5457199"
+}
+
+TASK [firewall : Inputs look sane] *********************************************
+ok: [neoncore-lab]
+
+TASK [firewall : LAN NIC name (from the default route)] ************************
+ok: [neoncore-lab]
+
+TASK [firewall : Config directory] *********************************************
+changed: [neoncore-lab]
+
+TASK [firewall : Guard ruleset file (its own file, only this table)] ***********
+changed: [neoncore-lab]
+
+TASK [firewall : Syntax check of the ruleset file] *****************************
+ok: [neoncore-lab]
+
+TASK [firewall : Is the guard table loaded now] ********************************
+ok: [neoncore-lab]
+
+TASK [firewall : Stop any stale revert timer from an earlier run] **************
+ok: [neoncore-lab]
+
+TASK [firewall : Arm the auto-revert (120 s) BEFORE applying] ******************
+changed: [neoncore-lab]
+
+TASK [firewall : Apply the guard table only (no flush ruleset, no nftables.service restart)] ***
+changed: [neoncore-lab]
+
+TASK [firewall : A NEW ssh connection from the control machine must succeed] ***
+ok: [neoncore-lab -> localhost]
+
+TASK [firewall : Cancel the revert only now] ***********************************
+changed: [neoncore-lab]
+
+TASK [firewall : Persistent unit (enabled only after the new connection worked)] ***
+changed: [neoncore-lab]
+
+TASK [firewall : nftables.service masked (never ordered or enabled alongside the guard)] ***
+changed: [neoncore-lab]
+
+TASK [firewall : nftables.service state (evidence)] ****************************
+ok: [neoncore-lab]
+
+TASK [firewall : nftables.service is disabled or masked] ***********************
+ok: [neoncore-lab]
+
+TASK [firewall : Enable the unit (the table is already loaded, so do not start it again)] ***
+changed: [neoncore-lab]
+
+TASK [firewall : Table present and counter in place (evidence)] ****************
+ok: [neoncore-lab]
+
+TASK [firewall : Check the rules] **********************************************
+ok: [neoncore-lab]
+
+TASK [firewall : Keep the guard evidence on the control machine (state dir)] ***
+changed: [neoncore-lab -> localhost]
+
+PLAY RECAP *********************************************************************
+neoncore-lab               : ok=41   changed=17   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+==> [7] Ansible: K3s, kubeconfig, UPF image  (19:18:40Z)
+
+PLAY [NeonCore K3s and workload images] ****************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Pinned K3s install script] *****************************************
+changed: [neoncore-lab]
+
+TASK [k3s : Install K3s (same flags as before; skipped when the service already exists)] ***
+changed: [neoncore-lab]
+
+TASK [k3s : K3s service active] ************************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Wait for the node to be Ready] *************************************
+FAILED - RETRYING: [neoncore-lab]: Wait for the node to be Ready (60 retries left).
+ok: [neoncore-lab]
+
+TASK [k3s : Installed K3s version] *********************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Show the K3s version] **********************************************
+ok: [neoncore-lab] => {
+    "msg": "k3s version v1.36.6+k3s1 (fa45d6a5)"
+}
+
+TASK [k3s : Read the kubeconfig] ***********************************************
+ok: [neoncore-lab]
+
+TASK [k3s : kubeconfig directory on the control machine] ***********************
+ok: [neoncore-lab -> localhost]
+
+TASK [k3s : Kubeconfig to the control machine, server rewritten to the VM address] ***
+changed: [neoncore-lab -> localhost]
+
+TASK [upf_image : Build directory on the VM] ***********************************
+changed: [neoncore-lab]
+
+TASK [upf_image : Copy the patch] **********************************************
+changed: [neoncore-lab]
+
+TASK [upf_image : Dockerfile for the VM (repo file plus the archive.debian.org line in the builder stage)] ***
+changed: [neoncore-lab]
+
+TASK [upf_image : Is the image already present] ********************************
+ok: [neoncore-lab]
+
+TASK [upf_image : Build the UPF image (only when missing or the sources changed)] ***
+changed: [neoncore-lab]
+
+TASK [upf_image : open5gs-upfd version in the image] ***************************
+ok: [neoncore-lab]
+
+TASK [upf_image : UPF reports 2.8.0] *******************************************
+ok: [neoncore-lab] => {
+    "changed": false,
+    "msg": "Open5GS v2.8.0"
+}
+
+PLAY RECAP *********************************************************************
+neoncore-lab               : ok=17   changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+==> [8] deploy  (19:21:23Z)
+==> [9] cluster reachable  (19:21:23Z)
+==> [10] Multus HelmChart (applied unchanged; the test NAD is never applied)  (19:21:23Z)
+helmchart.helm.cattle.io/multus created
+pod/multus-vgpj9 condition met
+==> [11] phase2 base (namespace, configmaps, mongo)  (19:21:37Z)
+namespace/neoncore created
+configmap/amf-config created
+configmap/ausf-config created
+configmap/bsf-config created
+configmap/nrf-config created
+configmap/pcf-config created
+configmap/smf-config created
+configmap/udm-config created
+configmap/udr-config created
+configmap/upf-config created
+configmap/subscriber-script created
+persistentvolumeclaim/mongo-storage created
+deployment.apps/mongo created
+service/mongo created
+pod/mongo-5b8c549f7d-b8glx condition met
+==> [12] phase2 NFs, dbctl, UERANSIM; phase3; phase4  (19:21:58Z)
+service/nrf created
+deployment.apps/nrf created
+service/ausf created
+deployment.apps/ausf created
+service/udm created
+deployment.apps/udm created
+service/udr created
+deployment.apps/udr created
+service/bsf created
+deployment.apps/bsf created
+service/pcf created
+deployment.apps/pcf created
+service/amf created
+deployment.apps/amf created
+service/smf created
+deployment.apps/smf created
+service/upf created
+deployment.apps/upf created
+job.batch/dbctl created
+service/gnb created
+deployment.apps/gnb created
+deployment.apps/ue created
+namespace/monitoring created
+serviceaccount/prometheus created
+clusterrole.rbac.authorization.k8s.io/prometheus created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus created
+configmap/prometheus-config created
+deployment.apps/prometheus created
+service/prometheus created
+serviceaccount/kube-state-metrics created
+clusterrole.rbac.authorization.k8s.io/kube-state-metrics created
+clusterrolebinding.rbac.authorization.k8s.io/kube-state-metrics created
+deployment.apps/kube-state-metrics created
+service/kube-state-metrics created
+configmap/grafana-datasource created
+configmap/grafana-dashboard-provider created
+configmap/grafana-dashboard-neoncore created
+deployment.apps/grafana created
+service/grafana created
+persistentvolumeclaim/pcap-storage created
+configmap/tracer-script created
+deployment.apps/tracer created
+==> [13] recovery order (UPF Ready, then SMF, then UE)  (19:22:00Z)
+recovery order: UPF -> SMF -> UE
+Waiting for deployment "upf" rollout to finish: 0 of 1 updated replicas are available...
+deployment "upf" successfully rolled out
+Waiting for deployment "smf" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "smf" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "smf" rollout to finish: 1 old replicas are pending termination...
+deployment "smf" successfully rolled out
+Waiting for deployment "ue" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "ue" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "ue" rollout to finish: 1 old replicas are pending termination...
+deployment "ue" successfully rolled out
+==> [14] dbctl Job completes  (19:22:30Z)
+job.batch/dbctl condition met
+==> [15] all workload pods Ready  (19:22:30Z)
+==> [16] tracer liveness  (19:22:30Z)
+tracer: newest pcap is growing
+==> [17] copy run artifacts out  (19:22:54Z)
+artifacts: copied 1 tracer file(s) to the state dir (artifacts/20261110T192254Z)
+==> [18] verify  (19:22:55Z)
+PASS  K3s node Ready
+PASS  LAN guard table present on the VM
+PASS  neoncore + monitoring workload pods Ready (16 pods)
+PASS  dbctl Job Completed (succeeded=1, pod Succeeded)
+PASS  UPF exposes fivegs_ep_n3_gtp_indatapktn3upf
+PASS  UPF exposes fivegs_ep_n3_gtp_outdatapktn3upf
+PASS  UE ping via uesimtun0 to 8.8.8.8 (5/5 received/sent)
+PASS  N3 GTP in-counter rose during the ping (25 -> 30)
+tracer: newest pcap is growing
+PASS  tracer newest pcap growing
+verify: all checks passed
+lab.sh up: done
+exit=0
+2026-11-10T19:23:24Z

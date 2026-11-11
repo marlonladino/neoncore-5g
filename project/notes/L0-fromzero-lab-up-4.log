@@ -1,0 +1,322 @@
+2026-11-10T19:24:23Z
+==> [1] pin check  (19:24:23Z)
+pin: ok
+==> [2] terraform init and plan (plan guard, fail-closed)  (19:24:23Z)
+plan file: 20261110T192423Z-203606.tfplan
+proxmox_virtual_environment_vm.lab no-op
+summary: 1 no-op
+==> [3] terraform apply of the saved plan  (19:24:24Z)
+proxmox_virtual_environment_vm.lab no-op
+summary: 1 no-op
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vm_id = <site:TF_VAR_vm_id>
+==> [4] VM running  (19:24:24Z)
+vm: already running
+==> [5] cloud-init wait and SSH host key pin  (19:24:25Z)
+hostkey: existing pin matches the guest-agent key (authenticated API)
+==> [6] Ansible: base, kernel, docker, firewall  (19:24:26Z)
+
+PLAY [NeonCore lab base] *******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [neoncore-lab]
+
+TASK [base : Base packages (includes qemu-guest-agent)] ************************
+ok: [neoncore-lab]
+
+TASK [base : qemu-guest-agent running] *****************************************
+ok: [neoncore-lab]
+
+TASK [base : Time sync active] *************************************************
+ok: [neoncore-lab]
+
+TASK [base : sshd hardening drop-in (read before cloud-init's 50-cloud-init.conf)] ***
+ok: [neoncore-lab]
+
+TASK [base : sshd config test] *************************************************
+ok: [neoncore-lab]
+
+TASK [base : Reload sshd when the drop-in changed] *****************************
+skipping: [neoncore-lab]
+
+TASK [base : Effective sshd settings (evidence)] *******************************
+ok: [neoncore-lab]
+
+TASK [base : Check the effective values] ***************************************
+ok: [neoncore-lab]
+
+TASK [base : Keep sshd -T evidence on the control machine (state dir, mode 700)] ***
+ok: [neoncore-lab -> localhost]
+
+TASK [base : A5 egress (HTTP HEAD, status codes only)] *************************
+ok: [neoncore-lab] => (item=https://archive.ubuntu.com/)
+ok: [neoncore-lab] => (item=https://download.docker.com/linux/ubuntu/gpg)
+ok: [neoncore-lab] => (item=https://registry-1.docker.io/v2/)
+ok: [neoncore-lab] => (item=https://github.com/)
+ok: [neoncore-lab] => (item=https://raw.githubusercontent.com/)
+ok: [neoncore-lab] => (item=https://get.k3s.io/)
+
+TASK [base : A5 egress, ICMP to 8.8.8.8 (the UE ping target)] ******************
+ok: [neoncore-lab]
+
+TASK [kernel : modprobe] *******************************************************
+ok: [neoncore-lab] => (item=sctp)
+ok: [neoncore-lab] => (item=iptable_nat)
+ok: [neoncore-lab] => (item=macvlan)
+ok: [neoncore-lab] => (item=ipvlan)
+
+TASK [kernel : Persist the modules across reboots] *****************************
+ok: [neoncore-lab]
+
+TASK [kernel : Confirm the modules are loaded] *********************************
+ok: [neoncore-lab] => (item=sctp)
+ok: [neoncore-lab] => (item=iptable_nat)
+ok: [neoncore-lab] => (item=macvlan)
+ok: [neoncore-lab] => (item=ipvlan)
+
+TASK [docker : Keyrings directory] *********************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker apt key] *************************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker apt repository] ******************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker packages] ************************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker running and enabled] *************************************
+ok: [neoncore-lab]
+
+TASK [docker : Docker version (evidence)] **************************************
+ok: [neoncore-lab]
+
+TASK [docker : Show the Docker version] ****************************************
+ok: [neoncore-lab] => {
+    "msg": "Docker version 29.9.3, build 5457199"
+}
+
+TASK [firewall : Inputs look sane] *********************************************
+ok: [neoncore-lab]
+
+TASK [firewall : LAN NIC name (from the default route)] ************************
+ok: [neoncore-lab]
+
+TASK [firewall : Config directory] *********************************************
+ok: [neoncore-lab]
+
+TASK [firewall : Guard ruleset file (its own file, only this table)] ***********
+ok: [neoncore-lab]
+
+TASK [firewall : Syntax check of the ruleset file] *****************************
+ok: [neoncore-lab]
+
+TASK [firewall : Is the guard table loaded now] ********************************
+ok: [neoncore-lab]
+
+TASK [firewall : Stop any stale revert timer from an earlier run] **************
+skipping: [neoncore-lab]
+
+TASK [firewall : Arm the auto-revert (120 s) BEFORE applying] ******************
+skipping: [neoncore-lab]
+
+TASK [firewall : Apply the guard table only (no flush ruleset, no nftables.service restart)] ***
+skipping: [neoncore-lab]
+
+TASK [firewall : A NEW ssh connection from the control machine must succeed] ***
+skipping: [neoncore-lab]
+
+TASK [firewall : Cancel the revert only now] ***********************************
+skipping: [neoncore-lab]
+
+TASK [firewall : Persistent unit (enabled only after the new connection worked)] ***
+ok: [neoncore-lab]
+
+TASK [firewall : nftables.service masked (never ordered or enabled alongside the guard)] ***
+ok: [neoncore-lab]
+
+TASK [firewall : nftables.service state (evidence)] ****************************
+ok: [neoncore-lab]
+
+TASK [firewall : nftables.service is disabled or masked] ***********************
+ok: [neoncore-lab]
+
+TASK [firewall : Enable the unit (the table is already loaded, so do not start it again)] ***
+ok: [neoncore-lab]
+
+TASK [firewall : Table present and counter in place (evidence)] ****************
+ok: [neoncore-lab]
+
+TASK [firewall : Check the rules] **********************************************
+ok: [neoncore-lab]
+
+TASK [firewall : Keep the guard evidence on the control machine (state dir)] ***
+ok: [neoncore-lab -> localhost]
+
+PLAY RECAP *********************************************************************
+neoncore-lab               : ok=35   changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+
+==> [7] Ansible: K3s, kubeconfig, UPF image  (19:24:41Z)
+
+PLAY [NeonCore K3s and workload images] ****************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Pinned K3s install script] *****************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Install K3s (same flags as before; skipped when the service already exists)] ***
+ok: [neoncore-lab]
+
+TASK [k3s : K3s service active] ************************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Wait for the node to be Ready] *************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Installed K3s version] *********************************************
+ok: [neoncore-lab]
+
+TASK [k3s : Show the K3s version] **********************************************
+ok: [neoncore-lab] => {
+    "msg": "k3s version v1.36.6+k3s1 (fa45d6a5)"
+}
+
+TASK [k3s : Read the kubeconfig] ***********************************************
+ok: [neoncore-lab]
+
+TASK [k3s : kubeconfig directory on the control machine] ***********************
+ok: [neoncore-lab -> localhost]
+
+TASK [k3s : Kubeconfig to the control machine, server rewritten to the VM address] ***
+ok: [neoncore-lab -> localhost]
+
+TASK [upf_image : Build directory on the VM] ***********************************
+ok: [neoncore-lab]
+
+TASK [upf_image : Copy the patch] **********************************************
+ok: [neoncore-lab]
+
+TASK [upf_image : Dockerfile for the VM (repo file plus the archive.debian.org line in the builder stage)] ***
+ok: [neoncore-lab]
+
+TASK [upf_image : Is the image already present] ********************************
+ok: [neoncore-lab]
+
+TASK [upf_image : Build the UPF image (only when missing or the sources changed)] ***
+skipping: [neoncore-lab]
+
+TASK [upf_image : open5gs-upfd version in the image] ***************************
+ok: [neoncore-lab]
+
+TASK [upf_image : UPF reports 2.8.0] *******************************************
+ok: [neoncore-lab] => {
+    "changed": false,
+    "msg": "Open5GS v2.8.0"
+}
+
+PLAY RECAP *********************************************************************
+neoncore-lab               : ok=16   changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+==> [8] deploy  (19:24:46Z)
+==> [9] cluster reachable  (19:24:46Z)
+==> [10] Multus HelmChart (applied unchanged; the test NAD is never applied)  (19:24:46Z)
+helmchart.helm.cattle.io/multus unchanged
+pod/multus-vgpj9 condition met
+==> [11] phase2 base (namespace, configmaps, mongo)  (19:24:47Z)
+namespace/neoncore unchanged
+configmap/amf-config unchanged
+configmap/ausf-config unchanged
+configmap/bsf-config unchanged
+configmap/nrf-config unchanged
+configmap/pcf-config unchanged
+configmap/smf-config unchanged
+configmap/udm-config unchanged
+configmap/udr-config unchanged
+configmap/upf-config unchanged
+configmap/subscriber-script unchanged
+persistentvolumeclaim/mongo-storage unchanged
+deployment.apps/mongo unchanged
+service/mongo unchanged
+pod/mongo-5b8c549f7d-b8glx condition met
+==> [12] phase2 NFs, dbctl, UERANSIM; phase3; phase4  (19:24:48Z)
+service/nrf unchanged
+deployment.apps/nrf unchanged
+service/ausf unchanged
+deployment.apps/ausf unchanged
+service/udm unchanged
+deployment.apps/udm unchanged
+service/udr unchanged
+deployment.apps/udr unchanged
+service/bsf unchanged
+deployment.apps/bsf unchanged
+service/pcf unchanged
+deployment.apps/pcf unchanged
+service/amf unchanged
+deployment.apps/amf unchanged
+service/smf unchanged
+deployment.apps/smf unchanged
+service/upf unchanged
+deployment.apps/upf unchanged
+job.batch/dbctl unchanged
+service/gnb unchanged
+deployment.apps/gnb unchanged
+deployment.apps/ue unchanged
+namespace/monitoring unchanged
+serviceaccount/prometheus unchanged
+clusterrole.rbac.authorization.k8s.io/prometheus unchanged
+clusterrolebinding.rbac.authorization.k8s.io/prometheus unchanged
+configmap/prometheus-config unchanged
+deployment.apps/prometheus unchanged
+service/prometheus unchanged
+serviceaccount/kube-state-metrics unchanged
+clusterrole.rbac.authorization.k8s.io/kube-state-metrics unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kube-state-metrics unchanged
+deployment.apps/kube-state-metrics unchanged
+service/kube-state-metrics unchanged
+configmap/grafana-datasource unchanged
+configmap/grafana-dashboard-provider unchanged
+configmap/grafana-dashboard-neoncore unchanged
+deployment.apps/grafana unchanged
+service/grafana unchanged
+persistentvolumeclaim/pcap-storage unchanged
+configmap/tracer-script unchanged
+deployment.apps/tracer unchanged
+==> [13] recovery order (UPF Ready, then SMF, then UE)  (19:24:51Z)
+recovery order: UPF -> SMF -> UE
+deployment "upf" successfully rolled out
+Waiting for deployment "smf" rollout to finish: 0 out of 1 new replicas have been updated...
+Waiting for deployment "smf" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "smf" rollout to finish: 1 old replicas are pending termination...
+deployment "smf" successfully rolled out
+Waiting for deployment "ue" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "ue" rollout to finish: 1 old replicas are pending termination...
+deployment "ue" successfully rolled out
+==> [14] dbctl Job completes  (19:25:19Z)
+job.batch/dbctl condition met
+==> [15] all workload pods Ready  (19:25:19Z)
+==> [16] tracer liveness  (19:25:19Z)
+tracer: newest pcap is growing
+==> [17] copy run artifacts out  (19:25:44Z)
+artifacts: copied 1 tracer file(s) to the state dir (artifacts/20261110T192544Z)
+==> [18] verify  (19:25:44Z)
+PASS  K3s node Ready
+PASS  LAN guard table present on the VM
+PASS  neoncore + monitoring workload pods Ready (16 pods)
+PASS  dbctl Job Completed (succeeded=1, pod Succeeded)
+PASS  UPF exposes fivegs_ep_n3_gtp_indatapktn3upf
+PASS  UPF exposes fivegs_ep_n3_gtp_outdatapktn3upf
+PASS  UE ping via uesimtun0 to 8.8.8.8 (5/5 received/sent)
+PASS  N3 GTP in-counter rose during the ping (80 -> 85)
+tracer: newest pcap is growing
+PASS  tracer newest pcap growing
+verify: all checks passed
+lab.sh up: done
+exit=0
+2026-11-10T19:26:14Z

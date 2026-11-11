@@ -1,0 +1,13 @@
+# Placeholders only. Real values come from TF_VAR_* in the lab env file; do not create a
+# real terraform.tfvars in the repo.
+node_name      = "example-node"
+vm_id          = 900001
+pool_id        = "example-pool"
+datastore_id   = "example-storage"
+template_vm_id = 900002
+bridge         = "example-bridge"
+ipv4_cidr      = "192.0.2.10/24"
+gateway        = "192.0.2.1"
+dns_servers    = "192.0.2.1"
+vm_user        = "lab"
+ssh_public_key = "ssh-ed25519 AAAA... lab"

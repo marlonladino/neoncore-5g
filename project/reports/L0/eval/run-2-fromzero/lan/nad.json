@@ -1,0 +1,36 @@
+{
+  "check": "E7: no NetworkAttachmentDefinition puts a pod on the VM LAN NIC",
+  "captured_utc": "2026-11-10T17:40:10Z",
+  "query": "kubectl get network-attachment-definitions -A -o json (evaluator, live, control machine kubeconfig)",
+  "query_exit": 1,
+  "query_result": "error: the server doesn't have a resource type \"network-attachment-definitions\"",
+  "nad_count": 0,
+  "crds_present": [
+    "addons.k3s.cattle.io",
+    "etcdsnapshotfiles.k3s.cattle.io",
+    "helmchartconfigs.helm.cattle.io",
+    "helmcharts.helm.cattle.io"
+  ],
+  "api_resources_matching_network_attachment": 0,
+  "lab_ops_capture": "project/notes/L0.md section R2 E7 evidence (lab-ops), commit 087f7b0, 2026-11-10T16:50:06Z: same resource-type-absent error, same 4 CRDs",
+  "pods_neoncore": {
+    "total": 14,
+    "with_k8s.v1.cni.cncf.io/networks_request": 0,
+    "with_network-status": 13,
+    "network-status_entries": {
+      "cbr0 on eth0, default=True": 13
+    }
+  },
+  "pods_monitoring": {
+    "total": 3,
+    "with_k8s.v1.cni.cncf.io/networks_request": 0,
+    "with_network-status": 3,
+    "network-status_entries": {
+      "cbr0 on eth0, default=True": 3
+    }
+  },
+  "lan_nic": "eth0 (VM), from the guard iifname rule",
+  "judgement": "With the NAD CRD absent the API server cannot store any NetworkAttachmentDefinition, so no NAD can attach a pod to the LAN NIC; no pod requests a secondary network. Same reading as R1.",
+  "caveat": "Multus NAD CRD not installed (same observation as R1).",
+  "result": "PASS"
+}

@@ -1,0 +1,5992 @@
+{
+  "interval_s": 60,
+  "samples": [
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348364.2183692
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348424.218489
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "scenario-ue"
+          },
+          "name": "scenario-ue-deregistration-1794348478",
+          "ns": "neoncore",
+          "owner": null,
+          "owner_kind": null,
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348484.2186062
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348544.2187264
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348604.218856
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348664.2189555
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348724.2190576
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348784.219173
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348844.2192736
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348904.2194061
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794348964.2194936
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349024.219608
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349084.2197287
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349144.219824
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349204.2199051
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349264.2200139
+    },
+    {
+      "jobs": {
+        "neoncore/dbctl": {
+          "failed": 0,
+          "succeeded": 1
+        }
+      },
+      "pods": [
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "amf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "amf"
+          },
+          "name": "amf-585964fc8f-mmnmx",
+          "ns": "neoncore",
+          "owner": "amf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ausf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ausf"
+          },
+          "name": "ausf-5c68bc8dbb-qjjbs",
+          "ns": "neoncore",
+          "owner": "ausf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "bsf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "bsf"
+          },
+          "name": "bsf-7db47b554-4mzdh",
+          "ns": "neoncore",
+          "owner": "bsf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "dbctl",
+              "ready": false,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "job-name": "dbctl"
+          },
+          "name": "dbctl-579lw",
+          "ns": "neoncore",
+          "owner": "dbctl",
+          "owner_kind": "Job",
+          "phase": "Succeeded"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "gnb",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "gnb"
+          },
+          "name": "gnb-778d4cd687-hjgxg",
+          "ns": "neoncore",
+          "owner": "gnb",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "mongo",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "mongo"
+          },
+          "name": "mongo-5b8c549f7d-8mnjg",
+          "ns": "neoncore",
+          "owner": "mongo",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "nrf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "nrf"
+          },
+          "name": "nrf-659db89bb8-dcm7p",
+          "ns": "neoncore",
+          "owner": "nrf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "pcf",
+              "ready": true,
+              "restarts": 2,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "pcf"
+          },
+          "name": "pcf-bb788889b-5p4fq",
+          "ns": "neoncore",
+          "owner": "pcf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "smf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "smf"
+          },
+          "name": "smf-84fb99d5b-cvczz",
+          "ns": "neoncore",
+          "owner": "smf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "tracer",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "tracer"
+          },
+          "name": "tracer-9d8c9bc9d-w5psz",
+          "ns": "neoncore",
+          "owner": "tracer",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udm",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udm"
+          },
+          "name": "udm-579564b488-5t5h4",
+          "ns": "neoncore",
+          "owner": "udm",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "udr",
+              "ready": true,
+              "restarts": 1,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "udr"
+          },
+          "name": "udr-654bd5c46b-z97d8",
+          "ns": "neoncore",
+          "owner": "udr",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "ue",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "ue"
+          },
+          "name": "ue-66fd6f744d-vgdcj",
+          "ns": "neoncore",
+          "owner": "ue",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "upf",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "upf"
+          },
+          "name": "upf-84d8b46b55-w52v5",
+          "ns": "neoncore",
+          "owner": "upf",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "grafana",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "grafana"
+          },
+          "name": "grafana-57c854cc75-zcrd2",
+          "ns": "monitoring",
+          "owner": "grafana",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "kube-state-metrics",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "kube-state-metrics"
+          },
+          "name": "kube-state-metrics-6c69559db9-pdt26",
+          "ns": "monitoring",
+          "owner": "kube-state-metrics",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        },
+        {
+          "containers": [
+            {
+              "init": false,
+              "name": "prometheus",
+              "ready": true,
+              "restarts": 0,
+              "waiting": null
+            }
+          ],
+          "deleting": false,
+          "labels": {
+            "app": "prometheus"
+          },
+          "name": "prometheus-b89d64f5f-f74wx",
+          "ns": "monitoring",
+          "owner": "prometheus",
+          "owner_kind": "Deployment",
+          "phase": "Running"
+        }
+      ],
+      "taken_at": 1794349324.220126
+    }
+  ]
+}

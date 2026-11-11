@@ -1,0 +1,44 @@
+{
+  "tshark_version": "4.2.2",
+  "fields_checked": [
+    "frame.number",
+    "frame.protocols",
+    "frame.time_epoch",
+    "gtp.teid",
+    "icmp.type",
+    "ip.dst",
+    "ip.id",
+    "ip.len",
+    "ip.proto",
+    "ip.src",
+    "nas-5gs.mm.5gmm_cause",
+    "nas-5gs.mm.message_type",
+    "nas-5gs.mm.suci.msin",
+    "nas-5gs.mm.switch_off",
+    "nas-5gs.sm.5gsm_cause",
+    "nas-5gs.sm.message_type",
+    "nas-5gs.sm.pdu_addr_inf_ipv4",
+    "ngap.RAN_UE_NGAP_ID",
+    "ngap.procedureCode",
+    "pfcp.msg_type",
+    "pfcp.seid",
+    "pfcp.seqno",
+    "pfcp.ue_ip_addr_ipv4",
+    "sctp.data_tsn"
+  ],
+  "missing_fields": [],
+  "protocols_checked": [
+    "sctp",
+    "ngap",
+    "nas-5gs",
+    "pfcp",
+    "gtp",
+    "icmp"
+  ],
+  "missing_protocols": [],
+  "prefs_checked": [
+    "nas-5gs.null_decipher"
+  ],
+  "missing_prefs": [],
+  "result": "PASS"
+}

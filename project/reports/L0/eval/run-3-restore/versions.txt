@@ -1,0 +1,12 @@
+kubernetes_server: v1.36.6+k3s1
+k3s_cli: not captured (not on node)
+open5gs_upfd: Open5GS v2.8.0
+ueransim: v3.3.0
+netshoot_imageID: docker-pullable://nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70
+lsmod: not captured (not on node)
+mtu_node_nic: not captured (not on node)
+mtu_uesimtun0: 1400
+pmtu_1372_ping: 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+kubectl_client: v1.37.2
+tshark: TShark (Wireshark) 4.2.2 (Git v4.2.2 packaged as 4.2.2-1.1build3).
+python3: Python 3.12.3

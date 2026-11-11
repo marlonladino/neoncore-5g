@@ -38,7 +38,7 @@ even though control-plane signaling (NG Setup, registration, PDU session establi
 still succeeds in the calm windows between jumps.
 
 **Likely fix** (not yet applied — user chose to defer): add `vmIdleTimeout=-1` to
-`C:\Users\marlo\.wslconfig` under `[wsl2]`, then `wsl --shutdown` from PowerShell and reopen.
+`C:\Users\<windows-user>\.wslconfig` under `[wsl2]`, then `wsl --shutdown` from PowerShell and reopen.
 This stops Windows from suspending the idle VM, which is the probable trigger for the drift. See
 `README.md`'s Troubleshooting section for the full writeup.
 
@@ -120,7 +120,7 @@ wrapper does **not** default to `~/.kube/config` — it hardcodes `/etc/rancher/
 
 ### Success criteria (from spec)
 
-- `kubectl get nodes` shows Ready — confirmed (`pcmarlon Ready control-plane`,
+- `kubectl get nodes` shows Ready — confirmed (`<wsl-host> Ready control-plane`,
   `docker://29.6.2` runtime)
 - Multus pod Running — confirmed (`multus-xptx7 1/1 Running`)
 - macvlan/ipvlan interfaces can be created on the node — confirmed via live test pod
@@ -615,3 +615,266 @@ its parent package. The Phase 5 CLI's `k8s.run_scenario()` originally shelled ou
 with no known parent package` the moment it ran as a subprocess from the TUI. Caught by an
 end-to-end Pilot-driven check of the actual `s` keybinding (not just the underlying CLI in
 isolation) — fixed by invoking `python3 -m phase6.cli` instead.
+
+## Note — "Phase" vs "Stage" naming (2026-11-09)
+
+The heading **"Phase 7 — 5G Signaling Scenario Automation"** above describes the code in
+`phase6/` (the doc-only README rewrite had already taken the number 6). The AI roadmap's Phase 7
+(fault injection) is **new work** and lives in `phase7/`. To avoid the clash, all new writing
+says **Stage**: Stage L0 (Proxmox migration), Stage 7 (fault injection, `phase7/`), Stage 8
+(troubleshooter, `phase8/`), and so on. See `project/WORKFLOW.md`.
+
+## Stage L0 — Proxmox migration (2026-11-10)
+
+Stage L0 moved the lab from WSL2 to a Proxmox VM (Terraform for the VM, Ansible for the guest,
+`infra/lab.sh` as the one entry point) and retired WSL2. Source for everything below:
+`project/notes/L0.md` (raw build notes). Numbers are from those notes; the evaluator's results
+are in `project/reports/L0/`. No site values are recorded here. The project is built with AI
+agents under the owner's direction; the notes were written by those agents.
+
+The WSL2 sections above stay as history. The old README recorded `vmIdleTimeout=-1` in the
+Windows WSL config as the applied clock-drift fix; nothing newer is recorded about it.
+
+### No baseline: the WSL2 VM was deleted
+
+Symptom: the plan wanted a before/after comparison (baseline B captured from the WSL2 lab).
+Cause: the WSL2 VM had already been deleted, so nothing could be captured. Decision (owner):
+the C1-C4 comparisons are reported "not tested: no baseline"; the absolute thresholds still
+apply. The old K3s version could not be recovered either, so `v1.36.6+k3s1` was chosen and
+pinned. Nothing needed migrating, so the export/unregister task did not apply.
+
+### Apply took 15 minutes: Terraform waiting for the guest agent
+
+Symptom: the first `terraform apply` created the VM in 15m12s (911 s for the whole apply).
+Dead end: not cloud-init; `cloud-init status --wait` returned immediately afterwards.
+Cause: the provider waits for the QEMU guest agent to publish network interfaces; the template
+image has no agent, so the wait ran to the provider's default 15-minute timeout and ended as a
+warning. Every later plan or refresh waited the same way (the second plan took 10m15s).
+Fix: Ansible installs `qemu-guest-agent` (T5), and `main.tf` sets `agent.timeout = "30s"`. After
+that a plan took 0.7 s.
+Verified: the timeout change applied (0 added, 1 changed, 0 destroyed), then a plan showed no
+changes.
+
+### Idempotence plan wanted to "update" `pool_id`
+
+Symptom: the second `terraform plan` showed `update` instead of no changes. Only `pool_id`
+differed: empty before, the configured pool after.
+Cause (not proven by a direct read, consistent with the evidence): the API token has no
+`Pool.Audit` (a GET on the pool returned 403 in T1), so the provider cannot read the VM's pool
+membership and sees it as unset on every refresh. Applying it would have tried to reassign the
+pool without the privilege. It was not applied.
+Fix: `lifecycle { ignore_changes = [pool_id] }` on the VM resource, with pool membership
+attested by the owner on the host. `plan_guard.py` now checks the pool on create/replace only
+(on an update the planned value is the ignored one); two tests were added.
+Verified: the next plan was a no-op (0 add, 0 change, 0 destroy).
+Limit: the missing privilege was kept deliberately, so this relies on the owner's attestation.
+
+### UPF image build failed: Debian bullseye is end of life
+
+Symptom: `docker build` of the custom UPF stopped at the Dockerfile's `apt-get update &&
+apt-get upgrade -y && apt-get install ...` in the `debian:bullseye` builder stage, exit 100.
+Dead end: not transient; the base layers pulled fine and the failure was persistent.
+Cause: bullseye reached end of life. The mirrors still list `bullseye-security`, but about 50
+package files (perl, python3.9, openssl, curl, gnutls, mongoc, ...) return 404 there; the same
+file returned 200 on `archive.debian.org` (checked for one `curl` package).
+Fix (owner decision): the repo Dockerfile is unchanged. The `upf_image` Ansible role renders
+the VM's copy with one extra `RUN` after the builder's `FROM` that rewrites the apt sources to
+`archive.debian.org`, removes the `bullseye-updates` lines and sets
+`Acquire::Check-Valid-Until false` for that stage.
+Consequences: the builder stage receives **no more security updates** (the archive is frozen);
+it only compiles `open5gs-upfd`, the runtime image is the stock Gradiant one, and the build is
+not bit-identical to before.
+Verified: the first build with the rewrite ran `ok=8 changed=2 failed=0`; `open5gs-upfd -v` in
+the image reports v2.8.0; a static test checks that the repo Dockerfile has no diff and the
+rendered file differs by exactly that one line.
+
+### Tracer did not grow right after the UE restart
+
+Symptom: in the second live deploy, the 60-second check saw no growth in the newest pcap.
+Action: the check's restart path ran (tracer pod only, no pcap deleted) and the newest pcap
+then grew. Same failure class as "Tracer pod: `tcpdump` can silently stop capturing after heavy
+pod churn" above.
+Cause: not proven. The check ran right after the UE restart (tunnel and traffic just starting,
+`tcpdump` write buffering) is the likely explanation, but it was not tested.
+
+### `verify` reported no ping result on a working lab
+
+Symptom: `lab.sh verify` showed "no result" for the UE ping although the ping was fine.
+Cause: the parser required text before the packet count in ping's summary line, so a correct
+line never matched.
+Fix: an anchored regex in `lab.sh`.
+Verified: after the fix every check passed on the live lab, including UE ping 5/5 through
+`uesimtun0` and the N3 in-counter rising during the ping.
+
+### Rebuilt cluster would have kept a stale kubeconfig
+
+Not hit live. The K3s role's kubeconfig copy now uses `force: true`; with `force: false` a
+from-zero rebuild would keep the old `~/.kube/config` with the previous cluster's CA. Separately,
+the very first kubeconfig write failed because `~/.kube` did not exist; creating the directory
+(mode 700) fixed it.
+Not tested: a real from-zero rebuild (`up` from zero) was not run in these notes.
+
+### The Proxmox API stalled when the NAS was off at night
+
+Symptom: API storage calls (`/nodes/<node>/storage/...`) timed out at 30 s and
+`pvestatd`/`pvedaemon` stalled, so pool, storage and node-status reads could not be answered.
+Cause: a hung NFS mount for an existing backup storage on the host (the owner's NAS was off).
+No Proxmox change was made by the agents; after the owner restored the NAS the calls answered.
+Advice, recorded in `docs/lab-proxmox.md`: mount NFS storage with
+`soft,nofail,x-systemd.automount`. That advice has not been applied or tested here.
+
+### Tracer stall 1: the AppArmor `tcpdump` profile denied `-z gzip`
+
+Symptom: the tracer's rotating `tcpdump` (`-G 300 -z gzip`) stopped writing at a rotation
+after the pod started (not every gzip failure stalled it: earlier rotations with the same
+failure did not). The next pcap stayed 0 bytes, `tcpdump` (PID 1) sat in state R
+at about 100% of one core, and the log said `compress_savefile: execlp(gzip, ...) failed:
+Permission denied`. It happened more than twice (after the UE restart in T7, before R1, after `-Z root`, and again
+after the liveness restart). It
+never happened on WSL2.
+Dead ends: adding `-Z root` did not help (still "Permission denied", then the spin). In a
+throwaway `tcpdump` in the pod, `-z` with `gzip`, `/bin/gzip`, `/bin/true`, `/bin/busybox` and
+`/bin/sh` all failed with EACCES from `execlp`, even as root with full capabilities, NoNewPrivs 0
+and Seccomp 0. A `strace` attempt hung and gave no data. With `-Z root` the liveness probe (added in that
+round) killed the container once, at about 15:12Z, and the new `tcpdump` ran again; the stall
+came back at the next rotation, so the probe was a recovery path, not a fix.
+Cause (confirmed for the exec failure): Ubuntu 24.04 loads an AppArmor profile `tcpdump` in
+enforce mode, attached by path to `/usr/bin/tcpdump`, and it applies inside the container too.
+The pod's `/proc/1/attr/current` read `tcpdump (enforce)`. For `-z` the profile allows exec of
+`/{usr/,}bin/gzip` and `/{usr/,}bin/bzip2` only. In `nicolaka/netshoot` `gzip` is a symlink to
+`/bin/busybox`, AppArmor matches the resolved target, and the kernel log showed 15 identical
+denials: `operation=exec profile=tcpdump name=/bin/busybox requested_mask=x`. The WSL2 kernel
+has no AppArmor LSM, so `tcpdump` ran unconfined there.
+Fix (owner chose it): no `-z`. The capture script's 60 s housekeeping loop compresses rotated
+files itself (to a hidden temp name, then rename), never touching the newest file, and a
+liveness probe fails the container when the newest `neoncore-*.pcap*` is older than 120 s. The
+VM's AppArmor profile is untouched.
+Verified (notes, 15:23-15:41Z): 3 rotations, each previous file gzipped, newest file growing,
+`tcpdump` in state S at all 32 samples, 0 restarts, 0 AppArmor denials, `lab.sh verify` passed.
+To be plain about the limit: the AppArmor denials explain only the failed exec. Only `exec`
+denials were logged (0 other `tcpdump` denials), so the PID 1 spin that followed the failed
+exec was not explained by any denial. Stall 2 below found a trigger that may be the same effect; that was not tested for stall 1.
+
+### Tracer stall 2: an orphaned scenario `tcpdump` reparented to PID 1 and spun it
+
+Symptom: R2 failed E1. The tracer container was killed by its liveness probe (exit 137) at
+17:49Z after the main pcap's last write at 17:44:29Z, with no error in the log and no
+AppArmor denial. The first scenario capture had started at 17:44:26 and stopped at 17:44:31.
+Dead end: the compress-in-the-loop fix above had already removed the `-z` trigger, so this was
+not the same cause.
+Cause (trigger and effect proven; the code path inside `tcpdump` 4.99.6 not identified):
+the tracer ran `exec tcpdump ...`, so `tcpdump` was the container's PID 1.
+`phase6/capture.py` starts a per-scenario capture with `sh -c 'nohup tcpdump ... & echo $! >
+pid'` through `kubectl exec`; when that shell exits, the scenario `tcpdump` is reparented to
+PID 1, the main `tcpdump`. Repro on the live pod, 2 of 2: when the scenario `tcpdump` exits
+after `kill -INT`, PID 1 goes to state R (35+81 ticks in 1 s) and the main file stops growing.
+The earlier `-z` failure had the same shape: a child of PID 1 exiting. A control in an
+`unshare` PID namespace did not reproduce the spin, so that test is inconclusive. The repro
+stalled the live tracer twice (restart count 3: one from R2, two from the repro). In the R2
+stall the liveness probe restarted the container 4 min 42 s after the scenario `tcpdump` stopped
+(17:44:31Z to 17:49:13Z, notes).
+Fix: `shareProcessNamespace: true` on the tracer pod, so the pause container is PID 1 and reaps
+orphans (`f2ec4b1`). The compress loop and the liveness probe stay as the safety net.
+Verified (notes, 18:41-19:00Z): 4 of 4 repro cycles with PID 1 `/pause` and the main
+`tcpdump` (pid 7) in state S, 3 rotations, 32 samples all S with 3 to 5 ticks, 0 restarts.
+Limit: only the command-level start/stop sequence was exercised in that window, not an
+evaluator E3 suite; the later runs below ran the real suites.
+
+### `lab.sh start` raced the UPF pod after a clean stop
+
+Symptom: during T10 the first `start.sh` after a clean `stop.sh` exited 1 at step 5 with
+`kubectl wait ... pod -l app=upf`: "error: no matching resources found". `set -e` aborted
+before the recovery order and left pods in ContainerCreating. A second run passed (54 s).
+Cause: `kubectl wait` fails at once when the pod does not exist yet, which is the case right
+after scaling up from zero.
+Fix (`98f1e98`): a bounded retry (`wait_pod_ready`, 300 s) replaces the bare wait; tests use a
+stub that answers "no matching resources" twice and then succeeds, and a case where the pod
+never appears.
+Verified: stop, then `start.sh` first try rc=0, all pods Ready about 69 s after the start,
+tracer growing, `verify` passed.
+
+### R2 failed twice, then R2c and R3 passed
+
+Rules: a failed threshold fails the run and the whole R2 is rerun; partial reruns don't count.
+- R2 (attempt 1): FAIL on E1 (tracer restart, stall 2 above) and E6(a) (2 text hits in
+  executable or config files; `infra/README.md` was reworded). E2, E3 15/15, E4 and E7
+  passed. Evidence: `project/reports/L0/eval/run-2-fromzero/README.md`.
+- R2b: FAIL on E1 sample count only. The last soak sample was at 20:38:03Z and the evaluator
+  took pods-end 125 s after the soak returned, so 25 samples against the required 26. Every
+  health condition held at all samples and the restart delta was 0. The cause is the
+  evaluator's procedure, not the lab; no lab change. Evidence:
+  `project/reports/L0/eval/run-2b-fromzero/README.md`.
+- R2c: PASS. pods-start, soak and pods-end ran as one chained invocation (25 samples, window
+  1501.5 s, 24 needed). E1, E2 3/3, E3 15/15 (Wilson 95% [0.796, 1.000]), E4, E6(a)(b), E7. With
+  it, E5 (from zero) is PASS for the second from-zero attempt. Evidence:
+  `project/reports/L0/eval/run-2c-fromzero/README.md`.
+- R3 after the owner's `golden-l0` rollback: PASS. E1, E2 3/3, E3 9/9 (Wilson [0.701, 1.000]),
+  E4, E7 (laptop scan 2 after the reboot, guard table and unit, no NAD); E8 PASS. The
+  pre-rollback E8 checks passed too. Evidence: `project/reports/L0/eval/run-3-restore/README.md`
+  and its `pre-rollback/` folder.
+- C1 to C4 are "not tested: no baseline" in every run (owner waiver).
+
+### `pcf` and `udr` restart during boot
+
+Observation: after each `start.sh` from the stopped state, `pcf` restarted 2 times and `udr`
+once; all other pods 0; everything was 1/1 Running at the end. Seen on two consecutive starts
+(`project/notes/L0.md`, T10 step 1 and follow-up). The notes attribute it to startup ordering;
+that was not tested and no fix was made.
+
+### UE self-re-registration and Authentication failure #21
+
+Observations from the evaluator's pcaps, not defects fixed in L0:
+- After a UE-originated deregistration the scenario UE re-registers by itself with its 5G-GUTI,
+  about 200 ms after the UEContextRelease; the runner does not trigger it. Deregistration
+  pcaps showing it: R1 3 of 5, R2 4 of 5, R2b 5 of 5, R2c 5 of 5, R3 3 of 3. It explains why
+  `reginitreq` rose by 18 in R1 (15 scenario registrations plus 3 re-registrations). In R1 the
+  re-registered UE also set up a PDU session that the capture does not show released (O-2). In R2c all 5 re-registered UEs also set up a
+  PDU session.
+- Authentication failure cause #21 (synch failure) appears before every SUCI registration that reaches authentication (the reject UE also uses
+  SUCI and never reaches authentication):
+  10/10 in R1, R2, R2b and R2c, 6/6 in R3. The network then resyncs and the registration
+  succeeds. The 3 R1 GUTI re-registrations do not show it. Cause: not verified; the telco
+  reviewer's hypothesis is a subscriber document without `sqn`. Stage 7 will need to tell this
+  harmless #21 from an injected authentication fault.
+- 5GMM STATUS #101 (message not compatible with the protocol state): R1 had two. On the
+  deregistration scenarios `-052112` (RAN 6) and `-052411` (RAN 17), the re-registering UE got
+  a Registration accept and then sent STATUS #101 at frame 727 instead of Registration
+  complete. The AMF released RAN 17 30.01 s after the accept (seen in
+  `initial-registration-052444`, frames 405/407), which fits T3550 expiring 5
+  times; that is inferred from timing only (AMF log and retransmissions not seen). That is why
+  `reginitsucc` rose by 11 (10 + 1), not 13. One #101 appeared in each of R2, R2b and R3
+  (also in the pre-rollback check); none in R2c. Why UERANSIM answers #101 was not determined.
+Evidence: `project/reports/L0/eval/run-1-proxmox/README.md` (O-1 to O-3),
+`project/reports/L0/eval/run-2-fromzero/README.md`,
+`project/reports/L0/eval/run-2b-fromzero/README.md`,
+`project/reports/L0/eval/run-2c-fromzero/README.md`,
+`project/reports/L0/eval/run-3-restore/README.md`, and `project/reports/L0/telco.md` (TA20).
+
+### E9: the 30-second README test
+
+Static checks S1 to S6 passed (attempt 1 tested at `100fd30`, attempt 2 at `fb1bab2`). The
+reader test used 3 model readers (opus, sonnet, haiku; no human reader). Attempt 1: opus 5/6,
+sonnet 5/6, haiku 4/6 with Q1 incorrect (it did not name Open5GS, UERANSIM or a simulated
+gNB/UE). One README sentence naming the staged roadmap was then added (`a59970b`, aimed at
+Q6). Attempt 2: opus 6/6, sonnet 6/6, haiku 4/6 with Q1 incorrect again.
+
+The verdict depends on how the threshold is read. The evaluator pre-registered that all 3
+readers count, so E9(b) fails under that rule (2 of 3 passed, twice). The owner ruled on
+2026-11-11 that the plan's "Readers: >= 2" means at least 2 readers pass; opus and sonnet
+passed strictly in both attempts, including attempt 1 before any README change. On that
+threshold E9(b) passes. Both readings are on record. Caveats: attempt 2 is not independent (the
+sentence was written knowing the attempt-1 answers); the strict reading for attempt 1 was
+chosen after the answers were seen; lenient scoring (6/6 for all) is sensitivity only; model
+readers only, no human reader; no repeat runs. The README was not reworded to fit the test.
+Evidence: `project/reports/L0/eval/readme30s/`, `project/reports/L0/eval/readme30s/run2/` and
+the ruling in `project/reports/L0/close.md` (deviation 1).
+
+### Open at the time of writing
+
+(Written mid-stage. Later runs supersede part of this list: start/stop and the guard's
+reboot persistence were exercised in R3. The rest is unchanged.)
+
+Not tested in the notes: `up` from zero, start/stop/snapshot against the live API, the guard's
+reboot persistence, an external probe from a non-allowlisted host, the host-key read through
+the guest agent, and a clean `l0-base` create-and-wait success path (it ran once in a call whose
+result was not printed; the rerun reported "already exists").

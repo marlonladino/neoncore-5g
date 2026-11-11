@@ -1,0 +1,13 @@
+NeonCore L0 E5 owner attestation (plan L0 section 8, E5: "The owner attests, and the log shows no gap or manual command")
+
+Owner statement, verbatim: "Yes, no manual step"
+Given: in chat to the lead, 2026-11-10; relayed to the evaluator by the lead.
+Refers to: run 1 (from zero), 2026-11-10T16:26:23Z to 2026-11-10T16:33:01Z, exit=0.
+Not seen by the evaluator first-hand (relayed statement).
+
+Evaluator log check (project/notes/L0-fromzero-lab-up-1.log, commit c1e001a):
+  18 step markers, 1 to 18, in order, no step missing; every interval between markers holds
+  script output; longest step 7 = 163 s (Ansible K3s/UPF image play, with task output and
+  the node-Ready retry loop); no prompt, no input line, no manual command visible.
+  Host key: pinned by trust on first use (D17), printed by step 5; no manual acceptance.
+  lab-ops reported the same (no prompt or manual step).

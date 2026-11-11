@@ -1,0 +1,49 @@
+# Build neoncore-upf:2.8.0-metrics on the VM exactly as the DEVLOG describes
+# (docker build -t neoncore-upf:2.8.0-metrics phase2/upf-metrics-patch/). K3s runs with
+# --docker, so the image is found with imagePullPolicy IfNotPresent; no registry.
+# The source directory is read-only here: it is copied, never edited.
+- name: Build directory on the VM
+  ansible.builtin.file:
+    path: "{{ upf_image_dest }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy the patch
+  ansible.builtin.copy:
+    src: "{{ upf_image_src }}/gtp-path-metrics.patch"
+    dest: "{{ upf_image_dest }}/gtp-path-metrics.patch"
+    mode: "0644"
+  register: upf_patch
+
+# The repo Dockerfile is never edited: the VM copy gets one extra RUN in the builder stage
+# (see defaults: bullseye is EOL, packages come from archive.debian.org). Rendered
+# deterministically, so a rerun changes nothing and does not trigger a rebuild.
+- name: Dockerfile for the VM (repo file plus the archive.debian.org line in the builder stage)
+  ansible.builtin.template:
+    src: Dockerfile.j2
+    dest: "{{ upf_image_dest }}/Dockerfile"
+    mode: "0644"
+  register: upf_df
+
+- name: Is the image already present
+  ansible.builtin.command: docker image inspect {{ upf_image_tag }} --format '{{ '{{' }}.Id{{ '}}' }}'
+  register: upf_have
+  changed_when: false
+  failed_when: false
+
+- name: Build the UPF image (only when missing or the sources changed)
+  ansible.builtin.command: docker build -t {{ upf_image_tag }} {{ upf_image_dest }}
+  when: upf_have.rc != 0 or upf_patch.changed or upf_df.changed
+  register: upf_build
+  # The base image and apt-get upgrade are not pinned, so the build is not bit-identical (recorded in the plan).
+
+- name: open5gs-upfd version in the image
+  ansible.builtin.command: docker run --rm --entrypoint /opt/open5gs/bin/open5gs-upfd {{ upf_image_tag }} -v
+  register: upf_ver
+  changed_when: false
+
+- name: UPF reports 2.8.0
+  ansible.builtin.assert:
+    that: "'2.8.0' in (upf_ver.stdout + upf_ver.stderr)"
+    fail_msg: "open5gs-upfd -v did not report 2.8.0"
+    success_msg: "{{ (upf_ver.stdout + upf_ver.stderr) | trim }}"

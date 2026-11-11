@@ -1,0 +1,6 @@
+- name: NeonCore K3s and workload images
+  hosts: lab
+  become: true
+  roles:
+    - { role: k3s, tags: [k3s] }
+    - { role: upf_image, tags: [upf_image] }

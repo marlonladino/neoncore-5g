@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+const { title, description = 'NeonCore 5G: a 5G SA testbed extended into an AI system, built with AI agents under the owner\'s direction.' } = Astro.props;
+const path = Astro.url.pathname;
+const cur = (p) => (p === '/' ? path === '/' : path.startsWith(p)) ? 'page' : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} // NeonCore 5G</title>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <a class="brand" href="/">NEONCORE 5G</a>
+        <p class="tag">Open5GS + UERANSIM on K3s // local build log</p>
+        <nav class="main" aria-label="Main">
+          <a href="/" aria-current={cur('/')}>home</a>
+          <a href="/blog/" aria-current={cur('/blog')}>blog</a>
+          <a href="/tutorials/" aria-current={cur('/tutorials')}>tutorials</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap"><slot /></main>
+    <footer>
+      <div class="wrap">
+        Built with AI agents (Claude Code) under the owner's direction. <a href="https://github.com/marlonladino/neoncore-5g">Source on GitHub</a>. MIT licensed.
+      </div>
+    </footer>
+  </body>
+</html>

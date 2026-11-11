@@ -1,0 +1,51 @@
+# Ported from setup/install-docker.sh (Docker apt repo with its GPG key).
+- name: Keyrings directory
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Docker apt key
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: "0644"
+
+- name: Docker apt repository
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/docker.sources
+    mode: "0644"
+    content: |
+      Types: deb
+      URIs: https://download.docker.com/linux/ubuntu
+      Suites: {{ ansible_distribution_release }}
+      Components: stable
+      Architectures: {{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}
+      Signed-By: /etc/apt/keyrings/docker.asc
+  register: docker_repo
+
+- name: Docker packages
+  ansible.builtin.apt:
+    update_cache: "{{ docker_repo.changed }}"
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Docker running and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Docker version (evidence)
+  ansible.builtin.command: docker --version
+  register: docker_version
+  changed_when: false
+
+- name: Show the Docker version
+  ansible.builtin.debug:
+    msg: "{{ docker_version.stdout }}"

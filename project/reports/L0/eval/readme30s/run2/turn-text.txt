@@ -1,0 +1,26 @@
+=== TURN 1 (plus 1 image) ===
+Below is the top of a software project's README page, as a visitor sees it, followed by one frame of the animated GIF it shows. Read it as you would in about 30 seconds. Do not summarize or analyze it. Reply with only the word: done
+
+----- PAGE START -----
+# NeonCore 5G
+
+[Image (animated GIF), alt text: NeonCore terminal control center demo. One representative frame is attached below.]
+
+A 5G standalone (SA) testbed: Open5GS core and UERANSIM gNB/UE on single-node K3s, inside a
+Proxmox VM, with Prometheus, Grafana and packet tracing. Next, planned: labeled faults and AI that
+finds them. The work follows a staged roadmap (stages W0 to 12, status per stage in the
+[roadmap](docs/roadmap/neoncore-roadmap.pdf)). Built with AI agents under the owner's direction.
+
+```bash
+scripts/labenv infra/lab.sh up
+```
+----- PAGE END -----
+
+=== TURN 2 ===
+The page is now closed. Answer from memory, in writing, briefly (one or two sentences each). If you don't know, say so.
+Q1. What is this?
+Q2. What is it for, or where is it going?
+Q3. What does it run on?
+Q4. How would you bring it up?
+Q5. What can you see or do with it?
+Q6. What's done and what's planned?

@@ -1,0 +1,19 @@
+# Managed by Ansible. Holds ONLY the neoncore_guard table. Never "flush ruleset":
+# that would wipe the Docker, kube-proxy and flannel tables.
+# add + delete + define re-creates just this table, and also works when it does not exist yet.
+add table inet neoncore_guard
+delete table inet neoncore_guard
+
+table inet neoncore_guard {
+    chain prerouting {
+        # After conntrack (-200) and before the kube-proxy/Docker DNAT (-100), so NodePorts
+        # cannot bypass the guard the way they bypass ufw INPUT rules.
+        type filter hook prerouting priority -150; policy accept;
+
+        iifname != "{{ guard_nic }}" accept
+        ct state invalid drop
+        ct state established,related accept
+        ip saddr {{ lab_admin_cidr }} tcp dport { {{ guard_ports | join(', ') }} } ct state new accept
+        counter drop
+    }
+}

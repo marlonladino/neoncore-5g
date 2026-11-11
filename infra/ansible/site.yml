@@ -1,0 +1,10 @@
+# Base system: packages, sshd hardening, kernel modules, Docker, LAN guard.
+# K3s comes later (k3s.yml) because the l0-base snapshot is taken in between.
+- name: NeonCore lab base
+  hosts: lab
+  become: true
+  roles:
+    - { role: base, tags: [base] }
+    - { role: kernel, tags: [kernel] }
+    - { role: docker, tags: [docker] }
+    - { role: firewall, tags: [firewall] }

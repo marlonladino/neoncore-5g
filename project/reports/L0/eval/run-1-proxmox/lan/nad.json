@@ -1,0 +1,35 @@
+{
+  "check": "E7: no NetworkAttachmentDefinition puts a pod on the VM's LAN NIC",
+  "source": "lab-ops capture, project/notes/L0.md section 'R1 E7 evidence (lab-ops)', commit 5510a79, captured 2026-11-10T05:12:54Z",
+  "query": "kubectl get network-attachment-definitions -A -o json",
+  "query_result": "resource type absent: the server doesn't have a resource type \"network-attachment-definitions\"",
+  "nad_count": 0,
+  "crds_present": [
+    "addons.k3s.cattle.io",
+    "etcdsnapshotfiles.k3s.cattle.io",
+    "helmchartconfigs.helm.cattle.io",
+    "helmcharts.helm.cattle.io"
+  ],
+  "api_resources_matching_network_attachment": 0,
+  "evaluator_supporting_checks_2026-11-10": {
+    "kubectl_get_crd": "same 4 CRDs, no network-attachment-definitions.k8s.cni.cncf.io",
+    "repo_manifests_referencing_NetworkAttachmentDefinition_or_k8s.v1.cni.cncf.io (phase*/manifests, infra)": 0,
+    "pods_neoncore": {
+      "total": 14,
+      "with_k8s.v1.cni.cncf.io/networks_request": 0,
+      "with_network-status": 13,
+      "network-status_entries": "cbr0 on eth0, default=true (13)"
+    },
+    "pods_monitoring": {
+      "total": 3,
+      "with_k8s.v1.cni.cncf.io/networks_request": 0,
+      "with_network-status": 3,
+      "network-status_entries": "cbr0 on eth0, default=true (3)"
+    },
+    "note": "the pod eth0 in network-status is the pod's own flannel interface, not the VM's LAN NIC; the 14th neoncore pod is the Completed dbctl Job pod"
+  },
+  "lan_nic": "eth0 (VM), from the guard's iifname rule",
+  "judgement": "PASS. With the NAD CRD absent, the API server cannot store any NetworkAttachmentDefinition, so no NAD can attach a pod to the LAN NIC. No pod requests a secondary network, and every pod's only network is the default flannel network. The frozen threshold forbids a NAD that puts a pod on the LAN NIC; it does not require the CRD to exist.",
+  "caveat": "Multus runs (kube-system multus pod Running, helm-install-multus Completed) but its NAD CRD is not installed. That does not affect this check, but it is unexpected and is reported to the lead as an observation, not a failure.",
+  "result": "PASS"
+}

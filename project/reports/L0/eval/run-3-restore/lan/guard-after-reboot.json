@@ -1,0 +1,24 @@
+{
+  "check": "E7 R3 (security review S-B7): table inet neoncore_guard and its unit present after the reboot",
+  "source": "project/notes/L0.md section R3 post-rollback evidence (lab-ops), commit c675b62, read-only capture 2026-11-10T23:07:55Z",
+  "rollback": "qmrollback to golden-l0, status stopped: OK, 2026-11-10T22:32:00Z to 22:32:01Z (owner-supplied from the Proxmox task log, project/notes/L0.md, commit 2483104)",
+  "boot": "guest boot 2026-11-10 22:33:56 (uptime -s); VM status running, uptime 2043 s at 23:07:55Z; pods started about 22:34:12Z",
+  "capture_after_boot": true,
+  "neoncore-guard.service": {
+    "is-enabled": "enabled",
+    "is-active": "active"
+  },
+  "nftables.service": {
+    "is-enabled": "masked",
+    "is-active": "inactive"
+  },
+  "table_inet_neoncore_guard_present": true,
+  "guard_chain": "prerouting, filter hook at priority mangle (-150), iifname != eth0 accept, ct invalid drop, established/related accept, tcp 22/6443/30030/30090 new from <admin-ip> accept, final counter drop (133011 packets at 23:07:55Z)",
+  "nft_check": "lan/nft-check.json (scan_parse.py nft on lan/nft-ruleset.txt): PASS",
+  "snapshot_list": [
+    "golden-l0",
+    "current (pseudo-entry)"
+  ],
+  "tracer_pid1": "/pause (shareProcessNamespace), tracer restarts 0, started 22:34:12Z",
+  "result": "PASS"
+}

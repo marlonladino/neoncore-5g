@@ -1,0 +1,23 @@
+{
+  "C1": {
+    "result": "not tested: no baseline"
+  },
+  "C2": {
+    "note": "registration-reject cause 7 is still checked by pcap_check (absolute)",
+    "result": "not tested: no baseline"
+  },
+  "C3": {
+    "result": "not tested: no baseline"
+  },
+  "C4": {
+    "failures": [],
+    "result": "PASS (absolute part only; not tested: no baseline)"
+  },
+  "informational": {},
+  "provenance": {
+    "git_clean": false,
+    "git_porcelain_lines": 24,
+    "git_sha": "24831040bab7b0506793cfa3fe14c56e8751eb8f"
+  },
+  "reading_notes": "* C2: B's item set for a scenario is the union over B's pcaps of that scenario that\n    passed V0 and V1; every Proxmox pcap of that scenario must contain it. PFCP items\n    count only when tied (pcap_check never lists untied PFCP items).\n  * C3: labels dropped before matching: instance, uid, any label whose value is an\n    IP address or a redaction placeholder, and the pod-hash suffix of `pod` values.\n    `uid` is dropped because it is a per-pod identity like the hash."
+}

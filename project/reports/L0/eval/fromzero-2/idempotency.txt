@@ -1,0 +1,26 @@
+NeonCore L0 E5 idempotency, from-zero attempt 2 (plan L0 section 8, E5)
+Second invocation of the E5 command (run 4) right after the from-zero run (run 3), by the owner in their own terminal.
+Source: lab-up-idempotency.log (byte copy of project/notes/L0-fromzero-lab-up-4.log, lab-ops redaction with site values, commit f023bba), sha256 e9af3b8c3b7c2c9ba7868d8ab04f25200dc02a5c8c07eea588dbe94523a1ec5d
+Window: 2026-11-10T19:24:23Z to 2026-11-10T19:26:14Z (111 s)
+
+Lines quoted from the log (line number: text):
+  6: proxmox_virtual_environment_vm.lab no-op
+  7: summary: 1 no-op
+  9: proxmox_virtual_environment_vm.lab no-op
+  10: summary: 1 no-op
+  12: Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+  20: hostkey: existing pin matches the guest-agent key (authenticated API)
+  162: neoncore-lab               : ok=35   changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+  225: neoncore-lab               : ok=16   changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+  319: verify: all checks passed
+  321: exit=0
+
+Threshold check:
+  Terraform: plan guard summary "1 no-op" (0 create, 0 update, 0 delete) and "Apply complete! Resources: 0 added, 0 changed, 0 destroyed." -> 0 to add, 0 to change, 0 to destroy: PASS
+    (the plan guard prints a per-resource action summary, not Terraform's literal "0 to add" line; equivalent content, same as attempt 1)
+  Ansible play 1 (base, kernel, docker, firewall): ok=35 changed=0 failed=0 skipped=6: PASS
+  Ansible play 2 (K3s, kubeconfig, UPF image): ok=16 changed=0 failed=0 skipped=1: PASS
+  Informational: kubectl apply output and the deliberate SMF/UE restart (step 13) are in the log; exit=0; verify: all checks passed.
+  Host key: run 3 pinned by trust on first use (D17, line 35 of lab-up.log); run 4 compared the pin with the guest-agent key over the authenticated API (A12): match.
+
+Idempotency: PASS

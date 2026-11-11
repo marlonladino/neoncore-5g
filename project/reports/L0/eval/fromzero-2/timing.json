@@ -1,0 +1,249 @@
+{
+  "what": "E5 timing, from-zero attempt 2 (plan L0 section 8, E5 and 8.6; informational, no threshold)",
+  "method": "start/end from the first and last timestamp lines of each log, exit from the exit= line; step start = the step marker the lab script prints (1 s resolution); step duration = next marker (or end) minus this marker",
+  "run_3_from_zero": {
+    "source": "project/reports/L0/eval/fromzero-2/lab-up.log",
+    "source_sha256": "517349c6446ded4f6a0df7ce20d804fb834363d9cee2ebc53242c16a447d945e",
+    "start": "2026-11-10T19:16:48Z",
+    "end": "2026-11-10T19:23:24Z",
+    "wall_s": 396,
+    "exit_code": 0,
+    "steps": [
+      {
+        "step": 1,
+        "title": "pin check",
+        "start": "2026-11-10T19:16:48Z",
+        "duration_s": 0
+      },
+      {
+        "step": 2,
+        "title": "terraform init and plan (plan guard, fail-closed)",
+        "start": "2026-11-10T19:16:48Z",
+        "duration_s": 1
+      },
+      {
+        "step": 3,
+        "title": "terraform apply of the saved plan",
+        "start": "2026-11-10T19:16:49Z",
+        "duration_s": 41
+      },
+      {
+        "step": 4,
+        "title": "VM running",
+        "start": "2026-11-10T19:17:30Z",
+        "duration_s": 1
+      },
+      {
+        "step": 5,
+        "title": "cloud-init wait and SSH host key pin",
+        "start": "2026-11-10T19:17:31Z",
+        "duration_s": 21
+      },
+      {
+        "step": 6,
+        "title": "Ansible: base, kernel, docker, firewall",
+        "start": "2026-11-10T19:17:52Z",
+        "duration_s": 48
+      },
+      {
+        "step": 7,
+        "title": "Ansible: K3s, kubeconfig, UPF image",
+        "start": "2026-11-10T19:18:40Z",
+        "duration_s": 163
+      },
+      {
+        "step": 8,
+        "title": "deploy",
+        "start": "2026-11-10T19:21:23Z",
+        "duration_s": 0
+      },
+      {
+        "step": 9,
+        "title": "cluster reachable",
+        "start": "2026-11-10T19:21:23Z",
+        "duration_s": 0
+      },
+      {
+        "step": 10,
+        "title": "Multus HelmChart (applied unchanged; the test NAD is never applied)",
+        "start": "2026-11-10T19:21:23Z",
+        "duration_s": 14
+      },
+      {
+        "step": 11,
+        "title": "phase2 base (namespace, configmaps, mongo)",
+        "start": "2026-11-10T19:21:37Z",
+        "duration_s": 21
+      },
+      {
+        "step": 12,
+        "title": "phase2 NFs, dbctl, UERANSIM; phase3; phase4",
+        "start": "2026-11-10T19:21:58Z",
+        "duration_s": 2
+      },
+      {
+        "step": 13,
+        "title": "recovery order (UPF Ready, then SMF, then UE)",
+        "start": "2026-11-10T19:22:00Z",
+        "duration_s": 30
+      },
+      {
+        "step": 14,
+        "title": "dbctl Job completes",
+        "start": "2026-11-10T19:22:30Z",
+        "duration_s": 0
+      },
+      {
+        "step": 15,
+        "title": "all workload pods Ready",
+        "start": "2026-11-10T19:22:30Z",
+        "duration_s": 0
+      },
+      {
+        "step": 16,
+        "title": "tracer liveness",
+        "start": "2026-11-10T19:22:30Z",
+        "duration_s": 24
+      },
+      {
+        "step": 17,
+        "title": "copy run artifacts out",
+        "start": "2026-11-10T19:22:54Z",
+        "duration_s": 1
+      },
+      {
+        "step": 18,
+        "title": "verify",
+        "start": "2026-11-10T19:22:55Z",
+        "duration_s": 29
+      }
+    ]
+  },
+  "run_4_idempotency": {
+    "source": "project/reports/L0/eval/fromzero-2/lab-up-idempotency.log",
+    "source_sha256": "e9af3b8c3b7c2c9ba7868d8ab04f25200dc02a5c8c07eea588dbe94523a1ec5d",
+    "start": "2026-11-10T19:24:23Z",
+    "end": "2026-11-10T19:26:14Z",
+    "wall_s": 111,
+    "exit_code": 0,
+    "steps": [
+      {
+        "step": 1,
+        "title": "pin check",
+        "start": "2026-11-10T19:24:23Z",
+        "duration_s": 0
+      },
+      {
+        "step": 2,
+        "title": "terraform init and plan (plan guard, fail-closed)",
+        "start": "2026-11-10T19:24:23Z",
+        "duration_s": 1
+      },
+      {
+        "step": 3,
+        "title": "terraform apply of the saved plan",
+        "start": "2026-11-10T19:24:24Z",
+        "duration_s": 0
+      },
+      {
+        "step": 4,
+        "title": "VM running",
+        "start": "2026-11-10T19:24:24Z",
+        "duration_s": 1
+      },
+      {
+        "step": 5,
+        "title": "cloud-init wait and SSH host key pin",
+        "start": "2026-11-10T19:24:25Z",
+        "duration_s": 1
+      },
+      {
+        "step": 6,
+        "title": "Ansible: base, kernel, docker, firewall",
+        "start": "2026-11-10T19:24:26Z",
+        "duration_s": 15
+      },
+      {
+        "step": 7,
+        "title": "Ansible: K3s, kubeconfig, UPF image",
+        "start": "2026-11-10T19:24:41Z",
+        "duration_s": 5
+      },
+      {
+        "step": 8,
+        "title": "deploy",
+        "start": "2026-11-10T19:24:46Z",
+        "duration_s": 0
+      },
+      {
+        "step": 9,
+        "title": "cluster reachable",
+        "start": "2026-11-10T19:24:46Z",
+        "duration_s": 0
+      },
+      {
+        "step": 10,
+        "title": "Multus HelmChart (applied unchanged; the test NAD is never applied)",
+        "start": "2026-11-10T19:24:46Z",
+        "duration_s": 1
+      },
+      {
+        "step": 11,
+        "title": "phase2 base (namespace, configmaps, mongo)",
+        "start": "2026-11-10T19:24:47Z",
+        "duration_s": 1
+      },
+      {
+        "step": 12,
+        "title": "phase2 NFs, dbctl, UERANSIM; phase3; phase4",
+        "start": "2026-11-10T19:24:48Z",
+        "duration_s": 3
+      },
+      {
+        "step": 13,
+        "title": "recovery order (UPF Ready, then SMF, then UE)",
+        "start": "2026-11-10T19:24:51Z",
+        "duration_s": 28
+      },
+      {
+        "step": 14,
+        "title": "dbctl Job completes",
+        "start": "2026-11-10T19:25:19Z",
+        "duration_s": 0
+      },
+      {
+        "step": 15,
+        "title": "all workload pods Ready",
+        "start": "2026-11-10T19:25:19Z",
+        "duration_s": 0
+      },
+      {
+        "step": 16,
+        "title": "tracer liveness",
+        "start": "2026-11-10T19:25:19Z",
+        "duration_s": 25
+      },
+      {
+        "step": 17,
+        "title": "copy run artifacts out",
+        "start": "2026-11-10T19:25:44Z",
+        "duration_s": 0
+      },
+      {
+        "step": 18,
+        "title": "verify",
+        "start": "2026-11-10T19:25:44Z",
+        "duration_s": 30
+      }
+    ]
+  },
+  "derived_run_3": {
+    "vm_create_s": 41,
+    "vm_create_source": "Terraform provider line: Creation complete after 41s",
+    "upf_image_build": "inside step 7 (K3s, kubeconfig, UPF image, 163 s in total); not timed separately in the log",
+    "start_to_all_workload_pods_ready_s": 342,
+    "start_to_all_workload_pods_ready_source": "run start to the step 16 marker (step 15 all workload pods Ready finished)"
+  },
+  "gaps": "longest step is 7 (163 s); see attestation.txt for the evaluator's gap check",
+  "recorded_by": "evaluator, 2026-11-10"
+}

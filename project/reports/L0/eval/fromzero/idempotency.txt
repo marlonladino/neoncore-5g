@@ -1,0 +1,24 @@
+NeonCore L0 E5 idempotency (plan L0 section 8, E5)
+Second invocation of the E5 command right after the from-zero run, by the owner in their own terminal.
+Source: project/notes/L0-fromzero-lab-up-2.log (lab-ops redaction with site values, commit c1e001a), sha256 f15ac2d0cc578da91bab473ff1a557882a4750d32a318b69273ea0a2bfbe96e4
+Window: 2026-11-10T16:34:06Z to 2026-11-10T16:35:57Z
+
+Lines quoted from the log (line number: text):
+  6: proxmox_virtual_environment_vm.lab no-op
+  7: summary: 1 no-op
+  9: proxmox_virtual_environment_vm.lab no-op
+  10: summary: 1 no-op
+  12: Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+  162: neoncore-lab               : ok=35   changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
+  225: neoncore-lab               : ok=16   changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+  318: verify: all checks passed
+  320: exit=0
+
+Threshold check:
+  Terraform: plan guard summary "1 no-op" (0 create, 0 update, 0 delete) and "Apply complete! Resources: 0 added, 0 changed, 0 destroyed." -> 0 to add, 0 to change, 0 to destroy: PASS
+    (the plan guard prints a per-resource action summary, not Terraform's literal "0 to add" line; equivalent content)
+  Ansible play 1 (base, kernel, docker, firewall): ok=35 changed=0 failed=0 skipped=6: PASS
+  Ansible play 2 (K3s, kubeconfig, UPF image): ok=16 changed=0 failed=0 skipped=1: PASS
+  Informational: kubectl apply output and the deliberate SMF/UE restart (step 13) are in the log; exit=0; verify: all checks passed.
+
+Idempotency: PASS

@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "echo_reply_frames": 40,
+      "echo_request_frames": 40,
+      "files": [
+        {
+          "file": "neoncore-20261110-173658.pcap",
+          "sha256": "6a4f6fddb46a5a10310f959225bfdd86757a3a0bcf5c77db2d9c1c1d6e25a174",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 80,
+      "k": 1,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794332489,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794332442.6489308,
+        1794332461.8015347
+      ]
+    },
+    {
+      "echo_reply_frames": 38,
+      "echo_request_frames": 38,
+      "files": [
+        {
+          "file": "neoncore-20261110-174158.pcap",
+          "sha256": "256e80defd4d37f03976c4799371fb496c59c730687a470e164519acbdf8cce1",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 76,
+      "k": 2,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794332563,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794332517.6541462,
+        1794332536.8127732
+      ]
+    },
+    {
+      "echo_reply_frames": 40,
+      "echo_request_frames": 40,
+      "files": [
+        {
+          "file": "neoncore-20261110-174158.pcap",
+          "sha256": "38e0cfbbb643735c7248d0c8a7b6b454a1e56d1887ecb813b39bb91dd40c02c0",
+          "tshark_rc": 0
+        }
+      ],
+      "gtp_icmp_frames": 80,
+      "k": 3,
+      "note": "frames are not de-duplicated here (counts only, threshold is > 0)",
+      "status": "tested",
+      "tracer_last_write_epoch": 1794332637,
+      "tracer_max_age_s": 30,
+      "tshark": "4.2.2",
+      "window": [
+        1794332591.108875,
+        1794332610.279656
+      ]
+    }
+  ]
+}

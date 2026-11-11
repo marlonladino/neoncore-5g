@@ -11,9 +11,13 @@ spec:
     metadata: { labels: { app: tracer } }
     spec:
       hostNetwork: true
+      # PID 1 becomes the pause container, which reaps orphans. Without this the scenario tcpdump
+      # that phase6/capture.py starts with nohup is reparented to PID 1 (the main tcpdump), and
+      # when it exits the main tcpdump spins at 100% CPU and stops writing.
+      shareProcessNamespace: true
       containers:
         - name: tracer
-          image: nicolaka/netshoot:latest
+          image: nicolaka/netshoot@sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70
           command: ["/bin/sh", "/scripts/capture.sh"]
           env:
             - { name: PCAP_DIR, value: "/pcaps" }
@@ -22,6 +26,19 @@ spec:
             - { name: RETENTION_MINUTES, value: "120" }
           securityContext:
             privileged: true
+          # Fails when the newest pcap (or its .gz) has not been modified for 120 s. The 180 s initial
+          # delay covers startup (tcpdump creates its file at once, but old files may be the newest
+          # until then); an empty directory passes.
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - 'f=$(ls -t /pcaps/neoncore-*.pcap* 2>/dev/null | head -1); [ -z "$f" ] || [ $(( $(date +%s) - $(stat -c %Y "$f") )) -le 120 ]'
+            initialDelaySeconds: 180
+            periodSeconds: 60
+            failureThreshold: 3
+            timeoutSeconds: 10
           resources:
             requests: { cpu: 20m, memory: 64Mi }
           volumeMounts:

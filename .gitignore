@@ -20,3 +20,23 @@ traces/scenario-runs/
 
 # ad hoc manual captures (CLI 'c' key) -- same reasoning as scenario-runs/ above
 traces/manual/
+
+# --- W0: agent workflow ---
+# lab secrets (loaded only through scripts/labenv)
+.env.lab
+# per-user Claude Code settings and agent memory (contains lab details)
+.claude/settings.local.json
+.claude/agent-memory-local/
+# generated data and fetched corpora (never committed)
+datasets/
+phase9/corpus/
+site/node_modules/
+site/dist/
+
+# --- push prep: infra and capture hygiene ---
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+*.tfplan
+site/.astro/

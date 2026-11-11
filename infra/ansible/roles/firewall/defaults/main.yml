@@ -1,0 +1,8 @@
+lab_admin_cidr: "{{ lookup('env', 'LAB_ADMIN_CIDR') }}"
+lab_user: "{{ lookup('env', 'TF_VAR_vm_user') }}"
+lab_host: "{{ ansible_host }}"
+lab_key: "{{ lookup('env', 'LAB_SSH_KEY_FILE') }}"
+known_hosts: "{{ lookup('env', 'NEONCORE_STATE_DIR') }}/known_hosts"
+evidence_dir: "{{ lookup('env', 'NEONCORE_STATE_DIR') }}/evidence"
+guard_ports: [22, 6443, 30030, 30090]
+guard_counter_re: 'counter packets [0-9]+ bytes [0-9]+'
