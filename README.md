@@ -216,7 +216,7 @@ work is called a Stage; each stage has a plan, an owner approval and a closing r
 | Stage | Scope | Status |
 |---|---|---|
 | W0 | Agent workflow and approval gate | Closed |
-| L0 | Migrate to Proxmox, retire the old host, repo polish | In progress |
+| L0 | Migrate to Proxmox, retire the old host, repo polish | Closed 2026-11-11 (old-host retirement, T15a, owner-only, not done) |
 | 7 | Labeled fault injection and dataset generator | Planned |
 | 8 | Call-flow extractor and first LLM troubleshooter | Planned |
 | 9 | Telco-RAG over 3GPP specs | Planned |
