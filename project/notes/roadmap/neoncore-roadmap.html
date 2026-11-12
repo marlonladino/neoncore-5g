@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NeonCore 5G AI Roadmap</title>
+<style>
+  @page { size: Letter; margin: 0.5in 0.6in 0.55in; }
+  :root { --ink: #14161c; --muted: #5a6070; --rule: #d8dbe3; --band: #f3f5f9; --accent: #007f86; --accent2: #b3168f; --ok: #1d7a3a; --warn: #9a5b00; }
+  * { box-sizing: border-box; }
+  html, body { background: #fff; }
+  body { margin: 0; color: var(--ink); font: 9pt/1.36 "DejaVu Sans", "Liberation Sans", Arial, sans-serif; }
+  h1 { font-size: 20pt; margin: 0 0 2pt; }
+  h2 { font-size: 13pt; margin: 14pt 0 3pt; color: var(--accent); border-bottom: 1.2pt solid var(--accent); padding-bottom: 2pt; break-after: avoid; }
+  p { margin: 0 0 5pt; }
+  .lede { color: var(--muted); }
+  .mono { font-family: "DejaVu Sans Mono", monospace; font-size: 8.7pt; }
+  table { width: 100%; border-collapse: collapse; margin: 4pt 0 6pt; }
+  th, td { text-align: left; vertical-align: top; padding: 3pt 5pt; border-bottom: 0.6pt solid var(--rule); }
+  tr { break-inside: avoid; }
+  th { font-size: 8.2pt; text-transform: uppercase; letter-spacing: 0.4pt; color: var(--muted); border-bottom: 1pt solid var(--ink); }
+  td.id { font-weight: bold; white-space: nowrap; }
+  td.name { font-weight: bold; }
+  td .sub { display: block; font-weight: normal; color: var(--muted); font-size: 8.4pt; }
+  .pill { display: inline-block; padding: 0 5pt; border-radius: 6pt; font-size: 8pt; font-weight: bold; white-space: nowrap; }
+  .closed { background: #e2f3e7; color: var(--ok); }
+  .next { background: #fff1db; color: var(--warn); }
+  .planned { background: #eef0f4; color: var(--muted); }
+  .note { background: var(--band); border-left: 2.5pt solid var(--accent2); padding: 5pt 8pt; margin: 6pt 0; font-size: 8.8pt; }
+  h3 { font-size: 10.5pt; margin: 9pt 0 2pt; break-after: avoid; }
+  ul { margin: 2pt 0 6pt; padding-left: 14pt; }
+  li { margin: 1pt 0; }
+  svg { break-inside: avoid; margin: 4pt 0; }
+  svg text { font-family: "DejaVu Sans", Arial, sans-serif; }
+  footer { margin-top: 10pt; color: var(--muted); font-size: 8pt; }
+</style>
+</head>
+<body>
+  <h1>NeonCore 5G AI Roadmap</h1>
+  <p class="lede">From a 5G lab to AI that finds its faults. Status as of 2026-11-12.</p>
+  <p><b>Goal:</b> build a 5G core, generate labeled faults, and build AI that finds them, with numbers to prove it. Phases 0 to 6 built the lab. Stages W0 onward move it to Proxmox and add the AI, one stage at a time; each stage has a plan, an owner approval, an independent evaluation and a closing report.</p>
+
+  <h2>Phases 0 to 6: the 5G lab (done)</h2>
+  <p class="lede">Built first on a single-node K3s cluster in WSL2; the lab now runs on Proxmox (Stage L0).</p>
+  <table>
+    <tr><th style="width:8%">Phase</th><th style="width:21%">Name</th><th>What it built</th><th style="width:10%">Status</th></tr>
+    <tr><td class="id">0</td><td class="name">Bare-metal validation<span class="sub mono">phase0/</span></td><td>Open5GS core and UERANSIM gNB/UE in docker-compose with pinned images, to prove the core, RAN and one subscriber work before Kubernetes.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">1</td><td class="name">K3s and Multus<span class="sub mono">phase1/</span></td><td>Single-node K3s with Multus CNI and local-path storage, the base for every later phase.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">2</td><td class="name">5G core and RAN on Kubernetes<span class="sub mono">phase2/</span></td><td>Open5GS network functions and UERANSIM as Deployments with headless Services in the <span class="mono">neoncore</span> namespace; a UE registers and pings through the UPF.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">3</td><td class="name">Monitoring and observability<span class="sub mono">phase3/</span></td><td>Prometheus, Grafana and kube-state-metrics in the <span class="mono">monitoring</span> namespace; AMF, SMF, UPF and PCF metrics, with a custom UPF build for the GTP-U packet counter.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">4</td><td class="name">Network tracing<span class="sub mono">phase4/</span></td><td>A tracer pod capturing N2, N3, N4 and SBI traffic at node level, with rotated pcaps on a persistent volume.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">5</td><td class="name">Terminal control center<span class="sub mono">phase5/</span></td><td>A Textual TUI to deploy, watch and tear down the lab, view pods and logs, and start captures.</td><td><span class="pill closed">Done</span></td></tr>
+    <tr><td class="id">6</td><td class="name">Documentation and scenario automation<span class="sub mono">phase6/</span></td><td>README and DEVLOG rewrite, then automated signaling scenarios (registration, registration reject, deregistration) with one pcap per run. The DEVLOG calls the scenario work "Phase 7"; its code is in <span class="mono">phase6/</span>.</td><td><span class="pill closed">Done</span></td></tr>
+  </table>
+
+  <h2>Stages W0 to 12: Proxmox and AI</h2>
+  <p class="lede">The order is fixed: W0, L0, 7, 8, 9, 10, 9B, 11, 12. A stage does not start until the one before it has closed.</p>
+  <table>
+    <tr><th style="width:8%">Stage</th><th style="width:21%">Name</th><th>Short description</th><th style="width:10%">Status</th></tr>
+    <tr><td class="id">W0</td><td class="name">Agent workflow</td><td>A lead session plus specialist agents (planner, developer, lab-ops, evaluator, telco and security reviewers, writers), and an approval gate that blocks building without an owner-approved plan.<br><b>Done when:</b> the gate tests pass.</td><td><span class="pill closed">Closed</span></td></tr>
+    <tr><td class="id">L0</td><td class="name">Proxmox migration and repo polish<span class="sub mono">infra/</span></td><td>Move the lab to a Proxmox VM with Terraform and Ansible, one command to rebuild it from zero, LAN exposure closed, golden snapshot; README with a demo GIF and this roadmap.<br><b>Done when:</b> all pods are healthy, a UE pings, the three scenarios pass with valid pcaps, Grafana shows data, and the repo explains itself in 30 seconds.</td><td><span class="pill closed">Closed</span><span class="sub">old-host retirement still open</span></td></tr>
+    <tr><td class="id">7</td><td class="name">Fault injection and dataset<span class="sub mono">phase7/</span></td><td>Six labeled faults: wrong K/OPc, unknown DNN, wrong S-NSSAI, PCF down, SMF scaled to 0, UPF down. A generator loops scenario × fault × subscriber and writes pcaps, labels and a Prometheus snapshot per run.<br><b>Done when:</b> each fault is reproducible from the TUI with its own pcap, and at least 200 validated labeled runs exist.</td><td><span class="pill next">Next</span><span class="sub">after the approval-signing fix</span></td></tr>
+    <tr><td class="id">8</td><td class="name">Call-flow extractor and troubleshooter<span class="sub mono">phase8/</span></td><td>A tshark extractor turns each pcap into a JSON call flow (NGAP and NAS messages, 5GMM/5GSM causes, timings). An LLM reads it and returns the failing step, cause code and root cause, scored against the labels.<br><b>Done when:</b> the JSON matches Wireshark for every fault, and accuracy per fault type is published.</td><td><span class="pill planned">Planned</span></td></tr>
+    <tr><td class="id">9</td><td class="name">Telco-RAG, self-built and local<span class="sub mono">phase9/</span></td><td>A self-built RAG over the 3GPP specifications (TS 23.501, 23.502, 24.501, 38.413 to start), chunked by clause, with hybrid search, reranking and clause citations. Embeddings and answers come from an open-weight LLM running locally on a Mac mini (Apple M4 Pro) on the LAN, not a cloud API. Specs are fetched from 3GPP, never committed.<br><b>Done when:</b> questions return the right clause, scores on a GSMA Open-Telco subset plus 50 project questions are published, and the model server is reachable only from the lab.</td><td><span class="pill planned">Planned</span></td></tr>
+    <tr><td class="id">10</td><td class="name">MCP server and agent<span class="sub mono">phase10/</span></td><td>An MCP server with read-only tools (pods, logs, PromQL, pcap summary) and an agent that combines the troubleshooter, Telco-RAG and MCP. Any change, including running a scenario, needs operator approval. An eval harness records task success, tool calls, cost and latency.<br><b>Done when:</b> the agent diagnoses a fault injected live, one command prints the eval table, and a 5-minute demo is linked.</td><td><span class="pill planned">Planned</span></td></tr>
+    <tr><td class="id">9B</td><td class="name">Local vs API RAG comparison<span class="sub mono">phase9/</span></td><td>Run the same Telco-RAG pipeline with the Claude API as the answer model and compare it with the local model on the Stage 9 eval set: answer quality, clause accuracy, latency and cost per 1,000 queries. Runs after Stage 10 closes.<br><b>Done when:</b> a decision record compares local and API answers side by side.</td><td><span class="pill planned">Planned</span></td></tr>
+    <tr><td class="id">11</td><td class="name">KPI anomaly detection (<span class="mono">nwdaf-lite</span>)<span class="sub mono">phase11/</span></td><td>A KPI dataset with labeled fault windows, an anomaly model served as a Kubernetes Deployment with an analytics API and a Grafana panel, MLflow tracking, a CI eval gate, and a mapping to NWDAF analytics types (TS 23.288).<br><b>Done when:</b> Grafana flags an injected fault, detection and false-alarm rates are published, and a worse model fails CI.</td><td><span class="pill planned">Planned</span></td></tr>
+    <tr><td class="id">12</td><td class="name">Model study, red-team and reference architecture<span class="sub mono">phase12/</span></td><td>An open model on a rented GPU versus the API on the eval set (quality, latency, cost); red-teaming so a malicious log or SBI string cannot trigger a tool call; a GenAI-assisted NOC reference architecture and a 10-minute demo.<br><b>Done when:</b> the decision record and injection tests in CI exist, and the reference architecture is linked from the README.</td><td><span class="pill planned">Planned</span></td></tr>
+  </table>
+
+  <h2 style="break-before: page; margin-top:0">Project specs built on NeonCore</h2>
+  <p>Each AI stage is a new folder in the same repo, so the work reads as one system that grows, not separate demos. Every stage ships with an evaluation number.</p>
+  <svg viewBox="0 0 720 330" width="100%" role="img" aria-label="NeonCore AI architecture: lab at the bottom, Stages 7 to 11 above it, the agent on top">
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5a6070"/></marker>
+    </defs>
+    <!-- operator -->
+    <rect x="250" y="6" width="220" height="30" rx="4" fill="#fff" stroke="#14161c"/>
+    <text x="360" y="25" text-anchor="middle" font-size="12" font-weight="bold">Operator, in the NeonCore TUI</text>
+    <line x1="360" y1="74" x2="360" y2="40" stroke="#5a6070" marker-end="url(#ar)"/>
+    <text x="368" y="60" font-size="9.5" fill="#5a6070">findings up, approvals down</text>
+    <!-- stage 10 -->
+    <rect x="70" y="78" width="580" height="44" rx="4" fill="#e6f4f5" stroke="#007f86"/>
+    <text x="360" y="96" text-anchor="middle" font-size="12" font-weight="bold">Stage 10 · MCP server and agent</text>
+    <text x="360" y="112" text-anchor="middle" font-size="9.5">Read-only tools: pods, logs, PromQL, pcaps; scenarios and any change need operator approval</text>
+    <!-- middle row -->
+    <rect x="20" y="160" width="210" height="44" rx="4" fill="#fff" stroke="#007f86"/>
+    <text x="125" y="178" text-anchor="middle" font-size="11.5" font-weight="bold">Stage 8 · Troubleshooter</text>
+    <text x="125" y="194" text-anchor="middle" font-size="9.5">pcap to cause code, root cause</text>
+    <rect x="255" y="160" width="210" height="44" rx="4" fill="#fff" stroke="#007f86"/>
+    <text x="360" y="178" text-anchor="middle" font-size="11.5" font-weight="bold">Stage 9 / 9B · Telco-RAG</text>
+    <text x="360" y="194" text-anchor="middle" font-size="9.5">local open-weight LLM, cites 3GPP clauses</text>
+    <rect x="490" y="160" width="210" height="44" rx="4" fill="#fff" stroke="#007f86"/>
+    <text x="595" y="178" text-anchor="middle" font-size="11.5" font-weight="bold">Stage 11 · nwdaf-lite</text>
+    <text x="595" y="194" text-anchor="middle" font-size="9.5">KPI anomaly scores in Grafana</text>
+    <line x1="125" y1="158" x2="160" y2="124" stroke="#5a6070" marker-end="url(#ar)"/>
+    <line x1="360" y1="158" x2="360" y2="124" stroke="#5a6070" marker-end="url(#ar)"/>
+    <line x1="595" y1="158" x2="560" y2="124" stroke="#5a6070" marker-end="url(#ar)"/>
+    <!-- stage 7 + specs -->
+    <rect x="20" y="232" width="210" height="30" rx="4" fill="#fff" stroke="#007f86"/>
+    <text x="125" y="251" text-anchor="middle" font-size="11.5" font-weight="bold">Stage 7 · Fault dataset</text>
+    <rect x="255" y="232" width="210" height="30" rx="4" fill="#fff" stroke="#b3168f" stroke-dasharray="3 2"/>
+    <text x="360" y="251" text-anchor="middle" font-size="11">3GPP specs (fetched, not stored)</text>
+    <line x1="125" y1="230" x2="125" y2="206" stroke="#5a6070" marker-end="url(#ar)"/>
+    <line x1="360" y1="230" x2="360" y2="206" stroke="#5a6070" marker-end="url(#ar)"/>
+    <!-- lab band -->
+    <rect x="10" y="276" width="700" height="50" rx="4" fill="#f3f5f9" stroke="#d8dbe3"/>
+    <text x="360" y="290" text-anchor="middle" font-size="9.5" fill="#5a6070">NeonCore 5G · in the repo today (Proxmox VM, K3s)</text>
+    <text x="125" y="314" text-anchor="middle" font-size="11">phase6 scenarios + tracer</text>
+    <text x="360" y="314" text-anchor="middle" font-size="11">Open5GS + UERANSIM</text>
+    <text x="595" y="314" text-anchor="middle" font-size="11">Prometheus metrics</text>
+    <line x1="125" y1="300" x2="125" y2="264" stroke="#5a6070" marker-end="url(#ar)"/>
+    <line x1="595" y1="300" x2="595" y2="206" stroke="#5a6070" marker-end="url(#ar)"/>
+  </svg>
+  <p class="lede">NeonCore AI architecture, Stages 7 to 11. The agent sits on top and calls the three AI components as tools; it also reaches the live core through the MCP server, but never changes it without operator approval.</p>
+  <h3>Design rules for all stages</h3>
+  <ul>
+    <li>The agent reads freely but asks before any change, the same way the CLI already confirms deploy and teardown.</li>
+    <li>Treat logs, pcaps and SBI payloads as untrusted input to the LLM.</li>
+    <li>Record cost and latency next to accuracy; operators decide on all three.</li>
+  </ul>
+  <h3>Project ground rules</h3>
+  <ul>
+    <li>One write-up per finished stage: the problem, a screenshot, the number, what broke.</li>
+    <li>Commit in small steps with clear messages.</li>
+    <li>Never use real operator pcaps, configs or IMSIs, or proprietary documents. NeonCore and synthetic data only.</li>
+    <li>Set a monthly spending cap on API and cloud GPU accounts.</li>
+  </ul>
+  <footer>Stage definitions: <span class="mono">project/WORKFLOW.md</span>. Status: <span class="mono">project/STATUS.md</span>. Build history: <span class="mono">DEVLOG.md</span>. Built with AI agents under the owner's direction.</footer>
+</body>
+</html>

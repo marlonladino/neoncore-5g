@@ -219,9 +219,9 @@ work is called a Stage; each stage has a plan, an owner approval and a closing r
 | L0 | Migrate to Proxmox, retire the old host, repo polish | Closed 2026-11-11 (old-host retirement, T15a, owner-only, not done) |
 | 7 | Labeled fault injection and dataset generator | Planned |
 | 8 | Call-flow extractor and first LLM troubleshooter | Planned |
-| 9 | Telco-RAG over 3GPP specs | Planned |
+| 9 | Telco-RAG over 3GPP specs, local open-weight LLM | Planned |
 | 10 | MCP server and diagnosing agent | Planned |
-| 9B | Managed RAG comparison (Bedrock Knowledge Bases) | Planned |
+| 9B | Local vs API RAG comparison | Planned |
 | 11 | KPI anomaly detection (`nwdaf-lite`) and CI eval gate | Planned |
 | 12 | Self-hosted vs API model comparison, red-team, reference architecture | Planned |
 
